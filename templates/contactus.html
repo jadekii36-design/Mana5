@@ -1,0 +1,484 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact{% endblock %}
+
+{% block content %}
+<style>
+
+/* Telegram button clean style */
+.tg-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  height: 42px;
+  padding: 0 18px;
+
+  border-radius: 999px;
+  background: linear-gradient(90deg, #004182, #054585d0);
+
+  color: #e8f2ff;
+  font-weight: 800;
+  font-size: 13px;        /* ⭐ អក្សរតូច */
+  letter-spacing: .04em;
+
+  text-decoration: none;
+  box-shadow: 0 10px 26px rgba(0,0,0,.28);
+}
+
+.tg-btn:active{
+  transform: scale(.98);
+}
+
+/* Telegram icon */
+.tg-icon{
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+/* text spacing */
+.tg-text{
+  line-height: 1;
+}
+
+/* Telegram inline (NO card background) */
+.telegram-inline{
+  text-align:center;
+  margin: 6px 0 12px;   /* ឲ្យវាជិតល្អ */
+}
+
+.tg-title{
+  margin: 0 0 10px;
+  font-weight: 950;
+  font-size: 14px;
+  opacity: .9;
+  letter-spacing: .03em;
+}
+/* Back button shape like picture */
+.back-btn{
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 42px;
+  padding: 0 22px 0 28px;   /* left a bit bigger */
+  border-radius: 12px;
+
+  background: #13111185;
+  color: #ffffffc9;
+  font-weight: 800;
+  text-decoration: none;
+
+  border: 1px solid rgba(189, 189, 189, 0.164);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,.18),
+    inset 0 1px 0 rgba(255,255,255,.65);
+}
+/* hover/active */
+.back-btn:hover{
+  transform: translateY(-1px);
+}
+.back-btn:active{
+  transform: translateY(0px);
+  opacity: .92;
+}
+
+/* Mobile adjustments */
+@media (max-width:520px){
+  .top-actions{ padding: 10px 12px 0; }
+  .top-actions-line{ margin: 10px 12px 0; }
+  .back-btn{ height: 40px; padding: 0 18px 0 24px; font-size: 13px; }
+  .back-btn::before{
+    left: -13px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 13px solid #e7e7e7;
+  }
+}
+
+  .wrap{
+    align-items:flex-start !important;
+    justify-content:center !important;
+    padding-top:72px !important;
+  }
+
+  .page{
+    width: min(520px, 94vw);
+    margin: 0 auto;
+    padding: 14px 14px 92px; /* leave space for bottom nav */
+    box-sizing: border-box;
+  }
+
+  .cardx{
+  position: relative;
+
+  background: rgba(0, 0, 0, 0.788);
+
+  border-radius: 18px;
+  border: 2px solid rgba(192, 192, 192, 0.904);
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow: 0 0 10px rgba(10, 10, 9, 0.788),
+              0 14px 10px rgba(0, 0, 0, 0.815);
+
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding: 18px;
+}
+
+  .title{
+    font-weight: 950;
+    font-size: 18px;
+    letter-spacing:.04em;
+    margin: 0 0 6px;
+  }
+  .sub{
+    font-size: 12px;
+    opacity: .80;
+    margin: 0;
+  }
+
+  label{
+    display:block;
+    font-size: 12px;
+    opacity:.90;
+    margin: 10px 0 6px;
+    font-weight: 800;
+  }
+
+  input, textarea{
+    width:100%;
+    box-sizing:border-box;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.16);
+    background: rgba(255,255,255,.08);
+    color:#fff;
+    padding: 12px 12px;
+    outline:none;
+  }
+
+  textarea{
+    min-height: 110px;
+    resize: none;
+  }
+
+  input:focus, textarea:focus{
+  border-color: rgba(0,65,130,.85);
+  box-shadow: 0 0 0 3px rgba(5,69,133,.25);
+}
+
+  .btn{
+    width:100%;
+    margin-top: 12px;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 16px;
+    font-weight: 950;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color:#fff;
+    cursor:pointer;
+    background: linear-gradient(90deg, #004182, #054585d0);
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+  }
+  .btn:active{ transform: scale(.99); }
+
+  .alert-success{
+  border: 1px solid rgba(34,197,94,.55);
+  background: rgba(34,197,94,.12);
+  color: #e6f1ff;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+  .muted{
+    font-size: 12px;
+    opacity:.75;
+    margin-top: 10px;
+  }
+
+/* =========================
+   CONTACT US = WHITE CARDS + BLUE TEXT
+   ========================= */
+
+/* Font */
+.page, .page *{
+  font-family: "Ovelion", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* page wrapper */
+.page{
+  width: min(520px, 94vw);
+  margin: 0 auto;
+  padding: 14px 14px 92px;
+  box-sizing: border-box;
+}
+
+/* ✅ White luxury card style (same as wallet white cards) */
+.cardx{
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fafc 45%,
+      #eef2f7 75%,
+      #ffffff 100%
+  ) !important;
+
+  border-radius: 18px;
+  border: 2px solid rgba(212,175,55,.85) !important;
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.12),
+    0 0 0 1px rgba(255,255,255,.9) inset !important;
+
+  margin-bottom: 16px;
+  padding: 18px;
+}
+
+/* glow */
+.cardx::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.75;
+  background:
+    radial-gradient(circle at 90% 90%, rgba(212,175,55,.25), transparent 55%),
+    radial-gradient(circle at 10% 10%, rgba(0,65,130,.08), transparent 60%);
+}
+
+/* shine */
+.cardx::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.6;
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0) 55%);
+}
+
+/* keep content above overlays */
+.cardx > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* ✅ Blue text inside cards */
+.cardx, .cardx *{
+  color:#0b2f55 !important;
+  text-shadow: none !important;
+}
+
+.title{
+  font-weight: 950;
+  font-size: 18px;
+  letter-spacing:.04em;
+  margin: 0 0 6px;
+}
+.sub{
+  font-size: 12px;
+  opacity: .75;
+  margin: 0;
+}
+
+/* labels */
+label{
+  display:block;
+  font-size: 12px;
+  margin: 10px 0 6px;
+  font-weight: 900;
+  color:#0b2f55 !important;
+  opacity: .9;
+}
+
+/* ✅ inputs look like wallet white inputs */
+input, textarea{
+  width:100%;
+  box-sizing:border-box;
+  border-radius: 14px;
+
+  border: 1px solid rgba(11,47,85,.18) !important;
+  background: rgba(11,47,85,.06) !important;
+
+  color:#0b2f55 !important;
+  padding: 12px 12px;
+  outline:none;
+}
+
+input::placeholder, textarea::placeholder{
+  color: rgba(11,47,85,.55) !important;
+}
+
+textarea{
+  min-height: 110px;
+  resize: none;
+}
+
+input:focus, textarea:focus{
+  border-color: rgba(0,65,130,.75) !important;
+  box-shadow: 0 0 0 3px rgba(5,69,133,.22) !important;
+  background: rgba(11,47,85,.08) !important;
+}
+
+/* send button keep blue */
+.btn{
+  width:100%;
+  margin-top: 12px;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 16px;
+  font-weight: 950;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color:#fff !important;
+  cursor:pointer;
+  background: linear-gradient(90deg, #004182, #054585d0);
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+.btn:active{ transform: scale(.99); }
+
+/* ✅ success alert also white style */
+.alert-success{
+  border: 2px solid rgba(212,175,55,.65) !important;
+  background: linear-gradient(180deg, #ffffff, #f3f6fb) !important;
+  color:#0b2f55 !important;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  font-weight: 900;
+  margin-bottom: 12px;
+
+  box-shadow: 0 14px 34px rgba(0,0,0,.12);
+}
+
+/* =========================
+   ✅ Back button = White visible
+   ========================= */
+.top-actions{
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+
+  height: 42px;
+  padding: 0 22px;
+  border-radius: 12px;
+
+  background: #ffffff !important;
+  color: #0b2f55 !important;
+  font-weight: 950;
+  text-decoration:none;
+
+  border: 2px solid rgba(11,47,85,.22) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.14),
+              0 0 0 1px rgba(255,255,255,.9) inset !important;
+}
+
+.back-btn:hover{
+  transform: translateY(-1px);
+}
+.back-btn:active{
+  transform: scale(.98);
+  opacity: 1 !important;
+}
+
+/* keep telegram inline text readable */
+.telegram-inline{
+  text-align:center;
+  margin: 6px 0 12px;
+}
+/* Telegram title = Blue (visible on light background) */
+.tg-title{
+  color:#004182 !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,.65);
+}
+/* =========================
+   CONTACT PAGE BODY (MATCH WALLET/DASHBOARD)
+   ========================= */
+
+body{
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* ✅ NO overlay, show image original */
+  background: url("{% static 'img/SL-012322-48100-03.webp' %}") center/cover no-repeat fixed !important;
+  background-color: #ffffff;
+  background-blend-mode: normal;
+}
+</style>
+
+<div class="page">
+  <div class="telegram-inline">
+    <h4 class="tg-title">Telegram Contact</h4>
+  
+    <a href="https://t.me/CustomerServices24h_16868"
+       target="_blank"
+       class="tg-btn">
+  
+      <img src="{% static 'img/icons/telegram.png' %}"
+           alt="Telegram"
+           class="tg-icon">
+  
+      <span class="tg-text">Telegram</span>
+    </a>
+  </div>
+  <div class="cardx">
+    <div class="title">CONTACT US</div>
+    <p class="sub">Send us a message — we will contact you soon.</p>
+  </div>
+  <!-- TELEGRAM CONTACT CARD -->
+  
+
+
+  {% if sent %}
+    <div class="alert-success">
+      ✅ Thank you! We will contact you soon.
+    </div>
+  {% endif %}
+
+  <div class="cardx">
+    <form method="POST" action="/contact/">
+      {% csrf_token %}
+
+      <label>Full name</label>
+      <input type="text" name="full_name" required>
+
+      <label>Phone / WhatsApp</label>
+      <input type="tel" name="phone" required>
+
+      <label>Subject (optional)</label>
+      <input type="text" name="subject">
+
+      <label>Message</label>
+      <textarea name="message" required></textarea>
+
+      <button class="btn" type="submit">Send Message</button>
+    </form>
+  </div>
+  <!-- TOP ACTIONS -->
+<div class="top-actions">
+  <a class="back-btn" href="javascript:history.back()">
+    Back
+  </a>
+</div>
+<div class="top-actions-line"></div>
+
+</div>
+{% endblock %}

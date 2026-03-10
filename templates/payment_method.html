@@ -1,0 +1,329 @@
+{% extends "base.html" %}
+{% block title %}Payment Method{% endblock %}
+
+{% block content %}
+<style>
+
+/* ===== Layout Wrapper ===== */
+.dash-wrap{
+  width: min(520px, 94vw);
+  margin: 0 auto;
+  padding: 74px 14px 24px;
+  box-sizing: border-box;
+}
+
+/* ===== Main Card Style (MATCH DASHBOARD) ===== */
+.cardx{
+  position: relative;
+  background: rgba(0, 0, 0, 0.788);
+  border-radius: 18px;
+  border: 2px solid rgba(192, 192, 192, 0.904);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 0 10px rgba(10,10,9,.788),
+              0 14px 10px rgba(0,0,0,.815);
+  overflow: hidden;
+  margin-bottom: 16px;
+  padding: 18px;
+}
+
+/* ===== Typography ===== */
+.pm-page, .pm-page *{
+  font-family: "Ovelion", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+.muted{ color: rgba(255,255,255,.78); }
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 12px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:12px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.16);
+  color:#fff;
+}
+
+/* ===== Sections ===== */
+.pm-section{
+  margin:12px 0;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.16);
+  background:rgba(0,0,0,.14);
+}
+
+.pm-title{
+  font-weight:950;
+  margin-bottom:6px;
+  color:#fff;
+}
+
+/* Inputs */
+.pm-section input{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color:#fff;
+  outline:none;
+  box-sizing:border-box;
+}
+
+.pm-section input::placeholder{
+  color: rgba(255,255,255,.55);
+}
+
+/* Lock mode */
+.pm-locked input{
+  pointer-events:none;
+  opacity:.65;
+}
+
+/* ===== Bottom Button ===== */
+.bottom-nav{
+  margin-top:18px;
+}
+
+.nav-inner{
+  display:flex;
+  justify-content:center;
+}
+
+.nav-btn{
+  width:220px;
+  height:52px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.16);
+  background: linear-gradient(90deg, #004182, #054585d0);
+  color:#fff;
+  font-weight:950;
+  letter-spacing:.04em;
+  box-shadow: 0 14px 36px rgba(0,0,0,.45);
+  cursor:pointer;
+}
+
+.nav-btn:disabled{
+  opacity:.55;
+  cursor:not-allowed;
+}
+/* ✅ FORCE override base.html */
+.pm-page .cardx{
+  background: rgba(0, 0, 0, 0.788) !important;
+  border-radius: 18px !important;
+  border: 2px solid rgba(192, 192, 192, 0.904) !important;
+
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+
+  box-shadow: 0 0 10px rgba(10,10,9,.788),
+              0 14px 10px rgba(0,0,0,.815) !important;
+}
+
+/* ✅ center only single Save button */
+.pm-page .bottom-nav{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.pm-page .nav-inner{
+  display:flex !important;
+  justify-content:center !important;
+}
+
+.pm-page .nav-btn{
+  width: 220px !important;
+  flex: 0 0 auto !important;
+}
+/* ✅ Payment Method ONLY: stop wrap flex twisting this page */
+.wrap{ display:block !important; }
+
+/* ✅ Force CardX style (wins base.html) */
+.pm-page .cardx{
+  background: rgba(0,0,0,.788) !important;
+  border: 2px solid rgba(192,192,192,.904) !important;
+  box-shadow: 0 0 10px rgba(10,10,9,.788),
+              0 14px 10px rgba(0,0,0,.815) !important;
+  backdrop-filter: blur(22px) !important;
+  -webkit-backdrop-filter: blur(22px) !important;
+}
+
+/* ✅ Center only the Save button */
+.pm-page .nav-inner{ justify-content:center !important; }
+.pm-page .nav-btn{ width:220px !important; flex:0 0 auto !important; }
+
+/* ✅ Center Save button (no need nav-inner) */
+.pm-page .bottom-nav{
+  display:flex !important;
+  justify-content:center !important;
+}
+.pm-page .bottom-nav .nav-btn{
+  margin: 0 auto !important;
+  display:block !important;
+}
+/* =========================
+   ✅ PAYMENT METHOD = WHITE LUXURY (like wallet lower cards)
+   ========================= */
+
+/* 1) Main card -> white */
+.pm-page .cardx{
+  position: relative !important;
+  overflow: hidden !important;
+
+  background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fafc 45%,
+      #eef2f7 75%,
+      #ffffff 100%
+  ) !important;
+
+  border: 2px solid rgba(212,175,55,.85) !important;
+
+  box-shadow:
+      0 20px 45px rgba(0,0,0,.12),
+      0 0 0 1px rgba(255,255,255,.9) inset !important;
+
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+/* soft gold/blue glow */
+.pm-page .cardx::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 90% 90%, rgba(212,175,55,.25), transparent 55%),
+    radial-gradient(circle at 10% 10%, rgba(0,65,130,.08), transparent 60%);
+  opacity:.75;
+}
+.pm-page .cardx::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,0) 55%);
+  opacity:.6;
+}
+.pm-page .cardx > *{
+  position: relative;
+  z-index: 1;
+}
+
+/* 2) Text -> deep blue */
+.pm-page .cardx,
+.pm-page .cardx *{
+  color:#0b2f55 !important;
+  text-shadow: none !important;
+}
+
+/* title + muted */
+.pm-page .muted{ color: rgba(11,47,85,.72) !important; }
+.pm-page .pm-title{ color:#0b2f55 !important; }
+
+/* 3) Badge -> gray pill (still readable on white) */
+.pm-page .badge{
+  border: 1px solid rgba(11,47,85,.16) !important;
+  background: rgba(11,47,85,.06) !important;
+  color:#0b2f55 !important;
+}
+
+/* 4) Sections -> light panel */
+.pm-page .pm-section{
+  border: 1px solid rgba(11,47,85,.14) !important;
+  background: rgba(11,47,85,.04) !important;
+}
+
+/* 5) Inputs -> light blue-ish */
+.pm-page .pm-section input,
+.pm-page .pm-section input[type="text"],
+.pm-page .pm-section input[type="number"],
+.pm-page .pm-section input[type="tel"],
+.pm-page .pm-section input[type="email"]{
+  background: rgba(11,47,85,.06) !important;
+  border: 1px solid rgba(11,47,85,.18) !important;
+  color:#0b2f55 !important;
+  box-shadow: none !important;
+}
+
+.pm-page .pm-section input::placeholder{
+  color: rgba(11,47,85,.55) !important;
+}
+
+.pm-page .pm-section input:focus{
+  outline: none !important;
+  border-color: rgba(0,65,130,.55) !important;
+  box-shadow: 0 0 0 3px rgba(0,65,130,.18) !important;
+}
+
+/* 6) Locked mode (still looks clean) */
+.pm-page .pm-locked input{
+  opacity: .65 !important;
+  filter: grayscale(.15) !important;
+}
+
+/* 7) Button keep blue (like other pages) */
+.pm-page .nav-btn{
+  background: linear-gradient(90deg, #004182, #054585d0) !important;
+  color:#fff !important;
+  border: 0 !important;
+}
+</style>
+
+<div class="dash-wrap pm-page">
+  <div class="cardx">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;">
+      <div>
+        <h2 style="margin:0;font-size:26px;font-weight:950;">Payment Method</h2>
+        <div class="muted">Add or update your payout details</div>
+      </div>
+
+      <span class="badge">
+        Status: {% if saved %}Saved{% else %}Not set{% endif %}
+      </span>
+    </div>
+
+    <form method="post">
+      {% csrf_token %}
+
+      <!-- Bank -->
+      <div class="pm-section {% if saved %}pm-locked{% endif %}">
+        <div class="pm-title">Bank</div>
+        <div style="display:grid;gap:10px;">
+          <div>
+            <div class="muted" style="font-size:12px;margin-bottom:6px;">Account name</div>
+            {{ form.bank_name }}
+          </div>
+          <div>
+            <div class="muted" style="font-size:12px;margin-bottom:6px;">Account number</div>
+            {{ form.bank_account }}
+          </div>
+        </div>
+      </div>
+
+      {% if locked %}
+        <div class="muted" style="margin-top:10px;">Locked: Please contact staff to update.</div>
+      {% endif %}
+
+      <div class="bottom-nav">
+        {% if locked %}
+          <button class="nav-btn" type="button" disabled>Saved</button>
+        {% else %}
+          <button class="nav-btn" type="submit">Save</button>
+        {% endif %}
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
