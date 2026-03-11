@@ -192,6 +192,8 @@
     border-radius: 18px;
     box-shadow: 0 24px 60px rgba(27,42,94,.25);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
   .agreement-head {
     padding: 14px 16px;
@@ -199,6 +201,7 @@
     display: flex; align-items: center;
     justify-content: center; position: relative; gap: 10px;
     background: linear-gradient(90deg, var(--primary), var(--secondary));
+    flex-shrink: 0;
   }
   .agreement-title {
     font-weight: 950; letter-spacing: .2px;
@@ -214,7 +217,7 @@
   }
   .agreement-body {
     padding: 14px 16px;
-    overflow: auto; max-height: 58vh;
+    overflow: auto; flex: 1; min-height: 0;
     line-height: 1.55; font-size: 13px;
     color: #334155;
   }
@@ -232,6 +235,7 @@
     border-top: 1px solid rgba(27,42,94,.10);
     display: flex; gap: 10px; justify-content: flex-end;
     background: var(--light-bg);
+    flex-shrink: 0;
   }
   .btn-agree {
     height: 40px; padding: 0 20px; border-radius: 999px; border: 0;

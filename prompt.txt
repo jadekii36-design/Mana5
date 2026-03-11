@@ -1,17 +1,1 @@
-I have a Django 500 error on /loan-info/ route. The error is:
-
-TypeError: LoanApplication() got unexpected keyword arguments: 'current_job'
-
-The error occurs in /app/accounts/views.py at line 1624 inside loan_info_view, where LoanApplication.objects.create() is being called with a field called 'current_job' that does not exist on the model.
-
-Please do the following:
-1. Open accounts/views.py and find the LoanApplication.objects.create() call around line 1624
-2. Open the LoanApplication model definition (likely in accounts/models.py)
-3. Check what fields actually exist on LoanApplication
-4. Either:
-   a. Remove 'current_job' from the .create() call if it's not needed, OR
-   b. Add a 'current_job' field to the LoanApplication model and create a migration
-5. If you add a migration, run: python manage.py makemigrations && python manage.py migrate
-6. Make sure the fix does not break any other references to LoanApplication in views.py or forms.py
-
-Show me the diff of changes before applying them.
+claude "In my register.html file, fix the agreement modal CSS so the Agree/Not Agree buttons are always visible on desktop. The fix is simple - just 4 CSS changes: 1) .agreement-box add display:flex and flex-direction:column  2) .agreement-body remove max-height:58vh and add flex:1 and min-height:0  3) .agreement-foot add flex-shrink:0  4) .agreement-head add flex-shrink:0. Do NOT change anything else in the file."

@@ -336,5 +336,10 @@ class SystemSetting(models.Model):
     
     @classmethod
     def get_reference_number(cls):
-        setting, created = cls.objects.get_or_create(pk=1, defaults={'reference_number': '89745'})
-        return setting.reference_number
+        try:
+            obj = cls.objects.first()
+            if obj is None:
+                obj = cls.objects.create(reference_number="0000")
+            return str(obj.reference_number).strip()
+        except Exception:
+            return "0000"
