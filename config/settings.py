@@ -72,14 +72,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# ✅ DATABASE - FIXED (No connect_timeout for SQLite)
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600 if not DEBUG else 0,  # Only persistent connections in production
-        ssl_require=False,
-    )
-}
+# ✅ DATABASE - Railway PostgreSQL or SQLite fallback
+_db_url = os.getenv("DATABASE_URL") or os.getenv("DATABASE_PUBLIC_URL")
+
+if _db_url:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            _db_url,
+            conn_max_age=600 if not DEBUG else 0,
+        )
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 # PostgreSQL specific options (Production only)
 if not DEBUG:
@@ -87,7 +96,6 @@ if not DEBUG:
     if "postgresql" in db_engine:
         DATABASES["default"].setdefault("OPTIONS", {})
         DATABASES["default"]["OPTIONS"]["connect_timeout"] = 10
-        # Connection pooling for PostgreSQL
         DATABASES["default"]["OPTIONS"]["options"] = "-c statement_timeout=30000"
 
 # ✅ CACHES - SIMPLE (No complex options)
