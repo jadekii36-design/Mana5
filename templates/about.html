@@ -168,14 +168,27 @@
   margin-top:12px;
 }
 .ab-value{
-  background:linear-gradient(135deg,rgba(242,101,34,.06),rgba(0,158,173,.05));
-  border:1.5px solid rgba(242,101,34,.12);
-  border-radius:14px;
-  padding:16px 14px;
+  background:#fff;
+  border:1.5px solid #f0f0f0;
+  border-radius:16px;
+  padding:18px 14px 16px;
+  display:flex; flex-direction:column; align-items:flex-start;
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+  transition:transform .18s, box-shadow .18s;
 }
-.ab-value-icon{ font-size:22px; margin-bottom:8px; }
-.ab-value-title{ font-size:13px; font-weight:900; color:#0f1923; }
-.ab-value-desc{ font-size:12px; color:#6b7280; margin-top:4px; line-height:1.5; }
+.ab-value:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,.1); }
+.ab-value-icon{
+  width:46px; height:46px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:12px; flex:0 0 auto;
+}
+.ab-value-icon svg{ width:24px; height:24px; }
+.ab-value-icon.trust{ background:linear-gradient(135deg,#F26522,#f5892a); }
+.ab-value-icon.speed{ background:linear-gradient(135deg,#009EAD,#00b8cc); }
+.ab-value-icon.security{ background:linear-gradient(135deg,#1e40af,#3b5bdb); }
+.ab-value-icon.care{ background:linear-gradient(135deg,#059669,#10b981); }
+.ab-value-title{ font-size:14px; font-weight:900; color:#0f1923; }
+.ab-value-desc{ font-size:12px; color:#6b7280; margin-top:5px; line-height:1.55; }
 
 /* ── Services list ── */
 .ab-services{ display:grid; gap:10px; margin-top:12px; }
@@ -323,22 +336,43 @@
     <div class="ab-sep"></div>
     <div class="ab-values">
       <div class="ab-value">
-        <div class="ab-value-icon">🤝</div>
+        <div class="ab-value-icon trust">
+          <!-- Handshake / Trust -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
         <div class="ab-value-title">Trust</div>
         <div class="ab-value-desc">We build lasting relationships through honesty and transparency in every transaction.</div>
       </div>
       <div class="ab-value">
-        <div class="ab-value-icon">⚡</div>
+        <div class="ab-value-icon speed">
+          <!-- Lightning bolt / Speed -->
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
         <div class="ab-value-title">Speed</div>
         <div class="ab-value-desc">Quick approval process so you get the funds you need without unnecessary delays.</div>
       </div>
       <div class="ab-value">
-        <div class="ab-value-icon">🛡️</div>
+        <div class="ab-value-icon security">
+          <!-- Lock shield / Security -->
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 14l-3-3 1.41-1.41L11 12.17l4.59-4.58L17 9l-6 6z"/>
+          </svg>
+        </div>
         <div class="ab-value-title">Security</div>
         <div class="ab-value-desc">Your data and money are protected with the highest security standards.</div>
       </div>
       <div class="ab-value">
-        <div class="ab-value-icon">💛</div>
+        <div class="ab-value-icon care">
+          <!-- Heart / Care -->
+          <svg viewBox="0 0 24 24" fill="#fff">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+        </div>
         <div class="ab-value-title">Care</div>
         <div class="ab-value-desc">We genuinely care about our clients' financial well-being and future success.</div>
       </div>
