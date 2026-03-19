@@ -11,12 +11,12 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #1B2A5E;
-  --accent:    #F5C518;
-  --danger:    #E03020;
-  --secondary: #1A4DB5;
+  --primary:   #F26522;
+  --accent:    #009EAD;
+  --danger:    #F26522;
+  --secondary: #009EAD;
   --white:     #FFFFFF;
-  --light-bg:  #F4F6FB;
+  --light-bg:  #F5F8FA;
 }
 
 /* ✅ GLOBAL: Kill base.html dark card overrides */
@@ -24,7 +24,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .card,
 [class*="card"] {
   background: #FFFFFF !important;
-  color: #1B2A5E !important;
+  color: #0A2540 !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -43,8 +43,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   background: #FFFFFF !important;
   border-radius: 22px !important;
   padding: 20px !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
+  border: 2px solid rgba(242,101,34,.28) !important;
+  box-shadow: 0 16px 48px rgba(242,101,34,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
   overflow: hidden;
   margin-bottom: 14px;
   color: var(--primary) !important;
@@ -56,11 +56,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .cardx label,
 .cardx .k,
 .cardx .field {
-  color: #1B2A5E !important;
+  color: #0A2540 !important;
 }
 
 .cardx .v {
-  color: #1B2A5E !important;
+  color: #0A2540 !important;
   font-weight: 900;
 }
 
@@ -86,8 +86,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   font-weight: 900;
   font-size: 14px;
   text-decoration: none;
-  border: 2px solid rgba(224,48,32,.30);
-  box-shadow: 0 4px 14px rgba(27,42,94,.12);
+  border: 2px solid rgba(242,101,34,.30);
+  box-shadow: 0 4px 14px rgba(242,101,34,.12);
   transition: transform .15s ease;
 }
 
@@ -117,9 +117,9 @@ input[type="number"]{
   height: 44px;
   padding: 0 14px;
   border-radius: 14px;
-  border: 1.5px solid rgba(27,42,94,.15) !important;
+  border: 1.5px solid rgba(242,101,34,.15) !important;
   background: #F4F6FB !important;
-  color: #1B2A5E !important;
+  color: #0A2540 !important;
   font-weight: 700;
   box-sizing: border-box;
   transition: all .2s ease;
@@ -131,8 +131,8 @@ input[type="number"]::placeholder {
 
 input[type="number"]:focus {
   outline: none;
-  border-color: rgba(224,48,32,.40) !important;
-  box-shadow: 0 0 0 3px rgba(224,48,32,.08) !important;
+  border-color: rgba(242,101,34,.40) !important;
+  box-shadow: 0 0 0 3px rgba(242,101,34,.08) !important;
   background: #fff !important;
 }
 
@@ -166,7 +166,7 @@ input[readonly] {
 .term-btn{
   padding: 12px 0;
   border-radius: 999px;
-  border: 1.5px solid rgba(27,42,94,.18);
+  border: 1.5px solid rgba(242,101,34,.18);
   background: #F4F6FB;
   color: var(--primary);
   font-weight: 900;
@@ -175,7 +175,7 @@ input[readonly] {
 }
 
 .term-btn:hover {
-  border-color: rgba(27,42,94,.30);
+  border-color: rgba(242,101,34,.30);
   background: #e8ecf4;
 }
 
@@ -187,7 +187,7 @@ input[readonly] {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: #fff;
   border-color: var(--primary);
-  box-shadow: 0 6px 18px rgba(27,42,94,.25);
+  box-shadow: 0 6px 18px rgba(242,101,34,.25);
 }
 
 .term-btn:disabled{
@@ -238,7 +238,7 @@ input[readonly] {
   border-radius: 999px;
   border: 0 !important;
   background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
-  box-shadow: 0 10px 30px rgba(27,42,94,.30) !important;
+  box-shadow: 0 10px 30px rgba(242,101,34,.30) !important;
   color: #fff !important;
   font-size: 15px !important;
   font-weight: 900 !important;
@@ -248,7 +248,7 @@ input[readonly] {
 
 .cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 36px rgba(27,42,94,.35) !important;
+  box-shadow: 0 12px 36px rgba(242,101,34,.35) !important;
 }
 
 .cta:active {
@@ -271,8 +271,8 @@ input[readonly] {
 /* ===== Application Status Card ===== */
 #statusCard {
   background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
+  border: 2px solid rgba(242,101,34,.28) !important;
+  box-shadow: 0 16px 48px rgba(242,101,34,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
 }
 
 .status-head{
@@ -306,15 +306,15 @@ input[readonly] {
   border-radius: 999px;
   font-weight: 900;
   font-size: 12px;
-  border: 1.5px solid rgba(27,42,94,.20);
+  border: 1.5px solid rgba(242,101,34,.20);
   background: #F4F6FB;
   color: var(--primary);
   white-space: nowrap;
 }
 
 .mini-pill.is-rejected{
-  background: rgba(224,48,32,.12) !important;
-  border-color: rgba(224,48,32,.45) !important;
+  background: rgba(242,101,34,.12) !important;
+  border-color: rgba(242,101,34,.45) !important;
   color: #dc2626 !important;
 }
 
@@ -323,8 +323,8 @@ input[readonly] {
   margin-top: 12px;
   border-radius: 14px;
   padding: 14px;
-  border: 1.5px solid rgba(224,48,32,.40);
-  background: rgba(224,48,32,.08);
+  border: 1.5px solid rgba(242,101,34,.40);
+  background: rgba(242,101,34,.08);
 }
 
 .reject-alert .ra-title {
@@ -413,7 +413,7 @@ input[readonly] {
   flex: 1;
   height: 3px;
   border-radius: 999px;
-  background: rgba(27,42,94,.12);
+  background: rgba(242,101,34,.12);
   transition: background .3s ease;
 }
 
@@ -459,7 +459,7 @@ input[readonly] {
   gap: 10px;
   padding: 10px 16px;
   border-radius: 14px;
-  border: 1.5px solid rgba(27,42,94,.20);
+  border: 1.5px solid rgba(242,101,34,.20);
   background: #F4F6FB;
   color: var(--primary);
   font-weight: 900;
@@ -470,7 +470,7 @@ input[readonly] {
 
 .status-btn:hover {
   background: #e8ecf4;
-  border-color: rgba(27,42,94,.30);
+  border-color: rgba(242,101,34,.30);
   transform: translateY(-1px);
 }
 
@@ -520,10 +520,10 @@ input[readonly] {
       <div class="row"><div class="k">Monthly repayment</div><div class="v" id="qSumMonthly">—</div></div>
       <div class="row"><div class="k">Total payment</div><div class="v" id="qSumTotal">—</div></div>
       {% if loan %}
-      <div class="row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(27,42,94,.12);">
+      <div class="row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(242,101,34,.12);">
         <div class="k">Status</div>
         <span style="padding:5px 14px;border-radius:999px;font-size:12px;font-weight:900;
-                     background:rgba(27,42,94,.12);border:1.5px solid rgba(27,42,94,.25);color:#1B2A5E;">
+                     background:rgba(242,101,34,.12);border:1.5px solid rgba(242,101,34,.25);color:#0A2540;">
           SUBMITTED
         </span>
       </div>

@@ -11,12 +11,12 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #1B2A5E;
-  --accent:    #F5C518;
-  --danger:    #E03020;
-  --secondary: #1A4DB5;
+  --primary:   #F26522;
+  --accent:    #009EAD;
+  --danger:    #F26522;
+  --secondary: #009EAD;
   --white:     #FFFFFF;
-  --light-bg:  #F4F6FB;
+  --light-bg:  #F5F8FA;
 }
 
 /* ✅ GLOBAL: Kill base.html dark card overrides */
@@ -37,51 +37,63 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   box-sizing: border-box;
 }
 
-/* ===== BASE CARD — WHITE + RED BORDER ===== */
+/* ===== BASE CARD — DARK NAVY THEME ===== */
 .cardx{
   position: relative !important;
-  background: #FFFFFF !important;
+  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%) !important;
   border-radius: 22px !important;
   padding: 28px !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
+  border: 1.5px solid rgba(0,158,173,.28) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,.50), 0 0 0 1px rgba(0,158,173,.10) inset !important;
   overflow: hidden;
   margin-bottom: 20px;
-  color: var(--primary) !important;
+  color: rgba(255,255,255,.85) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-/* ✅ Force ALL text readable */
+.cardx::before {
+  content: "" !important; position: absolute !important;
+  top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 3px !important;
+  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  pointer-events: none !important;
+}
+
 .cardx, .cardx * {
-  color: #1B2A5E !important;
+  color: rgba(255,255,255,.82) !important;
 }
 
 .cardx h1, .cardx h2 {
-  color: #1B2A5E !important;
+  color: #fff !important;
   font-weight: 900;
   margin-top: 20px;
   margin-bottom: 12px;
 }
 
 .cardx h1 {
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   letter-spacing: .05em;
+  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
 }
 
 .cardx h2 {
-  font-size: 18px;
+  font-size: 17px;
+  color: #F26522 !important;
 }
 
 .cardx p {
-  color: #475569 !important;
+  color: rgba(255,255,255,.62) !important;
   line-height: 1.75;
   margin: 12px 0;
 }
 
 .cardx strong, .cardx b {
-  color: #1B2A5E !important;
+  color: #fff !important;
   font-weight: 900;
 }
 
@@ -91,15 +103,15 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 
 .cardx li {
-  color: #475569 !important;
+  color: rgba(255,255,255,.65) !important;
   margin-bottom: 8px;
   line-height: 1.7;
 }
 
 .cardx hr {
   border: none;
-  height: 2px;
-  background: linear-gradient(to right, rgba(224,48,32,.25), rgba(245,197,24,.35));
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,158,173,.45), rgba(242,101,34,.35), transparent);
   margin: 24px 0;
 }
 
@@ -111,42 +123,62 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 .ag-title {
   display: inline-block;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 950;
-  letter-spacing: .08em;
-  color: #1B2A5E !important;
+  letter-spacing: .10em;
+  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
   padding: 10px 20px;
-  border: 2px solid rgba(224,48,32,.30);
-  background: #F4F6FB !important;
+  border: 1.5px solid rgba(0,158,173,.30) !important;
+  background-color: rgba(0,158,173,.06) !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
   border-radius: 14px;
   margin: 0;
 }
 
-/* Article items */
-.article-block {
-  margin-top: 14px;
+/* Override for ag-title text gradient */
+.ag-title {
+  color: #F26522 !important;
+  background: rgba(0,158,173,.08) !important;
+  border: 1.5px solid rgba(0,158,173,.30) !important;
 }
 
+/* Article items */
+.article-block { margin-top: 14px; }
+
 .article-item {
-  margin: 12px 0;
+  margin: 10px 0;
   padding: 16px;
   border-radius: 16px;
-  background: #F4F6FB !important;
-  border: 1.5px solid rgba(27,42,94,.12) !important;
+  background: rgba(255,255,255,.04) !important;
+  border: 1px solid rgba(255,255,255,.07) !important;
+  position: relative;
+  padding-left: 22px;
+}
+
+.article-item::before {
+  content: "";
+  position: absolute; top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, #F26522, #009EAD);
+  border-radius: 4px 0 0 4px;
 }
 
 .art-title {
-  color: #1B2A5E !important;
+  color: #F26522 !important;
   font-weight: 900;
   letter-spacing: .4px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .article-text {
   margin-top: 8px;
   line-height: 1.75;
-  color: #475569 !important;
+  color: rgba(255,255,255,.60) !important;
   white-space: pre-line;
 }
 
@@ -164,23 +196,18 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   height: 44px;
   padding: 0 26px;
   border-radius: 999px;
-  background: #FFFFFF;
-  color: var(--primary);
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  color: #fff;
   font-weight: 900;
   font-size: 14px;
   text-decoration: none;
-  border: 2px solid rgba(224,48,32,.30);
-  box-shadow: 0 4px 14px rgba(27,42,94,.12);
+  border: none;
+  box-shadow: 0 8px 22px rgba(242,101,34,.30);
   transition: transform .15s ease;
 }
 
-.back-btn:hover {
-  transform: translateY(-1px);
-}
-
-.back-btn:active {
-  transform: scale(.98);
-}
+.back-btn:hover { transform: translateY(-1px); }
+.back-btn:active { transform: scale(.98); }
 
 @media (max-width: 560px) {
   .cardx {
@@ -202,7 +229,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     </div>
 
     <ul>
-      <li><b>PIPO FINANCING (PH) INC.:</b> [PIPO FINANCING (PH) INC.]</li>
+      <li><b>DC Financing FINANCING (PH) INC.:</b> [DC Financing FINANCING (PH) INC.]</li>
       <li><b>Registration Date:</b> [September 4, 2017]</li>
       <li><b>SEC / License / Registration Number:</b> [CS201729260 / 2526]</li>
       <li><b>Registered Country:</b> [Philippine]</li>
@@ -210,17 +237,17 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
     <hr>
 
-    <p>[PIPO FINANCING (PH) INC.] is a formally established and legally registered financial services organization operating in accordance with the applicable laws, regulations, and regulatory frameworks of [Philippine].</p>
+    <p>[DC Financing FINANCING (PH) INC.] is a formally established and legally registered financial services organization operating in accordance with the applicable laws, regulations, and regulatory frameworks of [Philippine].</p>
 
     <p>The Company was officially incorporated on [September 4, 2017] and operates under business registration, financial service license, or regulatory approval number [SEC / LICENSE / REGISTRATION NUMBER], as issued by the relevant governmental or regulatory authority.</p>
 
-    <p>The establishment of [PIPO FINANCING (PH) INC.] was driven by the growing demand for structured, accountable, and legally compliant financial assistance solutions designed to serve individuals seeking access to short-term and long-term funding options within a regulated framework.</p>
+    <p>The establishment of [DC Financing FINANCING (PH) INC.] was driven by the growing demand for structured, accountable, and legally compliant financial assistance solutions designed to serve individuals seeking access to short-term and long-term funding options within a regulated framework.</p>
 
     <p>The Company exists as a lawful business entity with recognized legal standing and conducts its operations in compliance with commercial, financial, consumer protection, and data protection laws applicable within [Philippine].</p>
 
     <p>The primary nature of the Company's business is the provision of loan-related and financial facilitation services. These services are structured to ensure operational sustainability, risk management, and legal enforceability.</p>
 
-    <p>The purpose of [PIPO FINANCING (PH) INC.] is to provide structured access to financial resources while maintaining responsible lending practices, internal risk controls, regulatory compliance, and repayment accountability.</p>
+    <p>The purpose of [DC Financing FINANCING (PH) INC.] is to provide structured access to financial resources while maintaining responsible lending practices, internal risk controls, regulatory compliance, and repayment accountability.</p>
 
     <p>The mission of the Company is to deliver transparent, disciplined, and structured financial services that support borrower needs while ensuring repayment responsibility, operational continuity, and long-term business sustainability.</p>
 
@@ -334,7 +361,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
     <p><strong>Last Updated:</strong> [INSERT DATE]</p>
 
-    <p>This <strong>Extended Loan User Agreement, Terms, Conditions, Disclosures, Acknowledgments, Waivers, and Legal Notices</strong> (the "<strong>Agreement</strong>") is a legally binding and enforceable contract entered into by and between <strong>[PIPO FINANCING (PH) INC.]</strong> (the "Company," "We," "Us," or "Our") and any individual or legal entity who accesses, applies for, receives, guarantees, repays, or otherwise interacts with any loan, financial product, service, website, mobile application, communication channel, or platform operated or provided by the Company (the "User," "Borrower," "Applicant," "Guarantor," "You," or "Your").</p>
+    <p>This <strong>Extended Loan User Agreement, Terms, Conditions, Disclosures, Acknowledgments, Waivers, and Legal Notices</strong> (the "<strong>Agreement</strong>") is a legally binding and enforceable contract entered into by and between <strong>[DC Financing FINANCING (PH) INC.]</strong> (the "Company," "We," "Us," or "Our") and any individual or legal entity who accesses, applies for, receives, guarantees, repays, or otherwise interacts with any loan, financial product, service, website, mobile application, communication channel, or platform operated or provided by the Company (the "User," "Borrower," "Applicant," "Guarantor," "You," or "Your").</p>
 
     <hr>
 

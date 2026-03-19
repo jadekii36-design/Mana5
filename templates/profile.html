@@ -11,20 +11,12 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #1B2A5E;
-  --accent:    #F5C518;
-  --danger:    #E03020;
-  --secondary: #1A4DB5;
+  --primary:   #F26522;
+  --accent:    #009EAD;
+  --danger:    #F26522;
+  --secondary: #009EAD;
   --white:     #FFFFFF;
-  --light-bg:  #F4F6FB;
-}
-
-/* ✅ Kill base.html dark overrides globally */
-.cardx, .p-btn, .card {
-  background: #FFFFFF !important;
-  color: #1B2A5E !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+  --light-bg:  #F5F8FA;
 }
 
 /* ===== Page wrapper ===== */
@@ -35,11 +27,19 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   box-sizing: border-box;
 }
 
-/* ===== Profile top card — Navy gradient ===== */
+/* ===== Kill base dark overrides ===== */
+.cardx, .card, [class*="card"] {
+  background: #fff !important;
+  color: #0A2540 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* ===== Profile top card — gradient ===== */
 .card-profile{
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
   border: 2px solid rgba(245,197,24,.40) !important;
-  box-shadow: 0 18px 48px rgba(27,42,94,.35) !important;
+  box-shadow: 0 18px 48px rgba(242,101,34,.35) !important;
   border-radius: 22px !important;
   padding: 20px !important;
   margin-bottom: 18px;
@@ -55,57 +55,82 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .amount{ font-size: 28px; font-weight: 950; color: #fff !important; margin-top: 10px; letter-spacing: .02em; }
 .status-badge{ padding: 5px 14px; border-radius: 999px; font-weight: 950; font-size: 12px; letter-spacing: .05em; }
 .status-active{ background: #16a34a !important; color: #fff !important; box-shadow: 0 4px 12px rgba(22,163,74,.35); }
+.mini.status-warn{ background: #eab308; color: #111; }
+.mini.status-danger{ background: #dc2626; color: #fff; }
 
-/* ===== Menu cards — WHITE + RED BORDER ===== */
+/* ===== Menu — unified dark list container ===== */
+.menu-list{
+  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%);
+  border-radius: 22px;
+  border: 1.5px solid rgba(0,158,173,.28);
+  box-shadow: 0 20px 55px rgba(0,0,0,.45);
+  overflow: hidden;
+  margin-bottom: 14px;
+  position: relative;
+}
+/* top accent stripe */
+.menu-list::before{
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  pointer-events: none;
+}
+
+/* ===== Each menu item ===== */
 .p-btn{
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   gap: 12px !important;
-  padding: 14px !important;
+  padding: 14px 16px !important;
   text-decoration: none !important;
   position: relative !important;
-  background: #FFFFFF !important;
-  border-radius: 22px !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
-  box-shadow: 0 8px 24px rgba(27,42,94,.08), 0 0 0 1px rgba(245,197,24,.06) !important;
-  overflow: hidden !important;
-  margin-bottom: 12px !important;
-  color: #1B2A5E !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255,255,255,.07) !important;
+  box-shadow: none !important;
+  margin-bottom: 0 !important;
+  color: #fff !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  transition: transform .08s ease, box-shadow .2s ease;
+  transition: background .15s ease;
 }
+.p-btn:last-child{ border-bottom: none !important; }
 .p-btn::before, .p-btn::after { display: none !important; }
-.p-btn:hover{ transform: translateY(-1px); box-shadow: 0 12px 32px rgba(27,42,94,.14) !important; }
-.p-btn:active{ transform: scale(.99); }
-.p-btn, .p-btn * { color: #1B2A5E !important; text-shadow: none !important; }
+.p-btn:hover{ background: rgba(255,255,255,.06) !important; }
+.p-btn:active{ background: rgba(255,255,255,.10) !important; }
+.p-btn, .p-btn * { color: #fff !important; text-shadow: none !important; }
 
 /* ===== Left section ===== */
 .left { display: flex; align-items: center; gap: 12px; min-width: 0; }
 
 /* ===== Icon ===== */
 .ico{
-  width: 42px; height: 42px; border-radius: 14px; flex: 0 0 auto;
-  background: linear-gradient(135deg, var(--primary), var(--secondary)) !important;
+  width: 40px; height: 40px; border-radius: 12px; flex: 0 0 auto;
+  background: rgba(255,255,255,.10) !important;
+  border: 1px solid rgba(255,255,255,.14) !important;
   display: flex; align-items: center; justify-content: center;
-  border: none !important;
 }
-.ico svg { width: 20px; height: 20px; fill: #fff !important; opacity: .95; }
+.ico svg { width: 20px; height: 20px; fill: #fff !important; opacity: .80; }
+.p-btn:hover .ico{
+  background: linear-gradient(135deg, rgba(242,101,34,.40), rgba(0,158,173,.40)) !important;
+  border-color: rgba(242,101,34,.35) !important;
+}
+.p-btn:hover .ico svg{ opacity: 1; }
 
 /* ===== Text ===== */
 .txt { min-width: 0; }
-.t1{ font-weight: 950; font-size: 14px; color: #1B2A5E !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.t2{ font-size: 12px; color: #64748b !important; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t1{ font-weight: 900; font-size: 14px; color: #fff !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t2{ font-size: 12px; color: rgba(255,255,255,.50) !important; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 /* ===== Chevron ===== */
 .chev{
-  width: 30px; height: 30px; border-radius: 999px; flex: 0 0 auto;
-  background: rgba(27,42,94,.08) !important;
-  border: 1px solid rgba(27,42,94,.12) !important;
+  width: 28px; height: 28px; border-radius: 999px; flex: 0 0 auto;
+  background: rgba(255,255,255,.07) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
   display: flex; align-items: center; justify-content: center;
 }
-.chev svg { width: 16px; height: 16px; fill: #1B2A5E !important; opacity: .75; }
+.chev svg { width: 14px; height: 14px; fill: none !important; stroke: rgba(255,255,255,.55); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
 /* ===== Status alert ===== */
 .status-alert{
@@ -123,13 +148,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .back-btn{
   display: inline-flex; align-items: center; justify-content: center;
   height: 44px; padding: 0 26px; border-radius: 999px;
-  background: #FFFFFF !important; color: #1B2A5E !important;
+  background: rgba(255,255,255,.08) !important;
+  color: #fff !important;
   font-weight: 900; font-size: 14px; text-decoration: none;
-  border: 2px solid rgba(224,48,32,.30) !important;
-  box-shadow: 0 4px 14px rgba(27,42,94,.12);
-  transition: transform .15s ease;
+  border: 1.5px solid rgba(255,255,255,.20) !important;
+  transition: transform .15s ease, background .15s ease;
 }
-.back-btn:hover{ transform: translateY(-1px); }
+.back-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13) !important; }
 .back-btn:active{ transform: scale(.98); }
 
 /* ===== Logout Modal ===== */
@@ -164,7 +189,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   font-weight: 900; cursor: pointer;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: #fff !important;
-  box-shadow: 0 8px 20px rgba(27,42,94,.30);
+  box-shadow: 0 8px 20px rgba(242,101,34,.30);
 }
 .btn-confirm:active{ transform: scale(.98); }
 
@@ -188,65 +213,70 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
         <div class="h-title">Profile</div>
         <div class="h-sub">Account: {{ request.user.phone }}</div>
       </div>
-      {% if request.user.account_status|upper == "ACTIVE" %}
-        <span class="status-badge status-active">ACTIVE</span>
-      {% endif %}
+      {% with acct=request.user.account_status|upper %}
+        <span class="status-badge mini
+          {% if acct == 'ACTIVE' or acct == 'APPROVED' or acct == 'LOAN_PAID' or acct == 'WITHDRAWAL_SUCCESSFUL' or acct == 'ACCOUNT_UPDATED' %}status-active
+          {% elif acct == 'APP_MAINTENANCE' or acct == 'INVALID_DETAIL' or acct == 'RENEW_DOCUMENT_REQUIRED' %}status-warn
+          {% else %}status-danger{% endif %}">
+          {% if request.user.dashboard_status_label %}{{ request.user.dashboard_status_label }}{% else %}{{ acct }}{% endif %}
+        </span>
+      {% endwith %}
     </div>
     <div class="amount">₱ <span data-balance>{{ request.user.balance|default:"0.00" }}</span></div>
   </div>
 
   <!-- ===== Menu ===== -->
-  <div class="menu">
+  <div class="menu-list">
 
     <a class="p-btn" href="/credit-score/">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 19h16v2H4zM6 17V7h3v10H6zm5 0V4h3v13h-3zm5 0v-9h3v9h-3z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
         <div class="txt"><div class="t1">Credit Score</div><div class="t2">View your score &amp; level</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
     <a class="p-btn" href="/loan-info/">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v17H6V2zm9 1.5V6h2.5L15 3.5zM8 9h8v2H8V9zm0 4h8v2H8v-2zm0 4h6v2H8v-2z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
         <div class="txt"><div class="t1">Information</div><div class="t2">Application status &amp; steps</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
     <a class="p-btn" href="/transactions/">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M7 7h14v4H7V7zM3 6h3v6H3V6zm4 9h14v4H7v-4zM3 14h3v6H3v-6z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
         <div class="txt"><div class="t1">Transactions</div><div class="t2">History of deposits &amp; withdrawals</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
     <a class="p-btn" href="{% url 'agreement' %}">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 2h9l3 3v17H6V2zm9 1.5V6h2.5L15 3.5zM8 9h8v2H8V9zm0 4h8v2H8v-2zm0 4h6v2H8v-2z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
         <div class="txt"><div class="t1">Agreement</div><div class="t2">Terms, conditions &amp; disclosures</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
     <a class="p-btn" href="/payment-schedule/">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M7 2v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2V2h-2v2H9V2H7zm14 8H3V8h18v2z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg></div>
         <div class="txt"><div class="t1">Payment Schedule</div><div class="t2">Installments &amp; due dates</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
     <a class="p-btn" href="#" id="logoutBtn">
       <div class="left">
-        <div class="ico"><svg viewBox="0 0 24 24"><path d="M10 17l1.4-1.4-2.6-2.6H20v-2H8.8l2.6-2.6L10 7l-7 7 7 7zM4 4h7V2H4a2 2 0 0 0-2 2v6h2V4zm0 18h7v-2H4v-6H2v6a2 2 0 0 0 2 2z"/></svg></div>
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></div>
         <div class="txt"><div class="t1">Logout</div><div class="t2">Securely exit your account</div></div>
       </div>
-      <div class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></div>
+      <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
 
-  </div>
+  </div><!-- end menu-list -->
 
   <!-- Back -->
   <div class="top-actions">

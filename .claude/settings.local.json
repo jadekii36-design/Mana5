@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf venv)",
+      "Bash(rm -f db.sqlite3)",
+      "Bash(python -m venv venv)",
+      "Bash(venv/Scripts/python manage.py migrate)"
+    ]
+  }
+}

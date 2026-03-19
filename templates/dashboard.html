@@ -4,22 +4,24 @@
 
 {% block content %}
 <style>
-/* ===== PIPO Financing Color Theme ===== */
+/* ===== DC Financing Color Theme ===== */
 :root {
-  --primary:   #1B2A5E;
-  --accent:    #F5C518;
-  --danger:    #E03020;
-  --secondary: #1A4DB5;
+  --primary:   #F26522;
+  --accent:    #009EAD;
+  --danger:    #F26522;
+  --secondary: #009EAD;
   --white:     #FFFFFF;
-  --light-bg:  #F4F6FB;
+  --light-bg:  #F5F8FA;
 }
 
 /* ===== Notification Bell ===== */
 .notify-wrap{
-  width:34px; height:34px; border-radius:12px;
-  background:rgba(0,0,0,.18);
+  width:36px; height:36px; border-radius:12px;
+  background: rgba(0,0,0,.22);
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
   display:flex; align-items:center; justify-content:center;
   flex: 0 0 auto; text-decoration:none; position: relative;
+  border: 1px solid rgba(255,255,255,.28);
 }
 .notify-badge{
   position:absolute; top:-6px; right:-6px;
@@ -96,9 +98,9 @@ body{
 /* ===== Top bar ===== */
 .topbar{
   position: fixed; top: 0; left: 0; right: 0; z-index: 80;
-  background: linear-gradient(90deg, #004182, #054585d0);
-  padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,.18);
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  background: linear-gradient(90deg, #F26522 0%, #009EAD 100%);
+  padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 4px 20px rgba(242,101,34,.35);
   transform: translateY(0); transition: transform .22s ease;
 }
 .topbar.hide-bar{ transform: translateY(-110%); }
@@ -110,15 +112,28 @@ body{
 }
 .welcome-track{
   display:inline-flex; align-items:center; justify-content:center; gap:6px;
-  color:#fff; font-weight:900; font-size:10px; letter-spacing:.02em;
-  padding:2px 10px; line-height:1; border-radius:999px;
-  background: linear-gradient(90deg, #004182, #054585d0);
-  border:1px solid rgba(192,192,192,.6); box-shadow: 0 0 6px rgba(10,10,9,.6);
-  max-width:100%; overflow:hidden; opacity:0; transform:translateY(6px);
+  color:#fff; font-weight:900; font-size:10.5px; letter-spacing:.02em;
+  padding:0; line-height:1; border-radius:0;
+  background: transparent;
+  border: none; box-shadow: none;
+  max-width:100%; overflow:hidden;
+  opacity:0; transform:translateX(-18px) scale(.96);
+  will-change: opacity, transform;
 }
-.welcome-track.show{
-  opacity:1; transform:translateY(0);
-  transition:opacity .35s ease, transform .35s ease;
+/* Anim style A — slide from left, fast ease-out */
+.welcome-track.anim-a{
+  opacity:1; transform:translateX(0) scale(1);
+  transition:opacity .22s cubic-bezier(.25,.46,.45,.94), transform .32s cubic-bezier(.17,.67,.28,1.1);
+}
+/* Anim style B — slide from right + slight bounce */
+.welcome-track.anim-b{
+  opacity:1; transform:translateX(0) scale(1);
+  transition:opacity .22s ease-out, transform .42s cubic-bezier(.34,1.56,.64,1);
+}
+/* Anim style C — zoom fade from below */
+.welcome-track.anim-c{
+  opacity:1; transform:translateX(0) scale(1);
+  transition:opacity .30s ease, transform .38s cubic-bezier(.19,1,.22,1);
 }
 .welcome-dot{
   width:6px; height:6px; border-radius:999px;
@@ -171,125 +186,256 @@ body{
   transition: opacity .45s ease, transform .45s ease;
 }
 
-/* ===== PROFILE CARD — WHITE + RED BORDER ===== */
+/* ===== PROFILE CARD — Same as profile.html ===== */
 .cardx.card-diamond {
-  background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.35) !important;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
+  border: 2px solid rgba(245,197,24,.40) !important;
+  box-shadow: 0 18px 48px rgba(242,101,34,.35) !important;
   border-radius: 22px !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.14), 0 0 0 1px rgba(245,197,24,.10) !important;
+  padding: 20px !important;
+  overflow: hidden;
+  position: relative !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-/* Remove diamond overlays on white card */
+/* Disable pseudo elements - clean gradient like profile.html */
 .cardx.card-diamond::before,
-.cardx.card-diamond::after { display: none !important; }
+.cardx.card-diamond::after {
+  display: none !important;
+}
 
-/* Profile card inner layout */
-.profile-card{ display:flex; gap:12px; align-items:flex-start; }
+/* ===== Profile Card ===== */
+.profile-card{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  position: relative;
+  z-index: 1;
+}
 
-/* Avatar — navy bg on white card */
-.avatar{
-  width:44px; height:44px; border-radius:14px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+/* Profile header with centered avatar */
+.profile-header{
   display:flex; align-items:center; justify-content:center;
-  flex:0 0 auto; border:1px solid rgba(27,42,94,.15);
-}
-.avatar svg{ width:22px; height:22px; opacity:.9; fill:#fff; }
-
-.profile-main{ flex:1 1 auto; min-width:0; }
-.row1{ display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
-
-/* Title & subline — DARK on white card */
-.title{ color: var(--primary) !important; font-weight:900; font-size:18px; line-height:1.1; }
-.subline{ color: #64748b !important; font-size:12px; margin-top:2px; }
-
-/* Balance pill — navy */
-.pill{
-  padding:6px 12px; border-radius:999px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: #fff !important; font-weight:800; font-size:12px; white-space:nowrap;
-  border: none !important;
+  padding: 0 0 8px 0;
 }
 
-/* Amount — dark navy */
+/* Avatar in profile card */
+.avatar{
+  width:60px; height:60px; border-radius:50%;
+  background: rgba(255,255,255,.25);
+  display:flex; align-items:center; justify-content:center;
+  flex:0 0 auto; border:2px solid rgba(255,255,255,.40);
+  overflow:hidden;
+}
+.avatar img{ width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.avatar svg{ width:28px; height:28px; opacity:.95; fill:#fff; }
+
+/* Profile main content */
+.profile-main{ flex:1 1 auto; min-width:0; text-align:center; }
+.row1{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+
+/* Greeting text */
+.greeting{
+  color: rgba(255,255,255,.85) !important;
+  font-weight:700;
+  font-size:13px;
+  margin-bottom:4px;
+}
+
+/* Location badge — red box style */
+.location-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(242,101,34,.25);
+  border: 1px solid rgba(242,101,34,.45);
+  border-radius: 8px;
+  padding: 5px 12px;
+  color: rgba(255,255,255,.90) !important;
+  font-weight:700;
+  font-size:11px;
+  letter-spacing:.04em;
+  margin-bottom:10px;
+}
+
+/* Title & subline — WHITE on gradient */
+.title{ color: #fff !important; font-weight:900; font-size:18px; line-height:1.1; }
+.subline{ color: rgba(255,255,255,.80) !important; font-size:12px; margin-top:2px; }
+
+/* Balance label — no background, clean text */
+.balance-label{
+  color: rgba(255,255,255,.75) !important;
+  font-weight:700;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  white-space:nowrap;
+}
+
+/* Amount — white on gradient, centered layout */
 .amount{
-  font-size:26px; font-weight:950; letter-spacing:.02em;
-  color: var(--primary) !important; margin-top:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  font-size:28px;
+  font-weight:950;
+  letter-spacing:.02em;
+  color: #fff !important;
+  margin-top:10px;
+  text-align:center;
+}
+.amount .currency{
+  font-size:24px;
+  font-weight:800;
+  opacity:.9;
+}
+.amount .value{
+  font-family:'Inter', system-ui, sans-serif;
+  font-weight:700;
 }
 
 /* ===== NAV BUTTONS — WHITE + NAVY TEXT + RED BORDER ===== */
-.bottom-nav{
-  position: static !important; width: 100% !important;
-  margin: 12px 0 16px !important; padding: 0 !important;
+/* ===== INLINE NAV ROW — above Apply Now ===== */
+.bottom-nav {
+  position: static !important;
+  width: 100% !important;
+  margin: 12px 0 0 !important;
+  padding: 0 !important;
   background: transparent !important; border: 0 !important;
-  border-radius: 0 !important; box-shadow: none !important;
-  backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
 }
-.nav-grid{
-  display:grid; grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px; align-items: stretch;
+.nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0 !important;
+  background: linear-gradient(135deg, #0A2540 0%, #0d4870 40%, #009EAD 100%) !important;
+  border-radius: 20px !important;
+  border: 2px solid rgba(0,158,173,.45) !important;
+  box-shadow: 0 4px 18px rgba(0,158,173,.25), 0 10px 24px rgba(0,0,0,.25) !important;
+  overflow: hidden !important;
+  position: relative !important;
 }
-/* Override ALL nav button styles to white */
+/* Top shimmer line on nav */
+.nav-grid::before {
+  content: "" !important;
+  position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important;
+  height: 2px !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), rgba(0,158,173,.8), rgba(255,255,255,.35), transparent) !important;
+  pointer-events: none !important; z-index: 10 !important;
+}
 .bottom-nav a.nav-item,
 .bottom-nav .nav-item {
-  width: 100% !important; min-height: 56px !important;
-  display: flex !important; flex-direction: row !important;
+  width: 100% !important; min-height: 60px !important;
+  display: flex !important; flex-direction: column !important;
   align-items: center !important; justify-content: center !important;
-  gap: 10px !important; padding: 14px 12px !important;
-  border-radius: 18px !important;
-  background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.32) !important;
-  color: var(--primary) !important;
-  text-decoration: none !important; font-weight: 950 !important;
-  letter-spacing: .06em !important; text-transform: uppercase !important;
-  font-size: 12px !important;
-  box-shadow: 0 8px 24px rgba(27,42,94,.12) !important;
-  transition: transform .15s ease, box-shadow .15s ease !important;
+  gap: 5px !important; padding: 8px 4px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-right: 1px solid rgba(255,255,255,.10) !important;
+  color: rgba(255,255,255,.55) !important;
+  text-decoration: none !important; font-weight: 800 !important;
+  letter-spacing: .07em !important; text-transform: uppercase !important;
+  font-size: 9px !important;
+  box-shadow: none !important;
+  transition: color .18s ease !important;
+  position: relative !important;
 }
-.bottom-nav a.nav-item:active,
-.bottom-nav .nav-item:active {
-  transform: scale(.98) !important;
-  box-shadow: 0 4px 12px rgba(27,42,94,.10) !important;
-}
+.bottom-nav a.nav-item:last-child,
+.bottom-nav .nav-item:last-child { border-right: none !important; }
 
-/* SVG icons → NAVY on white buttons */
-.bottom-nav a.nav-item svg,
+/* Icon wrapper — the cool part */
+.bottom-nav .nav-icon {
+  width: 34px !important; height: 34px !important;
+  border-radius: 12px !important;
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.12) !important;
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  transition: all .22s cubic-bezier(.34,1.56,.64,1) !important;
+  flex-shrink: 0 !important;
+}
 .bottom-nav .nav-item svg {
-  width: 20px !important; height: 20px !important;
-  fill: var(--primary) !important; opacity: 1 !important;
+  width: 18px !important; height: 18px !important;
+  fill: rgba(255,255,255,.55) !important; opacity: 1 !important;
+  transition: fill .18s ease !important;
 }
 
-/* Active state — same as all other buttons (no highlight) */
-.bottom-nav .nav-item.active {
-  background: #FFFFFF !important;
-  border-color: rgba(224,48,32,.32) !important;
+/* Active state — glowing icon */
+.bottom-nav .nav-item.active .nav-icon,
+.bottom-nav a.nav-item:focus-visible .nav-icon {
+  background: rgba(242,101,34,.25) !important;
+  border-color: rgba(242,101,34,.50) !important;
+  box-shadow: 0 0 14px rgba(242,101,34,.45), 0 4px 10px rgba(0,0,0,.25) !important;
+  transform: translateY(-2px) scale(1.08) !important;
+}
+.bottom-nav a.nav-item:active .nav-icon {
+  background: rgba(242,101,34,.20) !important;
+  transform: scale(.95) !important;
+}
+.bottom-nav .nav-item.active svg,
+.bottom-nav a.nav-item:active svg { fill: #F26522 !important; }
+.bottom-nav .nav-item.active { color: #F26522 !important; }
+
+/* Active indicator dot */
+.bottom-nav .nav-item.active::after {
+  content: "" !important;
+  position: absolute !important; bottom: 5px !important;
+  left: 50% !important; transform: translateX(-50%) !important;
+  width: 4px !important; height: 4px !important;
+  border-radius: 50% !important;
+  background: #F26522 !important;
+  box-shadow: 0 0 6px rgba(242,101,34,.70) !important;
 }
 
-/* ===== Apply Now button — YELLOW + RED BORDER ===== */
+/* ===== Apply Now button — sonar ring + lift combined ===== */
 .quick{
   margin-top: 14px; width: 100%; border:0;
   padding: 16px 18px; border-radius: 999px;
   background: #F5C518 !important;
-  color: var(--primary) !important;
+  color: #fff !important;
   font-weight:950; letter-spacing:.08em;
   text-transform: uppercase; font-size: 15px;
   border: 1px solid var(--danger) !important;
-  box-shadow: 0 10px 28px rgba(245,197,24,.45) !important;
   display:flex; align-items:center; justify-content:center;
-  gap:12px; cursor:pointer; position: relative; overflow:hidden;
+  gap:12px; cursor:pointer; position: relative; overflow: visible;
   text-decoration: none !important;
-  transition: transform .15s ease, box-shadow .15s ease !important;
+  animation: ctaSonar 2.6s ease-in-out infinite !important;
 }
-.quick:active{ transform: scale(.98) !important; }
-.quick::after{ display: none !important; content: none !important; }
+@keyframes ctaSonar {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 10px 28px rgba(245,197,24,.45),
+                0 0 0 0   rgba(245,197,24,.55);
+  }
+  45% {
+    transform: scale(1.022) translateY(-3px);
+    box-shadow: 0 16px 38px rgba(245,197,24,.60),
+                0 0 0 16px rgba(245,197,24,.0);
+  }
+  70% {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 10px 28px rgba(245,197,24,.45),
+                0 0 0 0   rgba(245,197,24,0);
+  }
+}
+.quick:active{
+  transform: scale(.98) translateY(0) !important;
+  animation: none !important;
+  box-shadow: 0 6px 16px rgba(245,197,24,.35) !important;
+}
+.quick::before, .quick::after{ display: none !important; content: none !important; }
+
+.apply-text{ color: #fff !important; }
+
 .quick .go{
   width:30px; height:30px; border-radius:999px;
-  background: rgba(27,42,94,.15);
+  background: rgba(255,255,255,.18);
   display:flex; align-items:center; justify-content:center;
-  border:1px solid rgba(27,42,94,.20);
+  border:1px solid rgba(255,255,255,.28);
 }
-.quick .go svg{ width:16px; height:16px; fill: var(--primary) !important; opacity:.9; }
+.quick .go svg{ width:16px; height:16px; fill: #fff !important; opacity:.9; }
 
 /* ===== Section title ===== */
 .section-title{
@@ -300,10 +446,10 @@ body{
 /* ===== WHY CHOOSE CARD — WHITE + RED BORDER ===== */
 .why-card{
   position: relative; background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
+  border: 2px solid rgba(242,101,34,.28) !important;
   border-radius: 22px !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.12), 0 0 0 1px rgba(245,197,24,.12) !important;
-  overflow: hidden; color: #1B2A5E !important;
+  box-shadow: 0 16px 48px rgba(242,101,34,.12), 0 0 0 1px rgba(245,197,24,.12) !important;
+  overflow: hidden; color: #0A2540 !important;
   padding: 14px;
 }
 .why-card::before{ display: none !important; }
@@ -320,15 +466,15 @@ body{
 .cardx.table-card{
   position: relative !important; border-radius: 22px !important;
   background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
-  box-shadow: 0 16px 48px rgba(27,42,94,.12), 0 0 0 1px rgba(245,197,24,.12) !important;
-  overflow: hidden !important; padding: 14px !important; color: #1B2A5E !important;
+  border: 2px solid rgba(242,101,34,.28) !important;
+  box-shadow: 0 16px 48px rgba(242,101,34,.12), 0 0 0 1px rgba(245,197,24,.12) !important;
+  overflow: hidden !important; padding: 14px !important; color: #0A2540 !important;
 }
-.cardx.table-card, .cardx.table-card *{ color: #1B2A5E !important; }
-.fx-table td{ border-top: 1px solid rgba(27,42,94,.10) !important; }
+.cardx.table-card, .cardx.table-card *{ color: #0A2540 !important; }
+.fx-table td{ border-top: 1px solid rgba(242,101,34,.10) !important; }
 .fx-table thead th{
   background: var(--primary) !important; color: #ffffff !important;
-  border-bottom: 1px solid rgba(27,42,94,.20) !important;
+  border-bottom: 1px solid rgba(242,101,34,.20) !important;
 }
 .fx-country{ opacity: .75 !important; color: #475569 !important; }
 .fx-meta{ color: #64748b !important; opacity: 1 !important; }
@@ -338,7 +484,7 @@ body{
   max-height: 260px; overflow-y: auto; overflow-x: hidden; padding-right: 2px;
 }
 .fx-scroll::-webkit-scrollbar{ width: 6px; }
-.fx-scroll::-webkit-scrollbar-thumb{ background: rgba(27,42,94,.18); border-radius: 99px; }
+.fx-scroll::-webkit-scrollbar-thumb{ background: rgba(242,101,34,.18); border-radius: 99px; }
 .fx-table{ width:100%; border-collapse: collapse; }
 .fx-table thead th{
   position: sticky; top: 0; z-index: 2;
@@ -387,10 +533,12 @@ body{
 #accStatusBadge.status-warn   { background:#eab308 !important; color:#111 !important; }
 #accStatusBadge.status-danger { background:#dc2626 !important; color:#fff !important; }
 
+/* Extra body padding for fixed nav on dashboard */
+body { padding-bottom: 68px !important; }
+
 /* Android no blur */
 @media (max-width: 768px){
   .cardx{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
-  .bottom-nav{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
   .fx-table thead th{ backdrop-filter:none !important; -webkit-backdrop-filter:none !important; }
 }
 .android-no-blur .cardx,
@@ -400,18 +548,20 @@ body{
   backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
 }
 
-/* Topbar */
+/* Topbar — solid orange/teal gradient (same as footer) */
 :root{
   --topbar-pad: 10px;
-  --topbar-card-h: 58px;
-  --topbar-gap: 14px;
+  --topbar-card-h: 44px;
+  --topbar-gap: 10px;
 }
 
 .topbar{
   position: fixed; top: 0; left: 0; right: 0; z-index: 999;
   padding: var(--topbar-pad) 0 !important;
-  background: transparent !important;
-  box-shadow: none !important; border-bottom: 0 !important;
+  background: linear-gradient(90deg, #F26522 0%, #009EAD 100%) !important;
+  box-shadow: 0 4px 20px rgba(242,101,34,.40) !important;
+  border-bottom: 1px solid rgba(255,255,255,.18) !important;
+  pointer-events: auto;
 }
 
 .topbar-inner{
@@ -419,15 +569,24 @@ body{
   width: min(520px, 94vw) !important;
   margin: 0 auto !important; padding: 0 14px !important;
   box-sizing: border-box !important;
-  background: #1B2A5E !important;
-  border-radius: 18px !important;
-  border: 2px solid rgba(192,192,192,0.70) !important;
-  box-shadow: 0 0 10px rgba(10,10,9,0.50), 0 14px 20px rgba(0,0,0,0.40) !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
   display: flex !important; align-items: center !important; justify-content: space-between !important;
 }
 .wrap{ padding-top: 0 !important; }
 .dash-wrap{
   padding-top: calc((var(--topbar-pad) * 2) + var(--topbar-card-h) + var(--topbar-gap)) !important;
+}
+
+/* Sliding text on solid gradient topbar */
+.welcome-text{
+  overflow:hidden; text-overflow: ellipsis;
+  text-shadow: none;
+}
+.welcome-dot{
+  filter: none;
 }
 
 /* Status message box */
@@ -439,626 +598,285 @@ body{
 .dash-status-green{ background: linear-gradient(90deg, #0E5F2F, #1E8E3E); color:#fff; }
 .dash-status-red{ background: linear-gradient(90deg, #dc2626, #991b1b); color:#fff; }
 
-/* ===== WHY CHOOSE CARD - CAROUSEL STYLE ===== */
-
-/* Main card container */
-.why-card {
-  position: relative !important;
+/* ===== FEATURES CARD — PILLAR DESIGN ===== */
+.features-card {
   background: #FFFFFF !important;
-  border: 2px solid rgba(224,48,32,.28) !important;
+  border: 2px solid rgba(242,101,34,.28) !important;
   border-radius: 22px !important;
-  box-shadow: 0 20px 56px rgba(27,42,94,.14), 0 0 0 1px rgba(245,197,24,.15) !important;
+  box-shadow: 0 20px 56px rgba(242,101,34,.14), 0 0 0 1px rgba(0,158,173,.10) !important;
   overflow: hidden !important;
   padding: 0 !important;
   margin-top: 14px !important;
 }
 
-/* Animated shine effect across card */
-.why-card::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
-  animation: cardShine 8s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 10;
-}
-
-@keyframes cardShine {
-  0%, 60% { left: -100%; }
-  100% { left: 200%; }
-}
-
-/* Header section with navy gradient */
-.why-header {
-  padding: 16px 18px;
-  background: linear-gradient(135deg, #1B2A5E 0%, #1A4DB5 100%);
+/* Feature card header */
+.feat-header {
+  padding: 16px 18px 14px;
+  background: linear-gradient(135deg, #0A2540 0%, #155a7a 50%, #009EAD 100%);
+  text-align: center;
   position: relative;
   overflow: hidden;
-  text-align: center;
 }
-
-/* Floating gold accent in header */
-.why-header::before {
+.feat-header::before {
   content: "";
   position: absolute;
-  top: -60%;
-  right: -15%;
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(circle, rgba(245,197,24,.25) 0%, transparent 65%);
-  animation: float 6s ease-in-out infinite;
+  top: -50px; right: -30px;
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(242,101,34,.22) 0%, transparent 65%);
+  pointer-events: none;
 }
-
-.why-header::after {
-  content: "";
-  position: absolute;
-  bottom: -60%;
-  left: -15%;
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(circle, rgba(245,197,24,.15) 0%, transparent 65%);
-  animation: float 8s ease-in-out infinite reverse;
-}
-
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(-10px, 10px) rotate(5deg); }
-}
-
-/* ===== ANIMATED HEADER TITLE ===== */
-.why-title {
-  font-size: 20px;
-  font-weight: 950;
-  color: #fff !important;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  margin: 0;
-  position: relative;
-  z-index: 2;
-  
-  /* Gradient text with animation */
-  background: linear-gradient(90deg, #ffffff, #F5C518, #ffffff, #F5C518, #ffffff);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
+.feat-title {
+  font-size: 18px; font-weight: 950; margin: 0;
+  letter-spacing: .14em; text-transform: uppercase;
+  background: linear-gradient(90deg, #fff 0%, #F5C518 45%, #fff 80%, #F5C518 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
-  
-  /* Animation */
-  animation: titleSlideIn 0.8s ease-out, titleGradientFlow 4s ease-in-out infinite;
+  animation: featTitleFlow 3.5s linear infinite;
+  position: relative; z-index: 2;
 }
-
-@keyframes titleSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px) scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes titleGradientFlow {
+@keyframes featTitleFlow {
   0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  100% { background-position: 220% 50%; }
 }
-
-/* ===== ANIMATED SUBTITLE (Company Name) ===== */
-.why-subtitle {
-  font-size: 13px;
-  margin: 8px 0 0;
-  font-weight: 800;
-  position: relative;
-  z-index: 2;
-  letter-spacing: .08em;
-  
-  /* Gradient text */
-  background: linear-gradient(90deg, #F5C518, #FFE566, #F5C518);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  
-  /* Glow effect */
-  text-shadow: 0 0 20px rgba(245,197,24,0.5);
-  filter: drop-shadow(0 0 8px rgba(245,197,24,0.3));
-  
-  /* Animation */
-  animation: subtitleSlideIn 0.8s ease-out 0.2s both, subtitlePulse 2s ease-in-out infinite, subtitleGradient 3s linear infinite;
+.feat-sub {
+  font-size: 11px; font-weight: 700; letter-spacing: .10em;
+  color: rgba(255,255,255,.68); margin-top: 5px;
+  position: relative; z-index: 2;
 }
-
-@keyframes subtitleSlideIn {
-  0% {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.feat-divider {
+  width: 52px; height: 3px; margin: 10px auto 0;
+  background: linear-gradient(90deg, transparent, #F26522, #009EAD, transparent);
+  border-radius: 2px; position: relative; z-index: 2;
 }
-
-@keyframes subtitlePulse {
-  0%, 100% {
-    filter: drop-shadow(0 0 8px rgba(245,197,24,0.3));
-  }
-  50% {
-    filter: drop-shadow(0 0 15px rgba(245,197,24,0.6));
-  }
-}
-
-@keyframes subtitleGradient {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-/* Decorative line under header */
-.why-header-line {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #F5C518, transparent);
-  margin: 10px auto 0;
-  border-radius: 2px;
-  animation: lineExpand 1s ease-out 0.5s both;
-}
-
-@keyframes lineExpand {
-  0% {
-    width: 0;
-    opacity: 0;
-  }
-  100% {
-    width: 60px;
-    opacity: 1;
-  }
-}
-
-/* Carousel container */
-.why-carousel {
-  position: relative;
-  height: 280px;
-  background: #f8f9fb;
-}
-
-/* Individual slides */
-.why-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateX(30px);
-  transition: all .7s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.why-slide.active {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(0);
-  z-index: 2;
-}
-
-/* Split layout: Image 45% | Content 55% */
-.why-slide-inner {
+.feat-grid {
   display: grid;
-  grid-template-columns: 45% 55%;
-  height: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 18px 10px 20px;
+  background: #fff;
   gap: 0;
 }
-
-/* MOBILE OPTIMIZATION */
-@media (max-width: 480px) {
-  .why-carousel {
-    height: auto;
-    min-height: 400px;
-  }
-  
-  .why-slide-inner {
-    grid-template-columns: 1fr;
-    grid-template-rows: 160px auto;
-    height: auto;
-    min-height: 400px;
-  }
-  
-  .why-image {
-    height: 160px;
-    min-height: 160px;
-  }
-  
-  .why-content {
-    padding: 16px 16px 70px;
-    justify-content: flex-start;
-    align-items: center;
-    text-align: center;
-    min-height: 240px;
-  }
-  
-  .why-icon {
-    width: 40px;
-    height: 40px;
-    margin-bottom: 10px;
-  }
-  
-  .why-icon svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  .why-content-title {
-    font-size: 16px;
-    margin-bottom: 6px;
-    text-align: center;
-  }
-  
-  .why-content-desc {
-    font-size: 12px;
-    line-height: 1.5;
-    margin-bottom: 14px;
-    text-align: center;
-  }
-  
-  /* CENTERED BUTTON */
-  .why-learn-more {
-    padding: 12px 24px;
-    font-size: 12px;
-    align-self: center !important;
-    margin: 0 auto;
-  }
-  
-  /* Navigation buttons - move to top corners of image */
-  .why-nav {
-    width: 36px;
-    height: 36px;
-    top: 80px;
-    transform: translateY(0);
-  }
-  
-  .why-nav:hover {
-    transform: translateY(0) scale(1.05);
-  }
-  
-  .why-nav:active {
-    transform: translateY(0) scale(.95);
-  }
-  
-  .why-nav-prev {
-    left: 8px;
-  }
-  
-  .why-nav-next {
-    right: 8px;
-  }
-  
-  .why-nav svg {
-    width: 18px;
-    height: 18px;
-  }
-  
-  .why-dots {
-    bottom: 14px;
-    padding: 8px 14px;
-    gap: 10px;
-  }
-  
-  .why-dot {
-    width: 8px;
-    height: 8px;
-  }
-  
-  .why-dot.active {
-    width: 24px;
-  }
-  
-  .why-title {
-    font-size: 18px;
-  }
-  
-  .why-subtitle {
-    font-size: 11px;
-  }
-}
-
-/* Even smaller screens */
-@media (max-width: 360px) {
-  .why-carousel {
-    min-height: 380px;
-  }
-  
-  .why-slide-inner {
-    grid-template-rows: 140px auto;
-    min-height: 380px;
-  }
-  
-  .why-image {
-    height: 140px;
-    min-height: 140px;
-  }
-  
-  .why-nav {
-    top: 70px;
-    width: 32px;
-    height: 32px;
-  }
-  
-  .why-content {
-    padding: 14px 12px 65px;
-    min-height: 220px;
-  }
-  
-  .why-content-title {
-    font-size: 15px;
-  }
-  
-  .why-content-desc {
-    font-size: 11px;
-    margin-bottom: 12px;
-  }
-  
-  .why-learn-more {
-    padding: 10px 20px;
-    font-size: 11px;
-  }
-}
-
-/* DESKTOP VIEW */
-@media (min-width: 481px) {
-  .why-carousel {
-    height: 280px;
-  }
-  
-  .why-slide-inner {
-    height: 280px;
-  }
-  
-  .why-content {
-    padding: 20px 18px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 0;
-  }
-  
-  .why-learn-more {
-    margin-top: 0;
-    align-self: center;
-  }
-}
-
-/* Image section */
-.why-image {
+.feat-item {
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  padding: 12px 10px;
+  border-right: 1px solid rgba(242,101,34,.12);
   position: relative;
-  overflow: hidden;
-  background: #e5e7eb;
 }
-
-.why-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(1.08) contrast(1.06) saturate(1.05);
-  transform: scale(1);
-  transition: transform 8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Slow zoom animation when slide is active */
-.why-slide.active .why-image img {
-  transform: scale(1.08);
-}
-
-/* Dark overlay on image */
-.why-overlay {
+.feat-item:last-child { border-right: none; }
+.feat-item::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(27,42,94,.05) 0%, rgba(27,42,94,.45) 100%);
-  z-index: 1;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  border-radius: 2px;
+  transition: width .3s ease;
 }
-
-/* Mobile: overlay from top to bottom */
-@media (max-width: 480px) {
-  .why-overlay {
-    background: linear-gradient(to bottom, rgba(27,42,94,.02) 0%, rgba(27,42,94,.25) 100%);
-  }
-}
-
-/* Content section */
-.why-content {
-  padding: 20px 18px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: #ffffff;
-  position: relative;
-  min-height: 0;
-}
-
-/* Icon box */
-.why-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.feat-item:hover::after { width: 60%; }
+.feat-icon-wrap {
+  width: 54px; height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #F26522, #009EAD);
+  display: flex; align-items: center; justify-content: center;
   margin-bottom: 12px;
-  box-shadow: 0 8px 20px rgba(27,42,94,.20);
+  box-shadow: 0 8px 22px rgba(242,101,34,.24);
   flex-shrink: 0;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.feat-item:hover .feat-icon-wrap {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(242,101,34,.32);
+}
+.feat-icon-wrap svg { width: 26px; height: 26px; fill: #fff; }
+.feat-name { font-size: 12px; font-weight: 950; color: #0A2540; letter-spacing: .04em; margin: 0 0 6px; line-height: 1.2; }
+.feat-desc { font-size: 10.5px; color: #64748b; font-weight: 600; line-height: 1.55; }
+@media (max-width: 380px) {
+  .feat-grid { grid-template-columns: 1fr; }
+  .feat-item { border-right: none; border-bottom: 1px solid rgba(242,101,34,.10); padding: 14px 8px; }
+  .feat-item:last-child { border-bottom: none; }
 }
 
-.why-icon svg {
-  width: 24px;
-  height: 24px;
-  fill: #fff;
+/* ===== RATES BOARD — DARK FX CARD ===== */
+.rates-board {
+  background: linear-gradient(150deg, #0A2540 0%, #0d3060 60%, #0a3050 100%) !important;
+  border: 2px solid rgba(0,158,173,.35) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 20px 56px rgba(10,37,64,.40), 0 0 0 1px rgba(0,158,173,.18) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin-top: 14px !important;
+}
+.rb-header {
+  padding: 12px 16px;
+  background: rgba(0,0,0,.22);
+  border-bottom: 1px solid rgba(0,158,173,.22);
+  display: flex; align-items: center; gap: 10px;
+}
+.rb-live-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e; flex-shrink: 0;
+  animation: rbLivePulse 1.5s ease-in-out infinite;
+}
+@keyframes rbLivePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); }
+  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+}
+.rb-title { font-size: 12px; font-weight: 950; color: #fff; letter-spacing: .14em; text-transform: uppercase; }
+.rb-sub { font-size: 10px; color: rgba(255,255,255,.45); margin-left: auto; }
+.rb-col-labels {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0; padding: 6px 14px;
+  background: rgba(0,0,0,.15);
+  font-size: 10px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: rgba(255,255,255,.45);
+}
+.rb-scroll {
+  max-height: 240px; overflow-y: auto; padding: 6px 10px 10px;
+}
+.rb-scroll::-webkit-scrollbar { width: 3px; }
+.rb-scroll::-webkit-scrollbar-thumb { background: rgba(0,158,173,.30); border-radius: 99px; }
+.rb-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center; gap: 10px;
+  padding: 7px 4px; border-radius: 10px;
+  border-bottom: 1px solid rgba(255,255,255,.05);
+  transition: background .15s;
+}
+.rb-row:last-child { border-bottom: none; }
+.rb-row:hover { background: rgba(255,255,255,.06); }
+.rb-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.rb-flag { width: 22px; height: 15px; object-fit: cover; border-radius: 3px; flex-shrink: 0; box-shadow: 0 0 0 1px rgba(255,255,255,.15); }
+.rb-code { font-weight: 950; font-size: 12px; color: #F26522; }
+.rb-country { font-size: 9px; color: rgba(255,255,255,.42); }
+.rb-usd { font-size: 10px; color: rgba(255,255,255,.40); }
+.rb-val { font-weight: 950; font-size: 12px; color: #fff; text-align: right; }
+.rb-meta {
+  padding: 7px 14px;
+  border-top: 1px solid rgba(255,255,255,.07);
+  font-size: 10px; color: rgba(255,255,255,.38);
+  display: flex; justify-content: space-between;
 }
 
-/* Content title */
-.why-content-title {
-  font-size: 17px;
-  font-weight: 950;
-  color: var(--primary) !important;
-  margin: 0 0 8px;
-  letter-spacing: .02em;
-  line-height: 1.2;
-  flex-shrink: 0;
-  text-align: center;
+/* ===== LOAN PRODUCTS CARD ===== */
+.loan-prod-card {
+  background: #FFFFFF !important;
+  border: 2px solid rgba(0,158,173,.30) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 20px 56px rgba(0,158,173,.12), 0 0 0 1px rgba(242,101,34,.10) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin-top: 14px !important;
+}
+.lp-header {
+  padding: 14px 18px;
+  background: linear-gradient(135deg, #0A2540 0%, #009EAD 100%);
+  display: flex; align-items: center; gap: 12px;
+  position: relative; overflow: hidden;
+}
+.lp-header::before {
+  content: "";
+  position: absolute; top: -40px; left: -40px;
+  width: 150px; height: 150px;
+  background: radial-gradient(circle, rgba(0,158,173,.25) 0%, transparent 65%);
+  pointer-events: none;
+}
+.lp-header-icon {
+  width: 44px; height: 44px; border-radius: 14px;
+  background: rgba(255,255,255,.18);
+  border: 1.5px solid rgba(255,255,255,.30);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; position: relative; z-index: 2;
+}
+.lp-header-icon svg { width: 22px; height: 22px; fill: #fff; }
+.lp-title { font-size: 16px; font-weight: 950; color: #fff; letter-spacing: .10em; text-transform: uppercase; position: relative; z-index: 2; margin: 0; }
+.lp-sub { font-size: 11px; color: rgba(255,255,255,.65); position: relative; z-index: 2; margin-top: 2px; }
+.lp-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px; padding: 14px; background: #fff;
+}
+.lp-item {
+  background: linear-gradient(135deg, #f8fdff 0%, #fff8f4 100%);
+  border: 1.5px solid rgba(0,158,173,.18);
+  border-radius: 16px; padding: 14px 12px;
+  display: flex; flex-direction: column; align-items: flex-start;
+  min-height: 140px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.lp-item:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,158,173,.18); }
+.lp-item-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #F26522, #009EAD);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px; box-shadow: 0 6px 14px rgba(242,101,34,.20);
+}
+.lp-item-icon svg { width: 18px; height: 18px; fill: #fff; }
+.lp-item-name { font-size: 13px; font-weight: 950; color: #0A2540; margin-bottom: 5px; }
+.lp-item-desc { font-size: 10.5px; color: #64748b; font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+.lp-item-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
+.lp-tag {
+  font-size: 9.5px; font-weight: 800; letter-spacing: .05em;
+  background: rgba(242,101,34,.08); color: #F26522;
+  border: 1px solid rgba(242,101,34,.20);
+  padding: 2px 8px; border-radius: 99px;
 }
 
-/* Content description */
-.why-content-desc {
-  font-size: 13px;
-  color: #64748b !important;
-  line-height: 1.6;
-  margin: 0 0 16px;
-  font-weight: 600;
-  flex-shrink: 0;
-  text-align: center;
+/* ===== REPAYMENT GUIDE CARD ===== */
+.repay-card {
+  background: linear-gradient(150deg, #0A2540 0%, #0d3060 100%) !important;
+  border: 2px solid rgba(242,101,34,.30) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 20px 56px rgba(10,37,64,.40) !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  margin-top: 14px !important;
+}
+.rg-header {
+  padding: 12px 16px;
+  background: rgba(0,0,0,.22);
+  border-bottom: 1px solid rgba(242,101,34,.22);
+  display: flex; align-items: center; gap: 10px;
+}
+.rg-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(135deg, #F26522, #009EAD);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.rg-icon svg { width: 18px; height: 18px; fill: #fff; }
+.rg-title { font-size: 12px; font-weight: 950; color: #fff; letter-spacing: .12em; text-transform: uppercase; }
+.rg-sub { font-size: 10px; color: rgba(255,255,255,.45); margin-top: 1px; }
+.rg-scroll { overflow-x: auto; overflow-y: hidden; padding: 10px 12px 14px; }
+.rg-scroll::-webkit-scrollbar { height: 3px; }
+.rg-scroll::-webkit-scrollbar-thumb { background: rgba(242,101,34,.30); border-radius: 99px; }
+.rg-table { width: 100%; border-collapse: collapse; min-width: 300px; }
+.rg-table thead th {
+  background: rgba(242,101,34,.18) !important;
+  color: rgba(255,255,255,.85) !important;
+  font-size: 10px; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; padding: 8px 10px; text-align: left;
+  border-bottom: 1px solid rgba(242,101,34,.25);
+}
+.rg-table thead th:first-child { border-radius: 8px 0 0 8px; }
+.rg-table thead th:last-child { border-radius: 0 8px 8px 0; }
+.rg-table tbody td { padding: 8px 10px; font-size: 12px; color: rgba(255,255,255,.82); border-bottom: 1px solid rgba(255,255,255,.06); }
+.rg-table tbody tr:last-child td { border-bottom: none; }
+.rg-table tbody tr:hover td { background: rgba(255,255,255,.05); }
+.rg-amt { font-weight: 950; color: #F26522 !important; }
+.rg-rate { font-weight: 800; color: #22c55e !important; }
+.rg-pay { font-weight: 700; color: rgba(255,255,255,.80) !important; }
+.rg-note {
+  padding: 6px 14px 10px;
+  font-size: 9.5px; color: rgba(255,255,255,.32); text-align: center;
 }
 
-/* CENTERED Learn more button */
-.why-learn-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: #fff !important;
-  font-weight: 900;
-  font-size: 12px;
-  text-decoration: none;
-  align-self: center;
-  box-shadow: 0 6px 18px rgba(27,42,94,.25);
-  transition: all .25s ease;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  flex-shrink: 0;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Button shine effect */
-.why-learn-more::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-  transition: left 0.5s;
-}
-
-.why-learn-more:hover::before {
-  left: 100%;
-}
-
-.why-learn-more:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(27,42,94,.35);
-}
-
-.why-learn-more:active {
-  transform: translateY(0) scale(.98);
-}
-
-.why-learn-more svg {
-  width: 14px;
-  height: 14px;
-  fill: #fff;
-  flex-shrink: 0;
-}
-
-/* Navigation dots */
-.why-dots {
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 15;
-  background: rgba(255,255,255,.92);
-  padding: 8px 14px;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 4px 16px rgba(0,0,0,.12);
-}
-
-.why-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(27,42,94,.25);
-  cursor: pointer;
-  transition: all .35s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 2px solid transparent;
-  flex-shrink: 0;
-}
-
-.why-dot:hover {
-  background: rgba(27,42,94,.45);
-}
-
-.why-dot.active {
-  background: var(--primary);
-  width: 28px;
-  border-radius: 999px;
-  box-shadow: 0 0 16px rgba(27,42,94,.40);
-}
-
-/* Arrow navigation buttons */
-.why-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,.95);
-  border: 2px solid rgba(27,42,94,.12);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 15;
-  transition: all .25s ease;
-  box-shadow: 0 6px 18px rgba(0,0,0,.15);
-  padding: 0;
-}
-
-.why-nav:hover {
-  background: #ffffff;
-  border-color: rgba(27,42,94,.25);
-  box-shadow: 0 10px 24px rgba(0,0,0,.20);
-  transform: translateY(-50%) scale(1.05);
-}
-
-.why-nav:active {
-  transform: translateY(-50%) scale(.95);
-}
-
-.why-nav-prev {
-  left: 12px;
-}
-
-.why-nav-next {
-  right: 12px;
-}
-
-.why-nav svg {
-  width: 20px;
-  height: 20px;
-  fill: var(--primary);
-  flex-shrink: 0;
+/* placeholder — keep for @media nesting compat */
+@media (max-width: 480px) {
+  ._dummy_why {
+    display: none;
+  }
 }
 </style>
 
@@ -1070,14 +888,15 @@ body{
       <div class="welcome-slider" aria-hidden="true">
         <div class="welcome-track" id="welcomeTrack">
           <span class="welcome-dot"></span>
-          <span class="welcome-text" id="welcomeText">Secure System • Trusted Service • 24/7 Support</span>
+          <span class="welcome-text" id="welcomeText">Secure • Trusted • 24/7</span>
         </div>
       </div>
     </div>
     <a class="brand-mini" href="#top" aria-label="Top"></a>
     <div class="topbar-right">
+      <!-- Notification Icon moved to topbar right -->
       <a class="notify-wrap dot-only {% if notif_count|default:0|add:0 > 0 %}has-unread{% endif %}"
-        href="{% url 'notifications' %}" aria-label="Notifications">
+        href="{% url 'notifications' %}" aria-label="Notifications" style="margin-right:8px;">
         {% if notif_count|default:0|add:0 > 0 %}
           <span class="notify-badge">
             {% if notif_count > 99 %}99+{% else %}{{ notif_count }}{% endif %}
@@ -1086,74 +905,99 @@ body{
         <label class="bell-container">
           <input type="checkbox" {% if notif_count|default:0|add:0 > 0 %}checked{% endif %}>
           <svg class="bell-regular" viewBox="0 0 24 24">
-            <path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 1 0-12 0v5L4 18v1h16v-1l-2-2z"/>
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
           </svg>
           <svg class="bell-solid" viewBox="0 0 24 24">
-            <path d="M12 22a2 2 0 0 0 2-2h-4a2 2 0 0 0 2 2zm6-6V11a6 6 0 1 0-12 0v5L4 18v1h16v-1l-2-2z"/>
+            <path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/>
           </svg>
         </label>
       </a>
+      <div class="avatar-top" aria-hidden="true">
+        {% if selfie_url %}
+          <img src="{{ selfie_url }}" alt="Selfie" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
+        {% else %}
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        {% endif %}
+      </div>
     </div>
   </div>
 </div>
 
 <div class="dash-wrap">
 
-  <!-- Profile card — WHITE + RED BORDER -->
+  <!-- Profile card with Avatar only -->
   <div class="cardx profile-card reveal from-left card-diamond">
-    <div class="avatar" aria-hidden="true">
-      {% if selfie_url %}
-        <img src="{{ selfie_url }}" alt="Selfie" style="width:100%;height:100%;object-fit:cover;border-radius:14px;">
-      {% else %}
-        <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2-8 4.5V21h16v-2.5C20 16 16.42 14 12 14z"/></svg>
-      {% endif %}
+    <!-- Profile Header: Avatar centered -->
+    <div class="profile-header" style="justify-content:center;">
+      <!-- Avatar -->
+      <div class="avatar">
+        {% if request.user.avatar %}
+          <img src="{{ request.user.avatar }}" alt="Avatar">
+        {% else %}
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        {% endif %}
+      </div>
     </div>
 
+    <!-- Profile Main Content -->
     <div class="profile-main">
+      <!-- Greeting -->
+      <div class="greeting ovelion" id="greetingText">Good Morning</div>
+      
+      <!-- Location Badge -->
+      <div class="location-badge ovelion">
+        <span>{% if request.user.register_country %}{{ request.user.register_country }}{% else %}Philippines{% endif %}</span>
+      </div>
+      
       <div class="row1">
-        <div>
-          <div class="title ovelion">{{ request.user.phone }}</div>
-          <div class="subline ovelion">Account</div>
-        </div>
-        <div class="pill ovelion">Balance</div>
+        <div class="title ovelion">{{ request.user.phone }}</div>
       </div>
 
       <div class="amount">
-        <span style="font-family:'Inter', system-ui, sans-serif; font-weight:700;">₱</span>
-        <span data-balance>{{ request.user.balance|default:"0.00" }}</span>
+        <span class="balance-label ovelion">Balance</span>
+        <span class="currency">₱</span>
+        <span class="value" data-balance>{{ request.user.balance|default:"0.00" }}</span>
       </div>
 
       <div class="muted" style="margin-top:6px;">
-        {% with raw=request.user.dashboard_status_label|default:request.user.account_status|default:"ACTIVE" %}
+        {% with sc=status_color|upper %}
           <span id="accStatusBadge"
                 class="status-badge
-                {% if raw|lower == 'active' or raw|lower == 'approved' %}status-active
-                {% elif raw|lower == 'pending' or raw|lower == 'review' or raw|lower == 'app maintenance' or raw|lower == 'invalid detail' %}status-warn
+                {% if sc == 'ACTIVE' or sc == 'APPROVED' or sc == 'LOAN_PAID' or sc == 'WITHDRAWAL_SUCCESSFUL' or sc == 'ACCOUNT_UPDATED' %}status-active
+                {% elif sc == 'APP_MAINTENANCE' or sc == 'INVALID_DETAIL' or sc == 'RENEW_DOCUMENT_REQUIRED' %}status-warn
                 {% else %}status-danger{% endif %}">
-            {{ raw }}
+            {{ status_display }}
           </span>
         {% endwith %}
       </div>
     </div>
   </div>
 
-  <!-- 4 Nav buttons — WHITE + NAVY TEXT + RED BORDER -->
+  <!-- 4 Nav buttons — dark navy horizontal row -->
   <nav class="bottom-nav" role="navigation" aria-label="Bottom Navigation">
     <div class="nav-grid">
       <a class="nav-item" href="#top" data-nav="home" aria-label="Home">
-        <svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V21a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 3L4 9v12h5v-7h6v7h5V9z"/></svg>
+        </span>
         HOME
       </a>
       <a class="nav-item" href="/wallet/" data-nav="wallet" aria-label="Wallet">
-        <svg viewBox="0 0 24 24"><path d="M4 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2h-6a2 2 0 0 0 0 4h6v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M20 11h-5a1 1 0 0 0 0 2h5z" opacity=".75"/></svg>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        </span>
         WALLET
       </a>
       <a class="nav-item" href="{% url 'contact' %}" data-nav="contact" aria-label="Contact">
-        <svg viewBox="0 0 24 24"><path d="M4 4h16v12H7l-3 3z"/><path d="M7 8h10M7 11h7" stroke="rgba(27,42,94,.35)" stroke-width="2" stroke-linecap="round"/></svg>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+        </span>
         CONTACT
       </a>
       <a class="nav-item" href="/profile/" data-nav="profile" aria-label="Profile">
-        <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5zm0 2c-4.42 0-8 2-8 4.5V21h16v-2.5C20 16 16.42 14 12 14z"/></svg>
+        <span class="nav-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </span>
         PROFILE
       </a>
     </div>
@@ -1161,125 +1005,110 @@ body{
 
   <!-- Apply Now -->
   <a href="{% url 'quick_loan' %}" class="quick reveal from-left ovelion-head">
-    APPLY NOW
+    <span class="apply-text">APPLY NOW</span>
     <span class="go" aria-hidden="true">
-      <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </span>
   </a>
 
-  <!-- WHY CHOOSE CARD with ANIMATED HEADER -->
-  <div class="cardx why-card reveal from-right" id="whyChooseCard">
-    <!-- Header with ANIMATED title -->
-    <div class="why-header">
-      <div class="why-title">Why Choose Us</div>
-      <div class="why-subtitle">PIPO FINANCING (PH) INC.</div>
-      <div class="why-header-line"></div>
+  <!-- WHY CHOOSE US — PILLAR DESIGN -->
+  <div class="features-card reveal from-right">
+    <div class="feat-header">
+      <div class="feat-title">Our Strengths</div>
+      <div class="feat-sub">DC FINANCING CORPORATION</div>
+      <div class="feat-divider"></div>
     </div>
-
-    <!-- Carousel container -->
-    <div class="why-carousel" id="whyCarousel">
-      
-      <!-- Slide 1: Fast Approval -->
-      <div class="why-slide active" data-index="0">
-        <div class="why-slide-inner">
-          <div class="why-image">
-            <img src="{% static 'img/ads/ad1.jpg' %}" alt="Fast approval">
-            <div class="why-overlay"></div>
-          </div>
-          <div class="why-content">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
-            </div>
-            <h3 class="why-content-title">Fast Approval</h3>
-            <p class="why-content-desc">Clear process • Quick verification • Secure system with instant updates</p>
-            <button type="button" class="why-learn-more">
-              Learn More
-              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
+    <div class="feat-grid">
+      <div class="feat-item">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M13 2.05v2.02c2.84.48 5 2.24 5.93 4.73L17 9.5c-.7-1.98-2.44-3.5-4.5-3.5H12C9.24 6 7 8.24 7 11c0 2.76 2.24 5 5 5h.07c2.28 0 4.15-1.46 4.79-3.5H19c-.68 2.99-3.16 5.3-6 5.93V20h2v2H9v-2h2v-2.05C7.05 17.48 4 14.04 4 10c0-4.42 3.58-8 8-8h.07z"/></svg>
         </div>
+        <div class="feat-name">Fast Approval</div>
+        <div class="feat-desc">Quick check • Instant update • Secure system</div>
       </div>
-
-      <!-- Slide 2: Trusted Service -->
-      <div class="why-slide" data-index="1">
-        <div class="why-slide-inner">
-          <div class="why-image">
-            <img src="{% static 'img/ads/ad2.jpg' %}" alt="Trusted service">
-            <div class="why-overlay"></div>
-          </div>
-          <div class="why-content">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V7l-9-5z"/></svg>
-            </div>
-            <h3 class="why-content-title">Trusted Service</h3>
-            <p class="why-content-desc">No hidden fees • Transparent policy • 24/7 support always available</p>
-            <button type="button" class="why-learn-more">
-              Details
-              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
+      <div class="feat-item">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
         </div>
+        <div class="feat-name">Trusted & Safe</div>
+        <div class="feat-desc">No hidden fees • Transparent • 24/7 support</div>
       </div>
-
-      <!-- Slide 3: Easy To Use -->
-      <div class="why-slide" data-index="2">
-        <div class="why-slide-inner">
-          <div class="why-image">
-            <img src="{% static 'img/ads/ad3.jpg' %}" alt="Easy to use">
-            <div class="why-overlay"></div>
-          </div>
-          <div class="why-content">
-            <div class="why-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            </div>
-            <h3 class="why-content-title">Easy To Use</h3>
-            <p class="why-content-desc">Mobile-friendly • Simple steps • Strong security protection</p>
-            <button type="button" class="why-learn-more">
-              Start Now
-              <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-            </button>
-          </div>
+      <div class="feat-item">
+        <div class="feat-icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
         </div>
+        <div class="feat-name">Easy Mobile</div>
+        <div class="feat-desc">Mobile-friendly • Simple steps • Strong protection</div>
       </div>
-
-      <!-- Navigation Arrows -->
-      <button type="button" class="why-nav why-nav-prev" id="whyPrevBtn" aria-label="Previous">
-        <svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg>
-      </button>
-      <button type="button" class="why-nav why-nav-next" id="whyNextBtn" aria-label="Next">
-        <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
-      </button>
-
-      <!-- Dots Navigation -->
-      <div class="why-dots" id="whyDots">
-        <div class="why-dot active" data-index="0"></div>
-        <div class="why-dot" data-index="1"></div>
-        <div class="why-dot" data-index="2"></div>
-      </div>
-      
     </div>
   </div>
 
-  <!-- Currency -->
-  <div class="cardx table-card reveal from-left">
-    <h3 style="text-align:center; margin:0 0 16px; font-size:14px; font-weight:950; letter-spacing:.18em; text-transform:uppercase;">CURRENCY</h3>
-    <div class="fx-scroll" aria-label="Exchange rates list">
-      <table class="fx-table">
-        <thead>
-          <tr>
-            <th>CURRENCY</th>
-            <th>USD</th>
-            <th>CONVERT</th>
-          </tr>
-        </thead>
-        <tbody id="fxRows"></tbody>
-      </table>
+  <!-- LIVE EXCHANGE RATES — DARK BOARD -->
+  <div class="rates-board reveal from-left">
+    <div class="rb-header">
+      <div class="rb-live-dot"></div>
+      <div class="rb-title">Live Rates</div>
+      <div class="rb-sub">vs 1 USD</div>
     </div>
-    <div class="fx-meta">
-      <div id="fxUpdated">Updated: —</div>
-      <div class="fx-auto">Auto daily</div>
+    <div class="rb-col-labels">
+      <span>Currency</span>
+      <span style="padding-right:14px;">Base</span>
+      <span style="padding-right:4px;">Rate</span>
+    </div>
+    <div class="rb-scroll" id="fxRows" aria-label="Exchange rates"></div>
+    <div class="rb-meta">
+      <span id="fxUpdated">Updated: —</span>
+      <span>Auto daily</span>
     </div>
   </div>
+
+  <!-- LOAN PRODUCTS -->
+  <div class="loan-prod-card reveal from-right">
+    <div class="lp-header">
+      <div class="lp-header-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10z"/></svg>
+      </div>
+      <div>
+        <div class="lp-title">Loan Products</div>
+        <div class="lp-sub">Flexible financial solutions for you</div>
+      </div>
+    </div>
+    <div class="lp-grid">
+      <div class="lp-item">
+        <div class="lp-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <div class="lp-item-name">Personal Loan</div>
+        <div class="lp-item-desc">For individuals • No collateral needed • Quick release</div>
+        <div class="lp-item-tags"><span class="lp-tag">Fast</span><span class="lp-tag">No Collateral</span></div>
+      </div>
+      <div class="lp-item">
+        <div class="lp-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M5 8h2v8H8V8h2v8h2V8h2v8h2V8h2v8h2V8c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v8h2V8z"/></svg>
+        </div>
+        <div class="lp-item-name">Salary Loan</div>
+        <div class="lp-item-desc">For employees • Based on monthly income • Easy repayment</div>
+        <div class="lp-item-tags"><span class="lp-tag">Low Rate</span><span class="lp-tag">Easy Pay</span></div>
+      </div>
+      <div class="lp-item">
+        <div class="lp-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+        </div>
+        <div class="lp-item-name">OFW Loan</div>
+        <div class="lp-item-desc">For overseas workers • Flexible terms • Family support program</div>
+        <div class="lp-item-tags"><span class="lp-tag">Flexible</span><span class="lp-tag">OFW</span></div>
+      </div>
+      <div class="lp-item">
+        <div class="lp-item-icon">
+          <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+        </div>
+        <div class="lp-item-name">Business Loan</div>
+        <div class="lp-item-desc">For entrepreneurs • Working capital • Business growth funding</div>
+        <div class="lp-item-tags"><span class="lp-tag">Growth</span><span class="lp-tag">Capital</span></div>
+      </div>
+    </div>
+  </div>
+
 
 </div>
 
@@ -1320,14 +1149,35 @@ body{
 (function(){
   const items = Array.from(document.querySelectorAll(".bottom-nav .nav-item"));
   if(!items.length) return;
-  function setActiveFromHash(){
-    const h = (location.hash || "#top").toLowerCase();
-    items.forEach(a => a.classList.remove("active"));
-    const hit = items.find(a => (a.getAttribute("href") || "").toLowerCase() === h);
-    (hit || items[0]).classList.add("active");
-  }
-  window.addEventListener("hashchange", setActiveFromHash);
-  setActiveFromHash();
+  const path = location.pathname.toLowerCase();
+  items.forEach(a => a.classList.remove("active"));
+  const hit = items.find(a => {
+    const href = (a.getAttribute("href") || "").toLowerCase();
+    return href === path || (href === "#top" && (path === "/" || path === "/dashboard/"));
+  });
+  (hit || items[0]).classList.add("active");
+})();
+</script>
+
+<script>
+/* Scroll hide/show for fixed bottom nav */
+(function(){
+  const nav = document.getElementById('dashBottomNav');
+  if(!nav) return;
+  let lastY = window.scrollY || 0;
+  const THRESH = 8;
+  let timer = null;
+  window.addEventListener('scroll', function(){
+    const y = window.scrollY || 0;
+    const diff = y - lastY;
+    if(Math.abs(diff) >= THRESH){
+      if(diff > 0) nav.classList.add('nav-hidden');
+      else nav.classList.remove('nav-hidden');
+      lastY = y;
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function(){ nav.classList.remove('nav-hidden'); }, 800);
+  }, { passive: true });
 })();
 </script>
 
@@ -1357,14 +1207,16 @@ body{
     currencies.forEach(c => {
       const raw = rates && Object.prototype.hasOwnProperty.call(rates, c.code) ? rates[c.code] : null;
       const rate = (raw === null || raw === undefined) ? NaN : Number(raw);
-      const tr = document.createElement("tr");
-      const td1 = document.createElement("td");
-      td1.innerHTML = '<div class="fx-left"><img class="fx-flag" src="'+c.flag+'" alt="'+c.country+'"><div style="min-width:0"><div class="fx-code">'+c.code+'</div><div class="fx-country">'+c.country+'</div></div></div>';
-      const td2 = document.createElement("td"); td2.textContent = "1 USD";
-      const td3 = document.createElement("td"); td3.style.textAlign = "right";
-      td3.textContent = Number.isFinite(rate) ? (fmtRate(rate) + " " + c.code) : ("— " + c.code);
-      tr.appendChild(td1); tr.appendChild(td2); tr.appendChild(td3);
-      rowsEl.appendChild(tr);
+      const row = document.createElement("div");
+      row.className = "rb-row";
+      row.innerHTML =
+        '<div class="rb-left">' +
+          '<img class="rb-flag" src="'+c.flag+'" alt="'+c.country+'">' +
+          '<div><div class="rb-code">'+c.code+'</div><div class="rb-country">'+c.country+'</div></div>' +
+        '</div>' +
+        '<div class="rb-usd">1 USD</div>' +
+        '<div class="rb-val">'+(Number.isFinite(rate) ? fmtRate(rate)+" "+c.code : "— "+c.code)+'</div>';
+      rowsEl.appendChild(row);
     });
     updatedEl.textContent = "Updated: " + (updatedText || new Date().toLocaleString());
   }
@@ -1416,149 +1268,69 @@ body{
 </script>
 
 <script>
+// Auto Greeting based on time
+(function(){
+  const greetingEl = document.getElementById("greetingText");
+  if(!greetingEl) return;
+  
+  const hour = new Date().getHours();
+  let greeting = "Good Evening";
+  
+  if(hour >= 5 && hour < 12){
+    greeting = "Good Morning";
+  } else if(hour >= 12 && hour < 17){
+    greeting = "Good Afternoon";
+  }
+  
+  greetingEl.textContent = greeting;
+})();
+</script>
+
+<script>
 (function(){
   const track = document.getElementById("welcomeTrack");
   const textEl = document.getElementById("welcomeText");
   if(!track || !textEl) return;
+
   const msgs = [
-    "Secure System • Trusted Service • 24/7 Support",
-    "Fast Approval • Simple Steps • Transparent Policy",
-    "Your data is protected • Verified process • Safe service"
+    { text: "Secure System • Trusted Service • 24/7 Support",   anim: "anim-a", dir: "left"  },
+    { text: "Fast Approval • Simple Steps • Transparent Policy", anim: "anim-b", dir: "right" },
+    { text: "Your data is protected • Verified • Safe service",  anim: "anim-c", dir: "up"   }
   ];
+  const animClasses = ["anim-a","anim-b","anim-c"];
+  const dirMap = { left:"translateX(-18px) scale(.96)", right:"translateX(18px) scale(.96)", up:"translateY(10px) scale(.96)" };
+
   let i = 0;
-  function show(msg){
-    track.classList.remove("show");
-    setTimeout(() => { textEl.textContent = msg; track.classList.add("show"); }, 180);
+
+  function show(entry){
+    // Remove all anim classes and reset position
+    animClasses.forEach(c => track.classList.remove(c));
+    track.style.opacity = "0";
+    track.style.transform = dirMap[entry.dir];
+
+    setTimeout(() => {
+      textEl.textContent = entry.text;
+      track.style.transform = ""; // let CSS class handle it
+      track.style.opacity = "";
+      track.classList.add(entry.anim);
+    }, 60);
   }
+
   show(msgs[0]);
-  setInterval(() => { i = (i + 1) % msgs.length; show(msgs[i]); }, 4000);
+  setInterval(() => {
+    i = (i + 1) % msgs.length;
+    // Exit: slide out opposite direction
+    animClasses.forEach(c => track.classList.remove(c));
+    track.style.opacity = "0";
+    track.style.transform = "translateX(14px) scale(.96)";
+    track.style.transition = "opacity .15s ease, transform .18s ease";
+    setTimeout(() => {
+      track.style.transition = "";
+      show(msgs[i]);
+    }, 200);
+  }, 4200);
 })();
 </script>
 
-<!-- Why Choose Carousel Script -->
-<script>
-(function() {
-  'use strict';
-  
-  const carousel = document.getElementById('whyCarousel');
-  const slides = document.querySelectorAll('.why-slide');
-  const dots = document.querySelectorAll('#whyDots .why-dot');
-  const prevBtn = document.getElementById('whyPrevBtn');
-  const nextBtn = document.getElementById('whyNextBtn');
-  
-  if (!slides.length) return;
-  
-  let currentIndex = 0;
-  let autoplayInterval = null;
-  let isTransitioning = false;
-  
-  function showSlide(index) {
-    if (isTransitioning) return;
-    isTransitioning = true;
-    
-    slides.forEach(s => s.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
-    
-    slides[index].classList.add('active');
-    if (dots[index]) dots[index].classList.add('active');
-    currentIndex = index;
-    
-    setTimeout(() => { isTransitioning = false; }, 700);
-  }
-  
-  function nextSlide() {
-    const next = (currentIndex + 1) % slides.length;
-    showSlide(next);
-  }
-  
-  function prevSlide() {
-    const prev = (currentIndex - 1 + slides.length) % slides.length;
-    showSlide(prev);
-  }
-  
-  function startAutoplay() {
-    stopAutoplay();
-    autoplayInterval = setInterval(nextSlide, 5000);
-  }
-  
-  function stopAutoplay() {
-    if (autoplayInterval) {
-      clearInterval(autoplayInterval);
-      autoplayInterval = null;
-    }
-  }
-  
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      nextSlide();
-      startAutoplay();
-    });
-  }
-  
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      prevSlide();
-      startAutoplay();
-    });
-  }
-  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      showSlide(index);
-      startAutoplay();
-    });
-  });
-  
-  startAutoplay();
-  
-  if (carousel) {
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-  }
-  
-  document.addEventListener('visibilitychange', function() {
-    if (document.hidden) {
-      stopAutoplay();
-    } else {
-      startAutoplay();
-    }
-  });
-  
-  let touchStartX = 0;
-  let touchEndX = 0;
-  
-  if (carousel) {
-    carousel.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-      stopAutoplay();
-    }, {passive: true});
-    
-    carousel.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-      startAutoplay();
-    }, {passive: true});
-  }
-  
-  function handleSwipe() {
-    const swipeThreshold = 50;
-    const diff = touchStartX - touchEndX;
-    
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) {
-        nextSlide();
-      } else {
-        prevSlide();
-      }
-    }
-  }
-})();
-</script>
 
 {% endblock %}

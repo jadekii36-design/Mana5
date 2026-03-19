@@ -7,7 +7,6 @@
   font-family: "Ovelion", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* Page layout */
 .wrap {
   align-items: flex-start;
   justify-content: center;
@@ -19,38 +18,42 @@
   .wrap { padding-top: 78px; }
 }
 
-/* White Card with Gold Border */
+/* ── Dark Navy Card ── */
 .cs-card {
   width: min(480px, 94vw);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 45%, #eef2f7 75%, #ffffff 100%);
-  border: 2px solid rgba(212, 175, 55, 0.85);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12),
-              0 0 0 1px rgba(255, 255, 255, 0.9) inset;
-  border-radius: 24px;
+  background: linear-gradient(160deg, #071829 0%, #0A2540 55%, #071829 100%);
+  border: 1.5px solid rgba(242,101,34,.30);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,.55),
+    0 0 0 1px rgba(0,158,173,.12) inset,
+    0 0 80px rgba(242,101,34,.06);
+  border-radius: 26px;
   padding: 32px 28px;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   text-align: center;
   animation: cardSwipe 0.5s ease both;
 }
 
 @keyframes cardSwipe {
   from { opacity: 0; transform: translateY(20px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
 }
 
-/* Card decorative overlay */
+/* Animated top accent */
 .cs-card::before {
   content: "";
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.2), transparent 50%),
-    radial-gradient(circle at 20% 80%, rgba(0, 200, 83, 0.08), transparent 50%);
-  opacity: 0.8;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #F26522, #009EAD, #F26522);
+  background-size: 200% 100%;
+  animation: shimmerLine 3s linear infinite;
+}
+
+@keyframes shimmerLine {
+  0%   { background-position: 0%   0%; }
+  100% { background-position: 200% 0%; }
 }
 
 .cs-card::after {
@@ -58,30 +61,32 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0) 60%);
-  opacity: 0.7;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(242,101,34,.07), transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(0,158,173,.07), transparent 50%);
 }
 
 .cs-card > * { position: relative; z-index: 1; }
 
 /* Header */
-.cs-header {
-  margin-bottom: 8px;
-}
+.cs-header { margin-bottom: 8px; }
 
 .cs-title {
   font-size: 22px;
   font-weight: 950;
-  color: #0b2f55;
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   margin-bottom: 4px;
 }
 
 .cs-subtitle {
   font-size: 13px;
-  color: rgba(11, 47, 85, 0.6);
+  color: rgba(255,255,255,.40);
 }
 
-/* Gauge Container */
+/* Gauge */
 .cs-gauge-wrap {
   position: relative;
   width: 280px;
@@ -89,22 +94,19 @@
   margin: 20px auto;
 }
 
-/* SVG Gauge */
 .cs-gauge-svg {
   width: 100%;
   height: 100%;
   overflow: visible;
 }
 
-/* Background arc */
 .cs-gauge-bg {
   fill: none;
-  stroke: rgba(11, 47, 85, 0.08);
+  stroke: rgba(255,255,255,.07);
   stroke-width: 24;
   stroke-linecap: round;
 }
 
-/* Progress arc - changes color based on score */
 .cs-gauge-fill {
   fill: none;
   stroke-width: 24;
@@ -112,32 +114,16 @@
   transition: stroke-dashoffset 1s ease-out, stroke 0.5s ease;
 }
 
-.cs-gauge-fill.red {
-  stroke: linear-gradient(90deg, #c62828, #e53935);
-  filter: drop-shadow(0 4px 12px rgba(198, 40, 40, 0.4));
-}
+.cs-gauge-fill.red  { filter: drop-shadow(0 4px 14px rgba(242,101,34,.50)); }
+.cs-gauge-fill.green{ filter: drop-shadow(0 4px 14px rgba(0,158,173,.50));  }
 
-.cs-gauge-fill.green {
-  stroke: linear-gradient(90deg, #00c853, #69f0ae);
-  filter: drop-shadow(0 4px 12px rgba(0, 200, 83, 0.4));
-}
+.cs-gauge-tick { stroke: rgba(255,255,255,.10); stroke-width: 2; }
+.cs-gauge-tick.major { stroke: rgba(255,255,255,.22); stroke-width: 3; }
 
-/* Gauge ticks */
-.cs-gauge-tick {
-  stroke: rgba(11, 47, 85, 0.15);
-  stroke-width: 2;
-}
-
-.cs-gauge-tick.major {
-  stroke: rgba(11, 47, 85, 0.3);
-  stroke-width: 3;
-}
-
-/* Center Score Display */
+/* Score display */
 .cs-score-wrap {
   position: absolute;
-  bottom: 0;
-  left: 50%;
+  bottom: 0; left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
@@ -149,23 +135,16 @@
   transition: color 0.5s ease;
 }
 
-.cs-score-number.red {
-  color: #c62828;
-  text-shadow: 0 4px 20px rgba(198, 40, 40, 0.3);
-}
-
-.cs-score-number.green {
-  color: #00c853;
-  text-shadow: 0 4px 20px rgba(0, 200, 83, 0.3);
-}
+.cs-score-number.red  { color: #F26522; text-shadow: 0 4px 20px rgba(242,101,34,.40); }
+.cs-score-number.green{ color: #009EAD; text-shadow: 0 4px 20px rgba(0,158,173,.40);  }
 
 .cs-score-max {
   font-size: 18px;
-  color: rgba(11, 47, 85, 0.4);
+  color: rgba(255,255,255,.30);
   font-weight: 600;
 }
 
-/* Status Badge */
+/* Status badge */
 .cs-status {
   display: inline-flex;
   align-items: center;
@@ -178,23 +157,12 @@
   transition: all 0.5s ease;
 }
 
-.cs-status.red {
-  background: rgba(198, 40, 40, 0.1);
-  border: 1px solid rgba(198, 40, 40, 0.25);
-  color: #c62828;
-}
+.cs-status.red  { background: rgba(242,101,34,.12); border: 1px solid rgba(242,101,34,.35); color: #F26522; }
+.cs-status.green{ background: rgba(0,158,173,.12);  border: 1px solid rgba(0,158,173,.35);  color: #009EAD; }
 
-.cs-status.green {
-  background: rgba(0, 200, 83, 0.1);
-  border: 1px solid rgba(0, 200, 83, 0.25);
-  color: #00c853;
-}
+.cs-status-icon { font-size: 16px; }
 
-.cs-status-icon {
-  font-size: 16px;
-}
-
-/* Scale Labels */
+/* Scale labels */
 .cs-scale {
   display: flex;
   justify-content: space-between;
@@ -203,21 +171,11 @@
   margin-bottom: 24px;
 }
 
-.cs-scale-label {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(11, 47, 85, 0.5);
-}
+.cs-scale-label         { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.30); }
+.cs-scale-label.danger  { color: #F26522; }
+.cs-scale-label.safe    { color: #009EAD; }
 
-.cs-scale-label.danger {
-  color: #c62828;
-}
-
-.cs-scale-label.safe {
-  color: #00c853;
-}
-
-/* Info Message */
+/* Info message */
 .cs-message {
   padding: 16px 20px;
   border-radius: 14px;
@@ -226,15 +184,8 @@
   transition: all 0.5s ease;
 }
 
-.cs-message.red {
-  background: rgba(198, 40, 40, 0.06);
-  border: 1px solid rgba(198, 40, 40, 0.15);
-}
-
-.cs-message.green {
-  background: rgba(0, 200, 83, 0.06);
-  border: 1px solid rgba(0, 200, 83, 0.15);
-}
+.cs-message.red  { background: rgba(242,101,34,.08); border: 1px solid rgba(242,101,34,.22); }
+.cs-message.green{ background: rgba(0,158,173,.08);  border: 1px solid rgba(0,158,173,.22);  }
 
 .cs-message-title {
   font-size: 14px;
@@ -245,21 +196,16 @@
   gap: 8px;
 }
 
-.cs-message.red .cs-message-title {
-  color: #c62828;
-}
-
-.cs-message.green .cs-message-title {
-  color: #00a344;
-}
+.cs-message.red  .cs-message-title { color: #F26522; }
+.cs-message.green .cs-message-title{ color: #009EAD; }
 
 .cs-message-text {
   font-size: 12px;
   line-height: 1.5;
-  color: rgba(11, 47, 85, 0.7);
+  color: rgba(255,255,255,.50);
 }
 
-/* Stats Row */
+/* Stats row */
 .cs-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -270,30 +216,27 @@
 .cs-stat {
   padding: 16px 12px;
   border-radius: 14px;
-  background: rgba(11, 47, 85, 0.03);
-  border: 1px solid rgba(11, 47, 85, 0.08);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
 }
 
 .cs-stat-value {
   font-size: 22px;
   font-weight: 950;
-  color: #0b2f55;
+  color: #ffffff;
   margin-bottom: 4px;
 }
 
 .cs-stat-label {
   font-size: 10px;
-  color: rgba(11, 47, 85, 0.55);
+  color: rgba(255,255,255,.40);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 700;
 }
 
 /* Actions */
-.cs-actions {
-  display: flex;
-  gap: 12px;
-}
+.cs-actions { display: flex; gap: 12px; }
 
 .cs-btn {
   flex: 1;
@@ -309,60 +252,37 @@
 }
 
 .cs-btn-primary {
-  background: linear-gradient(135deg, #004182, #0066cc);
-  color: #ffffff;
-  box-shadow: 0 8px 24px rgba(0, 65, 130, 0.35);
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(242,101,34,.30);
 }
 
 .cs-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(0, 65, 130, 0.45);
+  box-shadow: 0 12px 32px rgba(242,101,34,.45);
 }
 
 .cs-btn-ghost {
-  background: #ffffff;
-  color: #0b2f55;
-  border: 2px solid rgba(11, 47, 85, 0.18);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: rgba(255,255,255,.05);
+  color: rgba(255,255,255,.80);
+  border: 1.5px solid rgba(255,255,255,.12) !important;
 }
 
 .cs-btn-ghost:hover {
   transform: translateY(-2px);
-  border-color: rgba(11, 47, 85, 0.3);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  background: rgba(255,255,255,.09);
+  border-color: rgba(0,158,173,.35) !important;
 }
 
-.cs-btn:active {
-  transform: scale(0.98);
-}
+.cs-btn:active { transform: scale(0.98); }
 
-/* Responsive */
 @media(max-width:480px) {
-  .cs-card {
-    padding: 24px 20px;
-  }
-  
-  .cs-gauge-wrap {
-    width: 240px;
-    height: 170px;
-  }
-  
-  .cs-score-number {
-    font-size: 52px;
-  }
-  
-  .cs-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-  
-  .cs-stat {
-    padding: 12px 8px;
-  }
-  
-  .cs-stat-value {
-    font-size: 18px;
-  }
+  .cs-card        { padding: 24px 20px; }
+  .cs-gauge-wrap  { width: 240px; height: 170px; }
+  .cs-score-number{ font-size: 52px; }
+  .cs-stats       { gap: 8px; }
+  .cs-stat        { padding: 12px 8px; }
+  .cs-stat-value  { font-size: 18px; }
 }
 </style>
 
@@ -513,9 +433,9 @@
   
   // Set gauge color
   if (isRed) {
-    gaugeFill.style.stroke = '#c62828';
+    gaugeFill.style.stroke = '#F26522';
   } else {
-    gaugeFill.style.stroke = '#00c853';
+    gaugeFill.style.stroke = '#009EAD';
   }
   
   // Animate gauge fill
