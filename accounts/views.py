@@ -1256,6 +1256,9 @@ def payment_schedule_view(request):
 def contact_view(request):
     return render(request, "contactus.html")
 
+def about_view(request):
+    return render(request, "about.html")
+
 
 @login_required(login_url="login")
 def loan_info_view(request):

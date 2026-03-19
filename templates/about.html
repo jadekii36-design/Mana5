@@ -1,0 +1,403 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}About Us — DC Financing Corporation{% endblock %}
+
+{% block content %}
+<style>
+:root{
+  --orange:#F26522;
+  --teal:#009EAD;
+  --dark:#0f1923;
+}
+
+.ab-wrap{
+  width: min(860px, 94vw);
+  margin: 0 auto;
+  padding: 16px 14px 40px;
+  box-sizing: border-box;
+}
+
+/* ── Back ── */
+.ab-back{
+  display:inline-flex; align-items:center; gap:6px;
+  height:40px; padding:0 20px; border-radius:999px;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  color:#fff; font-weight:800; font-size:14px;
+  text-decoration:none;
+  box-shadow:0 4px 14px rgba(242,101,34,.35);
+  transition:opacity .18s,transform .15s;
+}
+.ab-back:hover{ opacity:.88; transform:translateY(-1px); }
+
+/* ── Hero ── */
+.ab-hero{
+  margin-top:16px;
+  border-radius:22px;
+  overflow:hidden;
+  background: linear-gradient(135deg, #0f1923 0%, #1a2e3b 50%, #0a2020 100%);
+  padding: 40px 30px 36px;
+  position:relative;
+  text-align:center;
+}
+.ab-hero::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(242,101,34,.15), rgba(0,158,173,.12));
+}
+.ab-hero-bar{
+  height:4px;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  border-radius:0 0 0 0;
+  margin-bottom:28px;
+  position:relative;
+}
+.ab-logo{
+  width:90px; height:90px; border-radius:20px;
+  background:rgba(255,255,255,.1);
+  border:2px solid rgba(255,255,255,.2);
+  overflow:hidden;
+  margin:0 auto 18px;
+  display:flex; align-items:center; justify-content:center;
+}
+.ab-logo img{ width:100%; height:100%; object-fit:contain; }
+.ab-hero-title{
+  position:relative;
+  font-size:clamp(20px,5vw,30px);
+  font-weight:950;
+  color:#fff;
+  letter-spacing:.02em;
+  line-height:1.1;
+}
+.ab-hero-sub{
+  position:relative;
+  margin-top:10px;
+  font-size:14px;
+  color:rgba(255,255,255,.75);
+  font-weight:600;
+  max-width:520px;
+  margin-left:auto; margin-right:auto;
+  line-height:1.6;
+}
+.ab-tag{
+  display:inline-block;
+  margin-top:18px;
+  position:relative;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  color:#fff;
+  font-size:11px; font-weight:900;
+  letter-spacing:.12em;
+  padding:6px 20px;
+  border-radius:999px;
+  text-transform:uppercase;
+}
+
+/* ── Stats bar ── */
+.ab-stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:16px;
+}
+.ab-stat{
+  background:#fff;
+  border-radius:16px;
+  padding:18px 12px;
+  text-align:center;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+  border:1.5px solid rgba(242,101,34,.1);
+}
+.ab-stat-num{
+  font-size:clamp(22px,5vw,32px);
+  font-weight:950;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  background-clip:text;
+  line-height:1;
+}
+.ab-stat-label{
+  margin-top:6px;
+  font-size:11px;
+  font-weight:700;
+  color:#6b7280;
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* ── Section cards ── */
+.ab-card{
+  background:#fff;
+  border-radius:20px;
+  padding:24px 22px;
+  margin-top:16px;
+  box-shadow:0 4px 20px rgba(0,0,0,.07);
+  border:1.5px solid #f0f0f0;
+}
+.ab-card-head{
+  display:flex; align-items:center; gap:12px;
+  margin-bottom:16px;
+}
+.ab-card-icon{
+  width:44px; height:44px; border-radius:14px;
+  background:linear-gradient(135deg,#F26522,#009EAD);
+  display:flex; align-items:center; justify-content:center;
+  flex:0 0 auto;
+}
+.ab-card-icon svg{ width:22px; height:22px; fill:#fff; }
+.ab-card-title{
+  font-size:17px; font-weight:950;
+  color:#0f1923;
+  letter-spacing:.01em;
+}
+.ab-card-title span{
+  display:block;
+  font-size:12px; font-weight:600;
+  color:#009EAD; letter-spacing:.06em;
+  text-transform:uppercase; margin-top:2px;
+}
+.ab-text{
+  font-size:14px; line-height:1.75;
+  color:#374151;
+}
+.ab-text b{ color:#0f1923; }
+
+/* ── Values grid ── */
+.ab-values{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+.ab-value{
+  background:linear-gradient(135deg,rgba(242,101,34,.06),rgba(0,158,173,.05));
+  border:1.5px solid rgba(242,101,34,.12);
+  border-radius:14px;
+  padding:16px 14px;
+}
+.ab-value-icon{ font-size:22px; margin-bottom:8px; }
+.ab-value-title{ font-size:13px; font-weight:900; color:#0f1923; }
+.ab-value-desc{ font-size:12px; color:#6b7280; margin-top:4px; line-height:1.5; }
+
+/* ── Services list ── */
+.ab-services{ display:grid; gap:10px; margin-top:12px; }
+.ab-service{
+  display:flex; align-items:center; gap:14px;
+  background:#fafafa;
+  border:1.5px solid #f0f0f0;
+  border-radius:14px;
+  padding:14px 16px;
+}
+.ab-service-dot{
+  width:10px; height:10px; border-radius:50%;
+  background:linear-gradient(135deg,#F26522,#009EAD);
+  flex:0 0 auto;
+}
+.ab-service-text{ font-size:13.5px; font-weight:700; color:#0f1923; }
+.ab-service-sub{ font-size:12px; color:#6b7280; margin-top:2px; }
+
+/* ── Divider ── */
+.ab-sep{
+  height:3px;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  border-radius:99px;
+  margin:6px 0 16px;
+  opacity:.5;
+}
+
+/* ── Contact band ── */
+.ab-contact{
+  background:linear-gradient(110deg,#0f1923,#1a2e3b);
+  border-radius:20px;
+  padding:26px 22px;
+  margin-top:16px;
+  text-align:center;
+  position:relative; overflow:hidden;
+}
+.ab-contact::before{
+  content:"";
+  position:absolute; inset:0;
+  background:linear-gradient(90deg,rgba(242,101,34,.12),rgba(0,158,173,.1));
+}
+.ab-contact-title{
+  position:relative;
+  font-size:18px; font-weight:950; color:#fff;
+}
+.ab-contact-sub{
+  position:relative;
+  font-size:13px; color:rgba(255,255,255,.7);
+  margin-top:8px; line-height:1.6;
+}
+.ab-contact-btn{
+  position:relative;
+  display:inline-flex; align-items:center; gap:8px;
+  margin-top:18px;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  color:#fff; font-weight:900; font-size:14px;
+  padding:12px 28px; border-radius:999px;
+  text-decoration:none;
+  box-shadow:0 6px 20px rgba(242,101,34,.4);
+  transition:opacity .18s,transform .15s;
+}
+.ab-contact-btn:hover{ opacity:.88; transform:translateY(-2px); }
+
+@media(max-width:520px){
+  .ab-hero{ padding:30px 18px 28px; }
+  .ab-stats{ grid-template-columns:repeat(3,1fr); gap:8px; }
+  .ab-stat{ padding:14px 8px; }
+  .ab-values{ grid-template-columns:1fr; }
+  .ab-card{ padding:18px 16px; }
+}
+</style>
+
+<div class="ab-wrap">
+
+  <!-- Back -->
+  <a class="ab-back" href="{% url 'dashboard' %}">&#8592; Back</a>
+
+  <!-- Hero -->
+  <div class="ab-hero">
+    <div class="ab-hero-bar"></div>
+    <div class="ab-logo">
+      <img src="{% static 'img/logo.webp' %}" alt="DC Financing Logo">
+    </div>
+    <div class="ab-hero-title">DC Financing Corporation</div>
+    <div class="ab-hero-sub">
+      Your trusted financial partner in the Philippines — fast, transparent, and always here for you.
+    </div>
+    <span class="ab-tag">Est. 2020 &nbsp;·&nbsp; Philippines</span>
+  </div>
+
+  <!-- Stats -->
+  <div class="ab-stats">
+    <div class="ab-stat">
+      <div class="ab-stat-num">10K+</div>
+      <div class="ab-stat-label">Clients Served</div>
+    </div>
+    <div class="ab-stat">
+      <div class="ab-stat-num">₱10M</div>
+      <div class="ab-stat-label">Max Loan</div>
+    </div>
+    <div class="ab-stat">
+      <div class="ab-stat-num">24/7</div>
+      <div class="ab-stat-label">Support</div>
+    </div>
+  </div>
+
+  <!-- Who We Are -->
+  <div class="ab-card">
+    <div class="ab-card-head">
+      <div class="ab-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15v-4H7l5-8v4h4l-5 8z"/></svg>
+      </div>
+      <div class="ab-card-title">Who We Are <span>Our Story</span></div>
+    </div>
+    <div class="ab-sep"></div>
+    <p class="ab-text">
+      <b>DC Financing Corporation</b> is a licensed financial services company based in the Philippines, dedicated to providing accessible and responsible loan solutions for every Filipino.
+    </p>
+    <p class="ab-text" style="margin-top:10px;">
+      We believe that every person deserves a fair chance at financial freedom. Whether you need funds for an emergency, business, education, or family needs — we are here to help with a <b>fast, simple, and transparent</b> process.
+    </p>
+  </div>
+
+  <!-- Our Mission & Vision -->
+  <div class="ab-card">
+    <div class="ab-card-head">
+      <div class="ab-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+      </div>
+      <div class="ab-card-title">Mission &amp; Vision <span>Our Purpose</span></div>
+    </div>
+    <div class="ab-sep"></div>
+    <p class="ab-text"><b>Mission:</b> To empower Filipinos with fast, fair, and accessible financial solutions — building trust one loan at a time.</p>
+    <p class="ab-text" style="margin-top:10px;"><b>Vision:</b> To become the most trusted and innovative digital lending platform in Southeast Asia, known for integrity, speed, and genuine care for our clients.</p>
+  </div>
+
+  <!-- Our Values -->
+  <div class="ab-card">
+    <div class="ab-card-head">
+      <div class="ab-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1l2.753 8.472H23l-7.018 5.099L18.236 23 12 18.056 5.764 23l2.254-8.429L1 9.472h8.247z"/></svg>
+      </div>
+      <div class="ab-card-title">Our Core Values <span>What We Stand For</span></div>
+    </div>
+    <div class="ab-sep"></div>
+    <div class="ab-values">
+      <div class="ab-value">
+        <div class="ab-value-icon">🤝</div>
+        <div class="ab-value-title">Trust</div>
+        <div class="ab-value-desc">We build lasting relationships through honesty and transparency in every transaction.</div>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">⚡</div>
+        <div class="ab-value-title">Speed</div>
+        <div class="ab-value-desc">Quick approval process so you get the funds you need without unnecessary delays.</div>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">🛡️</div>
+        <div class="ab-value-title">Security</div>
+        <div class="ab-value-desc">Your data and money are protected with the highest security standards.</div>
+      </div>
+      <div class="ab-value">
+        <div class="ab-value-icon">💛</div>
+        <div class="ab-value-title">Care</div>
+        <div class="ab-value-desc">We genuinely care about our clients' financial well-being and future success.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Our Services -->
+  <div class="ab-card">
+    <div class="ab-card-head">
+      <div class="ab-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+      </div>
+      <div class="ab-card-title">Our Services <span>What We Offer</span></div>
+    </div>
+    <div class="ab-sep"></div>
+    <div class="ab-services">
+      <div class="ab-service">
+        <div class="ab-service-dot"></div>
+        <div>
+          <div class="ab-service-text">Personal Loan</div>
+          <div class="ab-service-sub">₱100,000 – ₱10,000,000 · 6 to 60 months</div>
+        </div>
+      </div>
+      <div class="ab-service">
+        <div class="ab-service-dot"></div>
+        <div>
+          <div class="ab-service-text">Quick Loan</div>
+          <div class="ab-service-sub">Fast approval · Simple online application</div>
+        </div>
+      </div>
+      <div class="ab-service">
+        <div class="ab-service-dot"></div>
+        <div>
+          <div class="ab-service-text">OFW Loan</div>
+          <div class="ab-service-sub">For overseas workers · Family support program</div>
+        </div>
+      </div>
+      <div class="ab-service">
+        <div class="ab-service-dot"></div>
+        <div>
+          <div class="ab-service-text">Business Loan</div>
+          <div class="ab-service-sub">Fund your business growth and expansion</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact CTA -->
+  <div class="ab-contact">
+    <div class="ab-contact-title">Have Questions?</div>
+    <div class="ab-contact-sub">
+      Our support team is available Monday – Sunday, 9:00 AM – 10:00 PM.<br>
+      We are always ready to assist you.
+    </div>
+    <a class="ab-contact-btn" href="{% url 'contact' %}">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Contact Us
+    </a>
+  </div>
+
+</div>
+{% endblock %}
