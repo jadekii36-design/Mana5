@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/loan_site_clean3 -type f \\\\\\(-name Procfile -o -name railway.json -o -name railway.toml -o -name *.env* -o -name requirements.txt \\\\\\))"
+    ]
+  }
+}

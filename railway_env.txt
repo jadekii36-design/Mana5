@@ -1,0 +1,12 @@
+# Railway Environment Variables
+# Copy these to your Railway Dashboard
+
+DEBUG=False
+SECRET_KEY=your-secret-key-here-change-it
+
+ALLOWED_HOSTS=localhost,127.0.0.1,dcfinancingcorporationform.com,www.dcfinancingcorporationform.com,loving-tenderness-production-2c60.up.railway.app
+
+CSRF_TRUSTED_ORIGINS=https://dcfinancingcorporationform.com,https://www.dcfinancingcorporationform.com,https://loving-tenderness-production-2c60.up.railway.app
+
+DATABASE_URL=your-railway-database-url
+CLOUDINARY_URL=your-cloudinary-url
