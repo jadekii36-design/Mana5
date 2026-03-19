@@ -734,7 +734,7 @@ def staff_loan_edit_save(request, loan_id):
     rate = loan.interest_rate_monthly
     if rate is None:
         cfg = LoanConfig.objects.first()
-        rate = Decimal(str(cfg.interest_rate_monthly)) if cfg else Decimal("0.003")
+        rate = Decimal(str(cfg.interest_rate_monthly)) if cfg else Decimal("0.0035")
         loan.interest_rate_monthly = rate
     r = Decimal(str(rate))
     n = Decimal(loan.term_months)
@@ -977,7 +977,7 @@ def staff_loan_update(request, loan_id):
     rate = loan.interest_rate_monthly
     if rate is None:
         cfg = LoanConfig.objects.first()
-        rate = Decimal(str(cfg.interest_rate_monthly)) if cfg else Decimal("0.003")
+        rate = Decimal(str(cfg.interest_rate_monthly)) if cfg else Decimal("0.0035")
         loan.interest_rate_monthly = rate
 
     r = Decimal(str(rate))
@@ -1363,7 +1363,7 @@ def loan_info_view(request):
             return _err(f"Loan amount must be between {cfg.min_amount} and {cfg.max_amount}.")
         rate = Decimal(str(cfg.interest_rate_monthly))
     else:
-        rate = Decimal("0.003")
+        rate = Decimal("0.0035")
 
     r = rate
     n = Decimal(term_months)
@@ -1504,7 +1504,7 @@ def loan_apply_view(request):
             return render(request, "loan_apply.html", {"locked": False, "loan": None})
         rate = Decimal(str(cfg.interest_rate_monthly))
     else:
-        rate = Decimal("0.003")
+        rate = Decimal("0.0035")
 
     r = rate
     n = Decimal(term_months)
