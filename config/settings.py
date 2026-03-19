@@ -4,6 +4,7 @@ Django settings - OPTIMIZED FOR SPEED
 
 from pathlib import Path
 import os
+import urllib.parse
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -72,50 +73,49 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# ✅ DATABASE - Railway PostgreSQL (via PG* vars) or SQLite fallback
-_pg_host = os.getenv("PGHOST", "").strip()
-_pg_port = os.getenv("PGPORT", "5432").strip()
-_pg_db = os.getenv("PGDATABASE", "").strip()
-_pg_user = os.getenv("PGUSER", "").strip()
-_pg_pass = os.getenv("PGPASSWORD", "").strip()
-
-if _pg_host and _pg_db:
-    # Use Railway's individual Postgres variables (most reliable)
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": _pg_db,
-            "USER": _pg_user,
-            "PASSWORD": _pg_pass,
-            "HOST": _pg_host,
-            "PORT": _pg_port,
+# ✅ DATABASE - Railway PostgreSQL, never falls back to SQLite in production
+def _build_db_config():
+    # Priority 1: individual PG* vars (Railway auto-injects these)
+    host = os.getenv("PGHOST", "").strip()
+    db   = os.getenv("PGDATABASE", "").strip()
+    if host and db:
+        return {
+            "ENGINE":   "django.db.backends.postgresql",
+            "NAME":     db,
+            "USER":     os.getenv("PGUSER", "postgres").strip(),
+            "PASSWORD": os.getenv("PGPASSWORD", "").strip(),
+            "HOST":     host,
+            "PORT":     os.getenv("PGPORT", "5432").strip(),
             "CONN_MAX_AGE": 600 if not DEBUG else 0,
-            "OPTIONS": {
-                "connect_timeout": 10,
-            },
+            "OPTIONS":  {"connect_timeout": 10},
         }
+
+    # Priority 2: DATABASE_URL or DATABASE_PUBLIC_URL — parsed manually
+    raw_url = (os.getenv("DATABASE_URL") or os.getenv("DATABASE_PUBLIC_URL") or "").strip()
+    if raw_url:
+        u = urllib.parse.urlparse(raw_url)
+        db_name = u.path.lstrip("/")
+        if u.hostname and db_name:
+            return {
+                "ENGINE":   "django.db.backends.postgresql",
+                "NAME":     db_name,
+                "USER":     u.username or "postgres",
+                "PASSWORD": urllib.parse.unquote(u.password or ""),
+                "HOST":     u.hostname,
+                "PORT":     str(u.port or 5432),
+                "CONN_MAX_AGE": 600 if not DEBUG else 0,
+                "OPTIONS":  {"connect_timeout": 10},
+            }
+
+    # Priority 3: SQLite — local dev only
+    import sys
+    print("[WARNING] No PostgreSQL config found — using SQLite (dev only)", file=sys.stderr)
+    return {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME":   BASE_DIR / "db.sqlite3",
     }
-else:
-    # Fallback: try DATABASE_URL
-    _db_url = (os.getenv("DATABASE_URL") or os.getenv("DATABASE_PUBLIC_URL") or "").strip()
-    if _db_url:
-        _parsed = dj_database_url.parse(_db_url, conn_max_age=600 if not DEBUG else 0)
-        if _parsed.get("NAME"):
-            DATABASES = {"default": _parsed}
-        else:
-            DATABASES = {
-                "default": {
-                    "ENGINE": "django.db.backends.sqlite3",
-                    "NAME": BASE_DIR / "db.sqlite3",
-                }
-            }
-    else:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": BASE_DIR / "db.sqlite3",
-            }
-        }
+
+DATABASES = {"default": _build_db_config()}
 
 # ✅ CACHES - SIMPLE (No complex options)
 CACHES = {
