@@ -535,7 +535,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   <div class="summary-card">
     <div class="sc-title">Loan Summary</div>
     <div class="sc-row"><div class="k">Amount</div><div class="v" id="dispAmount">—</div></div>
-    <div class="sc-row"><div class="k">Interest rate</div><div class="v red">0.3% per month</div></div>
+    <div class="sc-row"><div class="k">Interest rate</div><div class="v red">0.35% per month</div></div>
     <div class="sc-row"><div class="k">Loan period</div><div class="v" id="dispTerm">—</div></div>
     <div class="sc-row"><div class="k">Monthly repayment</div><div class="v" id="dispMonthly">—</div></div>
     <div class="sc-row"><div class="k">Total payment</div><div class="v" id="dispTotal">—</div></div>
@@ -891,9 +891,9 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 // ===== LOAN SUMMARY =====
 (function(){
   {% if view_only %}
-  const a = Number("{{ existing.amount }}"), t = Number("{{ existing.term_months }}"), r = 0.003;
+  const a = Number("{{ existing.amount }}"), t = Number("{{ existing.term_months }}"), r = 0.0035;
   {% else %}
-  const a = Number("{{ amount }}" || 0), t = Number("{{ term }}" || 0), r = 0.003;
+  const a = Number("{{ amount }}" || 0), t = Number("{{ term }}" || 0), r = 0.0035;
   {% endif %}
   const fmt = n => n > 0 ? n.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}) : "—";
   document.getElementById("dispAmount").textContent = a > 0 ? "₱" + fmt(a) : "—";
