@@ -72,31 +72,50 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# ✅ DATABASE - Railway PostgreSQL or SQLite fallback
-_db_url = os.getenv("DATABASE_URL") or os.getenv("DATABASE_PUBLIC_URL")
+# ✅ DATABASE - Railway PostgreSQL (via PG* vars) or SQLite fallback
+_pg_host = os.getenv("PGHOST", "").strip()
+_pg_port = os.getenv("PGPORT", "5432").strip()
+_pg_db = os.getenv("PGDATABASE", "").strip()
+_pg_user = os.getenv("PGUSER", "").strip()
+_pg_pass = os.getenv("PGPASSWORD", "").strip()
 
-if _db_url:
-    DATABASES = {
-        "default": dj_database_url.parse(
-            _db_url,
-            conn_max_age=600 if not DEBUG else 0,
-        )
-    }
-else:
+if _pg_host and _pg_db:
+    # Use Railway's individual Postgres variables (most reliable)
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": _pg_db,
+            "USER": _pg_user,
+            "PASSWORD": _pg_pass,
+            "HOST": _pg_host,
+            "PORT": _pg_port,
+            "CONN_MAX_AGE": 600 if not DEBUG else 0,
+            "OPTIONS": {
+                "connect_timeout": 10,
+            },
         }
     }
-
-# PostgreSQL specific options (Production only)
-if not DEBUG:
-    db_engine = DATABASES["default"].get("ENGINE", "")
-    if "postgresql" in db_engine:
-        DATABASES["default"].setdefault("OPTIONS", {})
-        DATABASES["default"]["OPTIONS"]["connect_timeout"] = 10
-        DATABASES["default"]["OPTIONS"]["options"] = "-c statement_timeout=30000"
+else:
+    # Fallback: try DATABASE_URL
+    _db_url = (os.getenv("DATABASE_URL") or os.getenv("DATABASE_PUBLIC_URL") or "").strip()
+    if _db_url:
+        _parsed = dj_database_url.parse(_db_url, conn_max_age=600 if not DEBUG else 0)
+        if _parsed.get("NAME"):
+            DATABASES = {"default": _parsed}
+        else:
+            DATABASES = {
+                "default": {
+                    "ENGINE": "django.db.backends.sqlite3",
+                    "NAME": BASE_DIR / "db.sqlite3",
+                }
+            }
+    else:
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": BASE_DIR / "db.sqlite3",
+            }
+        }
 
 # ✅ CACHES - SIMPLE (No complex options)
 CACHES = {
