@@ -224,4 +224,12 @@ JAZZMIN_SETTINGS = {
     "navigation_expanded": True,
     "theme": "darkly",
     "custom_css": "css/admin_custom.css",
+    "order_with_respect_to": [
+        "accounts.loanapplication",
+        "accounts.loanconfig",
+        "accounts.paymentmethod",
+        "accounts.sitecontrol",
+        "accounts.user",
+        "accounts.withdrawalrequest",
+    ],
 }
