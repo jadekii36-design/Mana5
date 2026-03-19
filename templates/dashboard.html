@@ -635,6 +635,23 @@ body { padding-bottom: 68px !important; }
   padding-top: calc((var(--topbar-pad) * 2) + var(--topbar-card-h) + var(--topbar-gap)) !important;
 }
 
+/* ===== PC view: topbar matches content width (same as bottom nav) ===== */
+@media (min-width: 560px) {
+  .topbar{
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(0) !important;
+    width: min(520px, 94vw) !important;
+    border-radius: 0 0 20px 20px !important;
+    border: 2px solid rgba(0,158,173,.45) !important;
+    border-top: none !important;
+    box-shadow: 0 4px 18px rgba(0,158,173,.25), 0 10px 24px rgba(0,0,0,.25) !important;
+  }
+  .topbar.hide-bar{
+    transform: translateX(-50%) translateY(-110%) !important;
+  }
+}
+
 /* Sliding text on solid gradient topbar */
 .welcome-text{
   overflow:hidden; text-overflow: ellipsis;
