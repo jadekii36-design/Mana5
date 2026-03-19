@@ -4,7 +4,7 @@ from django.db import transaction
 from .models import PaymentMethod
 from django.utils.html import format_html
 
-from .models import LoanApplication, LoanConfig, WithdrawalRequest
+from .models import LoanApplication, LoanConfig, WithdrawalRequest, SiteControl
 
 User = get_user_model()
 
@@ -175,4 +175,24 @@ class WithdrawalRequestAdmin(admin.ModelAdmin):
 class PaymentMethodAdmin(admin.ModelAdmin):
     list_display = ("user", "locked", "wallet_phone", "bank_account", "paypal_email", "updated_at")
     search_fields = ("user__phone", "wallet_phone", "bank_account", "paypal_email")
-    list_filter = ("locked",)    
+    list_filter = ("locked",)
+
+
+@admin.register(SiteControl)
+class SiteControlAdmin(admin.ModelAdmin):
+    list_display = ("panel_title", "expires_at", "days_left_display", "updated_at")
+    fields = ("panel_title", "expires_at")
+
+    def days_left_display(self, obj):
+        d = obj.days_left
+        if d < 0:
+            return format_html('<span style="color:#dc2626;font-weight:900;">EXPIRED</span>')
+        elif d <= 3:
+            return format_html('<span style="color:#dc2626;font-weight:900;">{} days left</span>', d)
+        elif d <= 7:
+            return format_html('<span style="color:#d97706;font-weight:900;">{} days left</span>', d)
+        return format_html('<span style="color:#16a34a;font-weight:900;">{} days left</span>', d)
+    days_left_display.short_description = "Time Left"
+
+    def has_add_permission(self, request):
+        return not SiteControl.objects.exists()  # only 1 record allowed

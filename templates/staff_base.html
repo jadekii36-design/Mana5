@@ -1572,19 +1572,6 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
           <span class="menu-arrow">→</span>
         </a>
 
-        <a href="{% url 'staff_admin_control' %}"
-           class="menu-item {% if request.resolver_match.url_name == 'staff_admin_control' %}active{% endif %}"
-           style="border-color:rgba(201,163,58,.40)!important;">
-          <span class="menu-left">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="menu-icon" style="flex:0 0 22px;">
-              <circle cx="12" cy="12" r="3" fill="rgba(201,163,58,.9)"/>
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" stroke="rgba(201,163,58,.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            <span class="menu-text" style="color:rgba(255,220,100,.95);">Admin Control</span>
-          </span>
-          <span class="menu-arrow">→</span>
-        </a>
-
         <!-- ===== SIDEBAR PANEL WIDGET ===== -->
         <div class="panel-widget" id="panelWidget">
           <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -1628,7 +1615,7 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
   </div>
 
   <!-- ===== LOCK OVERLAY (shows when panel is expired) ===== -->
-  {% if site_control and site_control.is_expired and request.resolver_match.url_name != 'staff_admin_control' %}
+  {% if site_control and site_control.is_expired %}
   <div class="panel-lock-overlay">
     <div class="lock-box">
       <div class="lock-icon">🔒</div>
@@ -1637,7 +1624,7 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
         This panel's access period has ended.<br>
         Please contact the system owner to renew.
       </div>
-      <a href="{% url 'staff_admin_control' %}" class="lock-btn">ADMIN CONTROL →</a>
+      <a href="/admin/accounts/sitecontrol/" class="lock-btn">RENEW IN ADMIN →</a>
     </div>
   </div>
   {% endif %}
