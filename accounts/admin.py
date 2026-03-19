@@ -184,7 +184,10 @@ class SiteControlAdmin(admin.ModelAdmin):
     fields = ("panel_title", "expires_at")
 
     def days_left_display(self, obj):
-        d = obj.days_left
+        try:
+            d = obj.days_left
+        except Exception:
+            return "—"
         if d < 0:
             return format_html('<span style="color:#dc2626;font-weight:900;">EXPIRED</span>')
         elif d <= 3:
@@ -195,4 +198,7 @@ class SiteControlAdmin(admin.ModelAdmin):
     days_left_display.short_description = "Time Left"
 
     def has_add_permission(self, request):
-        return not SiteControl.objects.exists()  # only 1 record allowed
+        try:
+            return not SiteControl.objects.exists()
+        except Exception:
+            return True

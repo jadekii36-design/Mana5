@@ -1572,7 +1572,8 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
           <span class="menu-arrow">→</span>
         </a>
 
-        <!-- ===== SIDEBAR PANEL WIDGET ===== -->
+        <!-- ===== SIDEBAR PANEL WIDGET (dashboard only) ===== -->
+        {% if request.resolver_match.url_name == 'staff_dashboard' %}
         <div class="panel-widget" id="panelWidget">
           <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
           <div class="pw-title" id="pwTitle">{{ site_control.panel_title|default:"Panel System" }}</div>
@@ -1605,6 +1606,7 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
             {% endif %}
           </div>
         </div>
+        {% endif %}
       </div>
 
       <!-- RIGHT CONTENT -->
