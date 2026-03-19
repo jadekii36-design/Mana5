@@ -366,3 +366,18 @@ class SiteControl(models.Model):
     @property
     def is_expired(self):
         return self.days_left < 0
+
+    @property
+    def is_in_grace_period(self):
+        """Expired but within 3-day grace (clients see reminder, still have access)."""
+        return -3 <= self.days_left < 0
+
+    @property
+    def grace_days_remaining(self):
+        """How many grace days left (0-2). Only meaningful during grace period."""
+        return max(0, 3 + self.days_left)
+
+    @property
+    def is_fully_blocked(self):
+        """More than 3 days past expiry — clients are fully blocked."""
+        return self.days_left < -3

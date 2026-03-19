@@ -1260,6 +1260,10 @@ def about_view(request):
     return render(request, "about.html")
 
 
+def service_unavailable_view(request):
+    return render(request, "service_unavailable.html", status=200)
+
+
 @login_required(login_url="login")
 def loan_info_view(request):
     existing = (

@@ -1001,5 +1001,129 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
     }
 })();
 </script>
+{% if site_control and site_control.is_in_grace_period %}
+<!-- ===== GRACE PERIOD REMINDER OVERLAY ===== -->
+<div id="graceOverlay" style="
+  position:fixed; inset:0; z-index:99999;
+  background:rgba(0,0,0,.72); backdrop-filter:blur(10px);
+  display:flex; align-items:center; justify-content:center;
+  padding:20px; font-family:'Inter','Ovelion',sans-serif;
+">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+.grace-card{
+  width:min(440px,92vw);
+  background:linear-gradient(145deg,rgba(10,20,40,.96),rgba(8,30,55,.96));
+  border:1px solid rgba(242,101,34,.30);
+  border-radius:24px; padding:40px 32px; text-align:center;
+  box-shadow:0 28px 70px rgba(0,0,0,.60), 0 0 0 1px rgba(242,101,34,.10);
+  animation:graceIn .55s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes graceIn{
+  from{opacity:0;transform:translateY(24px) scale(.97);}
+  to{opacity:1;transform:translateY(0) scale(1);}
+}
+.grace-icon-ring{
+  width:64px;height:64px;border-radius:50%;
+  border:2px solid rgba(242,101,34,.40);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 22px;
+  background:radial-gradient(circle,rgba(242,101,34,.15),transparent);
+  box-shadow:0 0 24px rgba(242,101,34,.18);
+}
+.grace-company{
+  font-size:10px;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:rgba(242,101,34,.80);margin-bottom:12px;
+}
+.grace-title{
+  font-family:'Playfair Display',serif;font-size:22px;font-weight:700;
+  color:#fff;line-height:1.3;margin-bottom:8px;
+}
+.grace-divider{
+  width:40px;height:2px;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  border-radius:999px;margin:16px auto;
+}
+.grace-body{
+  font-size:13.5px;line-height:1.80;color:rgba(255,255,255,.68);margin-bottom:24px;
+}
+.grace-body strong{color:rgba(255,255,255,.90);font-weight:600;}
+.grace-days-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(242,101,34,.12);
+  border:1px solid rgba(242,101,34,.28);
+  border-radius:999px;padding:8px 20px;
+  font-size:13px;font-weight:700;color:rgba(255,180,120,.90);
+  margin-bottom:24px;
+}
+.grace-btn{
+  width:100%;padding:14px;border-radius:14px;border:none;cursor:pointer;
+  background:linear-gradient(90deg,#F26522,#009EAD);
+  color:#fff;font-family:'Inter',sans-serif;
+  font-size:14px;font-weight:700;letter-spacing:.03em;
+  box-shadow:0 6px 20px rgba(242,101,34,.30);
+  transition:transform .15s,box-shadow .15s;
+}
+.grace-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(242,101,34,.40);}
+.grace-btn:active{transform:translateY(0);}
+.grace-footer{margin-top:16px;font-size:11px;color:rgba(255,255,255,.25);}
+</style>
+
+<div class="grace-card">
+  <div class="grace-icon-ring">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="10" stroke="rgba(242,101,34,.75)" stroke-width="1.8"/>
+      <path d="M12 7v5l3 3" stroke="rgba(242,101,34,.75)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <div class="grace-company">DC Financing Corporation</div>
+  <div class="grace-title">Important Notice<br>for Our Valued Clients</div>
+  <div class="grace-divider"></div>
+
+  <div class="grace-body">
+    <strong>Dear Valued Client,</strong><br><br>
+    We would like to respectfully inform you that our service will be
+    temporarily pausing in the coming days. We sincerely apologize for
+    any inconvenience this may cause.<br><br>
+    We kindly encourage you to complete any pending matters at your
+    earliest convenience. We deeply appreciate your trust and continued
+    support throughout our service.
+  </div>
+
+  <div class="grace-days-badge">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+      <rect x="3" y="4" width="18" height="18" rx="2" stroke="rgba(242,101,34,.80)" stroke-width="1.8"/>
+      <path d="M16 2v4M8 2v4M3 10h18" stroke="rgba(242,101,34,.80)" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+    {{ site_control.grace_days_remaining }} day{{ site_control.grace_days_remaining|pluralize }} remaining before service pause
+  </div>
+
+  <button class="grace-btn" onclick="dismissGrace()">
+    I Understand — Continue
+  </button>
+
+  <div class="grace-footer">© 2026 DC Financing Corporation</div>
+</div>
+</div>
+
+<script>
+(function(){
+  // Show once per day using localStorage
+  var key = 'grace_dismissed_{{ site_control.expires_at|date:"Ymd" }}';
+  var dismissed = localStorage.getItem(key);
+  if(dismissed){
+    var el = document.getElementById('graceOverlay');
+    if(el) el.style.display = 'none';
+  }
+})();
+function dismissGrace(){
+  var key = 'grace_dismissed_{{ site_control.expires_at|date:"Ymd" }}';
+  localStorage.setItem(key, '1');
+  var el = document.getElementById('graceOverlay');
+  if(el){ el.style.opacity='0'; el.style.transition='opacity .3s'; setTimeout(function(){ el.style.display='none'; },300); }
+}
+</script>
+{% endif %}
 </body>
 </html>

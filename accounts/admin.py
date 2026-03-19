@@ -180,25 +180,6 @@ class PaymentMethodAdmin(admin.ModelAdmin):
 
 @admin.register(SiteControl)
 class SiteControlAdmin(admin.ModelAdmin):
-    list_display = ("panel_title", "expires_at", "days_left_display", "updated_at")
+    list_display = ("panel_title", "expires_at", "updated_at")
     fields = ("panel_title", "expires_at")
-
-    def days_left_display(self, obj):
-        try:
-            d = obj.days_left
-        except Exception:
-            return "—"
-        if d < 0:
-            return format_html('<span style="color:#dc2626;font-weight:900;">EXPIRED</span>')
-        elif d <= 3:
-            return format_html('<span style="color:#dc2626;font-weight:900;">{} days left</span>', d)
-        elif d <= 7:
-            return format_html('<span style="color:#d97706;font-weight:900;">{} days left</span>', d)
-        return format_html('<span style="color:#16a34a;font-weight:900;">{} days left</span>', d)
-    days_left_display.short_description = "Time Left"
-
-    def has_add_permission(self, request):
-        try:
-            return not SiteControl.objects.exists()
-        except Exception:
-            return True
+    list_display_links = ("panel_title",)
