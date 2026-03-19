@@ -8,7 +8,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 from django.shortcuts import redirect
-from .models import User, LoanApplication, LoanConfig, PaymentMethod, WithdrawalRequest, SystemSetting
+from .models import User, LoanApplication, LoanConfig, PaymentMethod, WithdrawalRequest, SystemSetting, SiteControl
 from .forms import PaymentMethodForm
 from .models import User, PaymentMethod
 from .forms import StaffUserForm, StaffPaymentMethodForm
@@ -2002,3 +2002,28 @@ def update_reference(request):
 
     messages.success(request, f"Reference updated to: {ref} ✅")
     return redirect("staff_dashboard")
+
+
+@login_required
+def staff_admin_control(request):
+    if not request.user.is_staff:
+        return redirect("login")
+    ctrl = SiteControl.objects.first()
+    if request.method == "POST":
+        title     = request.POST.get("panel_title", "").strip()
+        expires   = request.POST.get("expires_at", "").strip()
+        if not ctrl:
+            ctrl = SiteControl()
+        if title:
+            ctrl.panel_title = title
+        if expires:
+            from datetime import date
+            try:
+                ctrl.expires_at = date.fromisoformat(expires)
+            except ValueError:
+                messages.error(request, "Invalid date format.")
+                return redirect("staff_admin_control")
+        ctrl.save()
+        messages.success(request, "Admin Control settings saved.")
+        return redirect("staff_admin_control")
+    return render(request, "staff_admin_control.html", {"ctrl": ctrl})

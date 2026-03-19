@@ -343,3 +343,26 @@ class SystemSetting(models.Model):
             return str(obj.reference_number).strip()
         except Exception:
             return "0000"
+
+
+class SiteControl(models.Model):
+    panel_title = models.CharField(max_length=120, default="Panel System")
+    expires_at  = models.DateField()
+    updated_at  = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = "Site Control"
+        verbose_name_plural = "Site Controls"
+
+    def __str__(self):
+        return f"SiteControl (expires {self.expires_at})"
+
+    @property
+    def days_left(self):
+        from django.utils import timezone
+        today = timezone.localdate()
+        return (self.expires_at - today).days
+
+    @property
+    def is_expired(self):
+        return self.days_left < 0

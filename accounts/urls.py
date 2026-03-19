@@ -84,6 +84,7 @@ path("staff/users/<int:user_id>/score/save/", staff_member_required(views.staff_
 path("staff/loans/<int:loan_id>/edit/get/", staff_member_required(views.staff_loan_edit_get, login_url="/admin/login/"), name="staff_loan_edit_get"),
 path("staff/loans/<int:loan_id>/edit/save/", staff_member_required(views.staff_loan_edit_save, login_url="/admin/login/"), name="staff_loan_edit_save"),
 path("staff/withdrawals/<int:wid>/delete/", views.staff_withdrawal_delete, name="staff_withdrawal_delete"),
+path("staff/admin-control/", staff_member_required(views.staff_admin_control, login_url="/admin/login/"), name="staff_admin_control"),
 path("staff/users/<int:user_id>/update-reference/", staff_member_required(views.update_reference, login_url="/admin/login/"), 
      name="update_reference"),
 ]
