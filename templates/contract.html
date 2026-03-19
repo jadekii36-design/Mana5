@@ -4,411 +4,371 @@
 
 {% block content %}
 <style>
-
 @font-face {
   font-family: 'ArialNarrowCustom';
   src: url("{% static 'fonts/arialnarrow.ttf' %}") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-  :root{
-  --c1:#004182;
-  --c2:#054585d0;
-  --ink:#0b0f0c;
-  --paper:#ffffff;
-  --mut:#4b5563;
-  --line:#e7e7e7;
+:root{
+  --orange: #F26522;
+  --teal:   #009EAD;
+  --ink:    #111827;
+  --mut:    #6b7280;
+  --line:   #f0f0f0;
+  --paper:  #ffffff;
 }
 
-  /* container */
-  .ct-wrap{
-  width: min(900px, 94vw);
+.ct-wrap{
+  width: min(860px, 94vw);
   margin: 0 auto;
-  padding: 14px 14px 26px;   /* ✅ remove big top space */
+  padding: 14px 14px 32px;
   box-sizing: border-box;
 }
-
-/* ✅ Mobile: little tighter */
-@media (max-width: 520px){
-  .ct-wrap{
-    padding: 10px 12px 20px;
-  }
-}
-
-  .paper{
-  background: var(--paper);
-  color: #111827;
-  border-radius: 18px;
-  box-shadow: 0 18px 60px rgba(0,0,0,.35);
-  overflow: hidden;
-
-  position: relative; /* ✅ add this */
-}
-
-.ct-wrap, 
-.ct-wrap * {
+.ct-wrap, .ct-wrap *{
   font-family: 'ArialNarrowCustom', Arial, sans-serif !important;
 }
-/* Back button shape like picture */
+
+/* ── Back button ── */
 .back-btn{
-  position: relative;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-
-  height: 42px;
-  padding: 0 22px 0 28px;   /* left a bit bigger */
-  border-radius: 12px;
-
-  background: #e7e7e7;
-  color: #111827;
-  font-weight: 800;
-  text-decoration: none;
-
-  border: 1px solid rgba(0,0,0,.18);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.65);
-}
-
-/* left arrow tip */
-.back-btn::before{
-  content:"";
-  position:absolute;
-  left: -14px;
-  width: 0; height: 0;
-  border-top: 21px solid transparent;
-  border-bottom: 21px solid transparent;
-  border-right: 14px solid #e7e7e7; /* same as button */
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,.16));
-}
-
-/* hover/active */
-.back-btn:hover{
-  transform: translateY(-1px);
-}
-.back-btn:active{
-  transform: translateY(0px);
-  opacity: .92;
-}
-
-/* Mobile adjustments */
-@media (max-width:520px){
-  .top-actions{ padding: 10px 12px 0; }
-  .top-actions-line{ margin: 10px 12px 0; }
-  .back-btn{ height: 40px; padding: 0 18px 0 24px; font-size: 13px; }
-  .back-btn::before{
-    left: -13px;
-    border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
-    border-right: 13px solid #e7e7e7;
-  }
-}
-
-  /* header like sample */
-  .head{
-  position: relative;
-  padding: 16px 18px 14px;   /* ⬅️ បន្ថយ top padding */
-  border-bottom: 1px solid var(--line);
-
-  background: linear-gradient(
-  90deg,
-  rgba(0,65,130,.95),
-  rgba(5,69,133,.82)
-);
-
+  gap: 6px;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: linear-gradient(90deg,#F26522,#009EAD);
   color: #fff;
-  /* ✅ align ជាមួយ paper */
+  font-weight: 800;
+  font-size: 14px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(242,101,34,.35);
+  transition: opacity .18s, transform .18s;
+}
+.back-btn:hover{ opacity:.88; transform:translateY(-1px); }
+.back-btn:active{ opacity:.95; transform:translateY(0); }
+.top-actions{ padding: 12px 0 10px; }
+
+/* ── Paper card ── */
+.paper{
+  background: var(--paper);
+  border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.18);
+  overflow: hidden;
 }
 
-  .head-inner{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap: 16px;
-  }
+/* ── Header ── */
+.head{
+  background: linear-gradient(110deg, #0f1923 0%, #1a2e3b 55%, #0e2a30 100%);
+  padding: 22px 24px 18px;
+  position: relative;
+  overflow: hidden;
+}
+.head::before{
+  content:"";
+  position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(242,101,34,.18) 0%, rgba(0,158,173,.14) 100%);
+}
+.head-inner{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
-  .brand{
-    display:flex;
-    align-items:center;
-    gap: 12px;
-    min-width: 220px;
-  }
-  .brand-logo{
-    width:90px;height:90px;
-    border-radius: 18px;
-    background: rgba(255,255,255,.18);
-    border: 1px solid rgba(255,255,255,.22);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    flex: 0 0 auto;
-  }
-  .brand-logo img{ width:100%; height:100%; object-fit:contain; display:block; }
+/* accent bar at bottom of header */
+.head-bar{
+  height: 4px;
+  background: linear-gradient(90deg, #F26522, #009EAD);
+  border-radius: 0;
+  margin-top: 16px;
+  position: relative;
+}
 
-  .brand-title{
-    line-height: 1.05;
-    font-weight: 950;
-    letter-spacing: .02em;
-    font-size: 20px;
-  }
-  .brand-sub{
-    margin-top: 4px;
-    font-size: 12px;
-    opacity: .92;
-    font-weight: 700;
-  }
+.brand{ display:flex; align-items:center; gap:14px; }
+.brand-logo{
+  width: 88px; height: 88px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.10);
+  border: 1.5px solid rgba(255,255,255,.18);
+  overflow: hidden;
+  flex: 0 0 auto;
+  display:flex; align-items:center; justify-content:center;
+}
+.brand-logo img{ width:100%; height:100%; object-fit:contain; display:block; }
+.brand-title{
+  font-size: 18px;
+  font-weight: 950;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+.brand-tag{
+  margin-top: 5px;
+  display: inline-block;
+  background: linear-gradient(90deg,#F26522,#009EAD);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  padding: 2px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.support-badge{
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 12px;
+  padding: 10px 16px;
+  color: rgba(255,255,255,.9);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: right;
+}
+.support-badge b{ color:#F26522; }
 
-  .contact{
-    text-align:right;
-    font-size: 12px;
-    line-height: 1.4;
-    opacity: .95;
-    max-width: 360px;
-    color: #ffffff;
-  }
-  .contact .row{ display:flex; gap:8px; justify-content:flex-end; }
-  .contact b{ font-weight: 900; }
+/* ── Body ── */
+.body{ padding: 22px 22px 10px; }
 
-  /* body */
-  .body{
-    padding: 18px;
-  }
+/* ── Details card ── */
+.details-card{
+  border-radius: 16px;
+  border: 1.5px solid var(--line);
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+.details-head{
+  background: linear-gradient(90deg, rgba(242,101,34,.08), rgba(0,158,173,.06));
+  padding: 10px 16px;
+  display:flex; align-items:center; gap:8px;
+  border-bottom: 1.5px solid var(--line);
+}
+.details-head-dot{
+  width:10px; height:10px; border-radius:50%;
+  background: linear-gradient(135deg,#F26522,#009EAD);
+  flex:0 0 auto;
+}
+.details-head-label{
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
 
-  .top-grid{
-    display:grid;
-    grid-template-columns: 1fr; /* ✅ DATE removed */
-    gap: 14px;
-    align-items:start;
-  }
-
-  .box{
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 14px;
-    background: #fbfbfb;
-  }
-
-  .box h4{
-    margin: 0 0 10px;
-    font-size: 13px;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: #111827;
-  }
-
-  .kv{
+.kv{
   display: grid;
-  grid-template-columns: 1fr auto; /* ✅ label អោយវែង, value auto -> ទៅស្ដាំ */
-  gap: 10px 18px;
-  font-size: 13px;
-  color: #111827;
+  grid-template-columns: 1fr auto;
   align-items: center;
 }
-
-@media (max-width: 520px){
-  .kv{
-    grid-template-columns: 120px 1fr; /* still 2 columns on phone */
-  }
+.kv-row{
+  display: contents;
 }
-  .k{ color: #374151; font-weight: 800; }
-  .v{
-  color: #111827;
-  font-weight: 700;
-  position: relative;
-  display: inline-block;
-  padding-bottom: 4px;
-
-  justify-self: end;     /* ✅ value ទៅចុងស្ដាំ */
-  text-align: right;     /* ✅ អក្សរ align ស្ដាំ */
-  min-width: 90px;      /* ✅ អោយ column value មានទំហំស្អាត */
+.kv-row .k,
+.kv-row .v{
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--line);
+  font-size: 13.5px;
+}
+.kv-row:last-child .k,
+.kv-row:last-child .v{ border-bottom: none; }
+.kv-row:nth-child(even) .k,
+.kv-row:nth-child(even) .v{
+  background: rgba(242,101,34,.03);
+}
+.k{ color: var(--mut); font-weight: 700; }
+.v{
+  color: var(--ink);
+  font-weight: 800;
+  text-align: right;
+}
+.v.highlight{
+  color: var(--orange);
+  font-weight: 900;
 }
 
-.v::after{
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, var(--c1), var(--c2));
+/* ── Divider ── */
+.sep{
+  height: 3px;
+  background: linear-gradient(90deg,#F26522,#009EAD);
   border-radius: 99px;
-  opacity: .85;
+  margin: 18px 0;
+  opacity: .7;
 }
 
-
-  .sep{
-    height: 2px;
-    background: linear-gradient(90deg, var(--c1), var(--c2));
-    border-radius: 99px;
-    margin: 16px 0;
-    opacity: .85;
-  }
-
-  .subject{
-    margin-top: 4px;
-    font-size: 13px;
-    font-weight: 950;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-  }
-
-  .para{
-    font-size: 13px;
-    line-height: 1.7;
-    color: #111827;
-    margin-top: 10px;
-  }
-
-  .muted{ color: var(--mut); }
-  .head .contact .muted{
-  color: rgba(255,255,255,.88) !important;
+/* ── Subject ── */
+.subject{
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--ink);
 }
 
-  .sig{
-    margin-top: 20px;
-    display:grid;
-    gap: 10px;
-    max-width: 520px;
-  }
-  .sig .line{
-    border-bottom: 2px solid #111827;
-    height: 24px;
-    width: 100%;
-  }
+/* ── Paragraphs ── */
+.para{
+  font-size: 13px;
+  line-height: 1.75;
+  color: #374151;
+  margin-top: 11px;
+}
+.para b{ color: var(--ink); }
 
-  /* footer band like sample */
-  .foot{
-    padding: 12px 18px;
-    border-top: 1px solid var(--line);
-    background: #f6f7f7;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-    font-size: 12px;
-    color: #111827;
-  }
-  .foot .badge{
-    border: 1px solid rgba(0,65,130,.22);
-    background: rgba(5,69,133,.10);
-    color: #004182;
-    padding: 6px 10px;
-    border-radius: 999px;
-    font-weight: 900;
-  }
+/* ── Signature ── */
+.sig{
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1.5px dashed var(--line);
+  display:grid;
+  gap: 8px;
+  max-width: 440px;
+}
+.sig-line{
+  height: 2px;
+  background: linear-gradient(90deg,#F26522,#009EAD);
+  border-radius: 99px;
+  width: 100%;
+  margin-top: 18px;
+}
+.sig-label{ font-size: 11px; color: var(--mut); font-weight: 700; letter-spacing:.04em; }
+
+/* ── Footer ── */
+.foot{
+  margin-top: 20px;
+  padding: 13px 22px;
+  background: linear-gradient(90deg, rgba(242,101,34,.06), rgba(0,158,173,.05));
+  border-top: 1.5px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.foot-badge{
+  background: linear-gradient(90deg,#F26522,#009EAD);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .06em;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+.foot-text{ font-size: 12px; color: var(--mut); font-weight: 700; }
+
+@media(max-width:520px){
+  .head{ padding:18px 16px 14px; }
+  .body{ padding:16px 14px 8px; }
+  .brand-title{ font-size:15px; }
+  .brand-logo{ width:72px; height:72px; }
+  .support-badge{ display:none; }
+  .foot{ padding:12px 14px; }
+}
 </style>
 
 <div class="ct-wrap">
+
+  <!-- Back -->
+  <div class="top-actions">
+    <a class="back-btn" href="{% url 'quick_loan' %}">&#8592; Back</a>
+  </div>
+
   <div class="paper">
-    <!-- TOP ACTIONS -->
-<div class="top-actions">
-  <a class="back-btn" href="{% url 'quick_loan' %}">
-    Back
-  </a>
-</div>
-<div class="top-actions-line"></div>
 
     <!-- HEADER -->
     <div class="head">
       <div class="head-inner">
-
         <div class="brand">
           <div class="brand-logo">
-            {# ✅ later you will replace this file name with your logo #}
             <img src="{% static 'img/logo.webp' %}" alt="Logo">
           </div>
           <div>
             <div class="brand-title">DC Financing FINANCING (PH) INC.</div>
+            <span class="brand-tag">Loan Contract</span>
           </div>
         </div>
-
-        <div class="contact">
-          <div class="row"><b>Support:</b> <span class="muted">Company Department</span></div>
+        <div class="support-badge">
+          <b>Support</b><br>Company Department
         </div>
-
       </div>
+      <div class="head-bar"></div>
     </div>
 
     <!-- BODY -->
     <div class="body">
 
-      <div class="top-grid">
-        <div class="box">
-          <h4>To</h4>
-
-          <div class="kv">
+      <!-- Details -->
+      <div class="details-card">
+        <div class="details-head">
+          <div class="details-head-dot"></div>
+          <div class="details-head-label">Loan Details — TO</div>
+        </div>
+        <div class="kv">
+          <div class="kv-row">
             <div class="k">Full name</div>
             <div class="v">{{ full_name|default:"—" }}</div>
-
+          </div>
+          <div class="kv-row">
             <div class="k">Phone number</div>
             <div class="v">{{ phone|default:"—" }}</div>
-
+          </div>
+          <div class="kv-row">
             <div class="k">Currently living</div>
             <div class="v">{{ current_living|default:"—" }}</div>
-
+          </div>
+          <div class="kv-row">
             <div class="k">Loan amount</div>
             <div class="v">PHP {{ amount|floatformat:2|default:"0.00" }}</div>
-
+          </div>
+          <div class="kv-row">
             <div class="k">Terms</div>
             <div class="v">{{ term_months|default:"—" }} months</div>
-
+          </div>
+          <div class="kv-row">
             <div class="k">Interest rate</div>
-            <div class="v">0.35% per month</div>
-
+            <div class="v highlight">0.35% per month</div>
+          </div>
+          <div class="kv-row">
             <div class="k">Monthly repayment</div>
-            <div class="v">PHP {{ monthly_repayment|floatformat:2|default:"0.00" }}</div>
+            <div class="v highlight">PHP {{ monthly_repayment|floatformat:2|default:"0.00" }}</div>
           </div>
         </div>
       </div>
 
       <div class="sep"></div>
 
-      <div class="subject">SUBJECT: LOAN CONTRACT AGREEMENT.</div>
+      <div class="subject">Subject: Loan Contract Agreement</div>
+
+      <div class="para">Dear <b>{{ full_name|default:"Client" }}</b>,</div>
 
       <div class="para">
-        Dear <b>{{ full_name|default:"Client" }}</b>,
-      </div>
-
-      <div class="para muted">
-        The loan application now is under review by the Financial department. You can tracking your Application Status in Quick loan,
+        The loan application now is under review by the Financial department. You can track your Application Status in Quick Loan.
         This contract confirms the loan request and repayment responsibilities under the company policy. By continuing to use this service, you agree to the terms below.
       </div>
 
-      <div class="para">
-        <b>1) Loan Details:</b> The borrower requests the loan amount and term shown above. The monthly repayment shown is a calculated estimate based on the current interest rate.
-      </div>
+      <div class="para"><b>1) Loan Details:</b> The borrower requests the loan amount and term shown above. The monthly repayment shown is a calculated estimate based on the current interest rate.</div>
 
-      <div class="para">
-        <b>2) Repayment:</b> The borrower must repay on time according to the repayment schedule provided in the system. Late payments may result in account restrictions or additional verification.
-      </div>
+      <div class="para"><b>2) Repayment:</b> The borrower must repay on time according to the repayment schedule provided in the system. Late payments may result in account restrictions or additional verification.</div>
 
-      <div class="para">
-        <b>3) Verification:</b> The company may request additional documents at any time for security, risk checks, or compliance purposes.
-      </div>
+      <div class="para"><b>3) Verification:</b> The company may request additional documents at any time for security, risk checks, or compliance purposes.</div>
 
-      <div class="para">
-        <b>4) Communication:</b> Important notices can be sent to your notifications section. Please check regularly.
-      </div>
+      <div class="para"><b>4) Communication:</b> Important notices can be sent to your notifications section. Please check regularly.</div>
 
-      <div class="para">
-        Thank you for using our service.
-      </div>
+      <div class="para">Thank you for using our service.</div>
 
       <div class="sig">
-        <div class="para" style="margin:0;"><b>Sincerely,</b></div>
-        <div class="line"></div>
-        <div class="muted" style="font-size:12px;">Authorized Company Signature</div>
+        <div class="para" style="margin:0;font-weight:900;">Sincerely,</div>
+        <div class="sig-line"></div>
+        <div class="sig-label">Authorized Company Signature</div>
       </div>
 
     </div>
 
     <!-- FOOTER -->
     <div class="foot">
-      <div class="badge">Office Hours</div>
-      <div class="muted">Monday–Sunday: 9:00 AM – 10:00 PM</div>
+      <div class="foot-badge">Office Hours</div>
+      <div class="foot-text">Monday – Sunday &nbsp;|&nbsp; 9:00 AM – 10:00 PM</div>
     </div>
 
   </div>
