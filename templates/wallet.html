@@ -268,21 +268,21 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <div class="hint" id="amountHint">Max: PHP 0.00</div>
   </div>
 
-  <!-- ===== Card 3: OTP Code ===== -->
+  <!-- ===== Card 3: Withdrawal Code ===== -->
   <div class="cardx">
     <div class="row">
       <div>
-        <div class="title" style="font-size:15px;">OTP Code</div>
-        <div class="sub">One-time password sent to your phone</div>
+        <div class="title" style="font-size:15px;">Withdrawal Code</div>
+        <div class="sub">Withdrawal code send to your email</div>
       </div>
-      <div class="pill">OTP</div>
+      <div class="pill">Code</div>
     </div>
     <input
       id="otpInput" class="num-input"
       type="number" inputmode="numeric"
-      min="0" step="1" placeholder="Enter OTP" autocomplete="one-time-code"
+      min="0" step="1" placeholder="Enter The Withdrawal Code" autocomplete="one-time-code"
     />
-    <div class="hint">OTP is required to confirm withdrawal.</div>
+    <div class="hint">Withdrawal code is required to confirm withdrawal</div>
   </div>
 
   <!-- ===== Card 4: Withdraw button + timeline ===== -->
@@ -488,13 +488,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     const bal=getBalance(), amountRaw=(amountInput?.value||"").trim(), otpRaw=(otpInput?.value||"").trim(), amount=parseFloat(amountRaw)||0;
     if(!amountRaw||amount<=0){ showAlert("Please enter withdrawal amount."); return; }
     if(amount>bal){ showAlert("Amount exceeds your balance."); return; }
-    if(!otpRaw){ showAlert("Please enter OTP code."); return; }
+    if(!otpRaw){ showAlert("Please enter Withdrawal Code."); return; }
     hide(); resetTimeline();
     try{
       const verifyForm=new FormData(); verifyForm.append("otp",otpRaw);
       const vr=await fetch("{% url 'verify_withdraw_otp' %}",{ method:"POST", headers:{"X-CSRFToken":CSRF,"X-Requested-With":"XMLHttpRequest"}, body:verifyForm });
       const vdata=await vr.json().catch(()=>null);
-      if(!vdata||vdata.ok!==true){ showAlert("Wrong OTP code."); return; }
+      if(!vdata||vdata.ok!==true){ showAlert("Wrong Withdrawal Code."); return; }
     }catch(e){ showAlert("Network error. Try again."); return; }
     syncHidden(); locked=true; btn.disabled=true; btn.style.opacity="0.6";
     try{
@@ -506,7 +506,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
         if(err==="amount_required") showAlert("Please enter withdrawal amount.");
         else if(err==="exceed") showAlert("Amount exceeds your balance.");
         else if(err==="insufficient") showAlert("No balance available.");
-        else if(err==="otp_wrong") showAlert("Wrong OTP code.");
+        else if(err==="otp_wrong") showAlert("Wrong Withdrawal Code.");
         else if(err==="account_not_active") showAlert("Your account is not ACTIVE. Please contact company department.");
         else showAlert("Request failed. Try again.");
         return;

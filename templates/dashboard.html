@@ -1016,7 +1016,7 @@ body { padding-bottom: 68px !important; }
       <div class="pc-name">
         {% if last_loan and last_loan.full_name %}{{ last_loan.full_name }}{% else %}{{ request.user.phone }}{% endif %}
       </div>
-      <div class="pc-phone">{{ request.user.phone }}</div>
+      <div class="pc-phone">{% with ph=request.user.phone %}{% if ph %}******{{ ph|slice:"-3:" }}{% endif %}{% endwith %}</div>
 
       <!-- Status badge -->
       {% with sc=status_color|upper %}
