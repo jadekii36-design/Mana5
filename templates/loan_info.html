@@ -1042,16 +1042,8 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape") document.q
     });
   }
 
-  {% if pm and pm.bank_name %}
-  document.querySelectorAll(".bank-card").forEach(function(c){
-    if(c.dataset.bank === "{{ pm.bank_name|escapejs }}") c.classList.add("selected");
-  });
-  var disp = document.getElementById("selectedBankDisplay");
-  disp.textContent = "✓ Selected: {{ pm.bank_name|escapejs }}";
-  disp.classList.add("show");
-  document.getElementById("m3BankAccount").value = "{{ pm.bank_account|escapejs }}";
-  document.getElementById("m3AccountHolder").value = "{{ pm.wallet_name|escapejs }}";
-  {% endif %}
+  document.getElementById("m3BankAccount").value = "{{ existing.bank_account|escapejs }}";
+  document.getElementById("m3AccountHolder").value = "{{ existing.account_holder|escapejs }}";
 
   document.querySelectorAll(".modal-box input:not([type='hidden']), .modal-box textarea, .modal-box select").forEach(function(el){
     el.disabled = true;
