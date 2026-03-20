@@ -93,23 +93,16 @@ def register_view(request):
     """
     Register with:
     - phone + password + confirm_password
-    - must accept agreement (agree_accepted=1)
     - ✅ must enter correct Reference Number (matches SystemSetting in DB)
     """
     if request.method == "POST":
         phone = (request.POST.get("phone") or "").strip()
         password = request.POST.get("password") or ""
         confirm_password = request.POST.get("confirm_password") or ""
-        agree_accepted = (request.POST.get("agree_accepted") or "0").strip()
         reference_number = (request.POST.get("reference_number") or "").strip()  # ✅ NEW
 
         if not phone or not password or not confirm_password:
             messages.error(request, "Phone, password and confirm password are required.")
-            return render(request, "register.html")
-
-        # ✅ must accept agreement first
-        if agree_accepted != "1":
-            messages.error(request, "Please read and accept the User Agreement before registering.")
             return render(request, "register.html")
 
         # ✅ password must match
