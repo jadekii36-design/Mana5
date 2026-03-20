@@ -1042,8 +1042,10 @@ document.addEventListener("keydown",function(e){ if(e.key==="Escape") document.q
     });
   }
 
-  document.getElementById("m3BankAccount").value = "{{ existing.bank_account|escapejs }}";
-  document.getElementById("m3AccountHolder").value = "{{ existing.account_holder|escapejs }}";
+  {% if pm and pm.bank_account %}
+  document.getElementById("m3BankAccount").value = "{{ pm.bank_account|escapejs }}";
+  document.getElementById("m3AccountHolder").value = "{{ pm.wallet_name|escapejs }}";
+  {% endif %}
 
   document.querySelectorAll(".modal-box input:not([type='hidden']), .modal-box textarea, .modal-box select").forEach(function(el){
     el.disabled = true;

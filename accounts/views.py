@@ -1282,7 +1282,7 @@ def loan_info_view(request):
                                             "PENDING", "pending")
             identity_complete = bool(existing.identity_name and existing.identity_number)
             personal_complete = bool(existing.full_name and existing.age)
-            beneficiary_complete = bool(pm and pm.bank_name and pm.bank_account)
+            beneficiary_complete = bool(pm and pm.bank_account)
             signature_complete = bool(existing.signature_image)
             all_complete = identity_complete and personal_complete and beneficiary_complete and signature_complete
             return render(request, "loan_info.html", {
