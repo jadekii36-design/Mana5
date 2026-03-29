@@ -11,10 +11,10 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --secondary: #009EAD;
-  --dark:      #0A2540;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --secondary: #008000;
+  --dark:      #00008B;
 }
 
 /* ===== Page wrapper ===== */
@@ -28,26 +28,26 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 /* ===== Override base dark cards → white for this page ===== */
 .cardx, .card, [class*="card"] {
   background: #fff !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
 /* ===== HEADER BANNER — full gradient ===== */
 .contact-header{
-  background: linear-gradient(135deg, #071829 0%, #0d3a5e 55%, #0A2540 100%);
+  background: linear-gradient(135deg, #000022 0%, #00008B 55%, #00008B 100%);
   border-radius: 22px;
   padding: 22px 20px;
   margin-bottom: 14px;
   position: relative;
   overflow: hidden;
-  border: 1.5px solid rgba(0,158,173,.30);
+  border: 1.5px solid rgba(0,128,0,.30);
   box-shadow: 0 20px 50px rgba(0,0,0,.40);
 }
 .contact-header::before{
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #F26522, #009EAD);
+  background: linear-gradient(90deg, #B8860B, #008000);
 }
 .contact-header .hd-title{
   font-weight: 950; font-size: 16px;
@@ -64,7 +64,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   border-radius: 22px;
   padding: 20px;
   margin-bottom: 14px;
-  border: 1.5px solid rgba(0,158,173,.18);
+  border: 1.5px solid rgba(0,128,0,.18);
   box-shadow: 0 8px 28px rgba(0,0,0,.08);
   position: relative;
   overflow: hidden;
@@ -73,7 +73,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .form-card::before{
   content: "";
   position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
-  background: linear-gradient(180deg, #F26522 0%, #009EAD 100%);
+  background: linear-gradient(180deg, #B8860B 0%, #008000 100%);
   border-radius: 4px 0 0 4px;
 }
 
@@ -81,7 +81,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 label{
   display: block; font-size: 12px;
   margin: 12px 0 6px; font-weight: 900;
-  color: #0A2540 !important;
+  color: #00008B !important;
 }
 label:first-child{ margin-top: 0; }
 
@@ -89,9 +89,9 @@ label:first-child{ margin-top: 0; }
 input, textarea{
   width: 100%; box-sizing: border-box;
   border-radius: 12px;
-  border: 1.5px solid rgba(0,158,173,.22) !important;
+  border: 1.5px solid rgba(0,128,0,.22) !important;
   background: #F5F8FA !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   padding: 11px 14px; outline: none;
   font-size: 14px; font-weight: 600;
   transition: border-color .15s, box-shadow .15s;
@@ -99,8 +99,8 @@ input, textarea{
 input::placeholder, textarea::placeholder{ color: #94a3b8 !important; }
 textarea{ min-height: 110px; resize: none; }
 input:focus, textarea:focus{
-  border-color: rgba(242,101,34,.50) !important;
-  box-shadow: 0 0 0 3px rgba(242,101,34,.10) !important;
+  border-color: rgba(184,134,11,.50) !important;
+  box-shadow: 0 0 0 3px rgba(184,134,11,.10) !important;
   background: #fff !important;
 }
 
@@ -112,11 +112,11 @@ input:focus, textarea:focus{
   font-weight: 950; letter-spacing: .12em;
   text-transform: uppercase; font-size: 14px;
   color: #fff !important; cursor: pointer;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
-  box-shadow: 0 10px 28px rgba(242,101,34,.30);
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
+  box-shadow: 0 10px 28px rgba(184,134,11,.30);
   transition: transform .12s ease, box-shadow .2s ease;
 }
-.btn:hover{ box-shadow: 0 14px 32px rgba(242,101,34,.40); transform: translateY(-1px); }
+.btn:hover{ box-shadow: 0 14px 32px rgba(184,134,11,.40); transform: translateY(-1px); }
 .btn:active{ transform: scale(.99); }
 
 /* ===== Success alert ===== */
@@ -133,7 +133,7 @@ input:focus, textarea:focus{
 .facebook-inline{ text-align: center; margin: 0 0 14px; }
 .fb-title{
   margin: 0 0 10px; font-weight: 950;
-  font-size: 14px; color: #0A2540 !important; letter-spacing: .03em;
+  font-size: 14px; color: #00008B !important; letter-spacing: .03em;
 }
 .fb-btn{
   display: inline-flex; align-items: center; gap: 10px;
@@ -153,10 +153,10 @@ input:focus, textarea:focus{
 .back-btn{
   display: inline-flex; align-items: center; justify-content: center;
   height: 44px; padding: 0 26px; border-radius: 999px;
-  background: #FFFFFF !important; color: #0A2540 !important;
+  background: #FFFFFF !important; color: #00008B !important;
   font-weight: 900; font-size: 14px; text-decoration: none;
-  border: 1.5px solid rgba(0,158,173,.30) !important;
-  box-shadow: 0 4px 14px rgba(0,158,173,.10);
+  border: 1.5px solid rgba(0,128,0,.30) !important;
+  box-shadow: 0 4px 14px rgba(0,128,0,.10);
   transition: transform .15s ease;
 }
 .back-btn:hover{ transform: translateY(-1px); }
@@ -172,22 +172,22 @@ input:focus, textarea:focus{
 
   <!-- Facebook -->
   <div class="facebook-inline">
-    <a href="https://web.facebook.com/DcFinancingCorporationPhippines/" target="_blank" class="fb-btn">
+    <a href="https://www.facebook.com/InstantKreditIndonesia/" target="_blank" class="fb-btn">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
       </svg>
-      <span class="fb-text">DC Financing on Facebook</span>
+      <span class="fb-text">Instant Kredit Indonesia di Facebook</span>
     </a>
   </div>
 
   <!-- Header banner -->
   <div class="contact-header">
-    <div class="hd-title">CONTACT US — DC FINANCING CORPORATION</div>
-    <p class="hd-sub">Send us a message — we will contact you soon.</p>
+    <div class="hd-title">HUBUNGI KAMI — INSTANT KREDIT INDONESIA</div>
+    <p class="hd-sub">Kirim pesan kepada kami — kami akan segera menghubungi Anda.</p>
   </div>
 
   {% if sent %}
-    <div class="alert-success">✅ Thank you! We will contact you soon.</div>
+    <div class="alert-success">✅ Terima kasih! Kami akan segera menghubungi Anda.</div>
   {% endif %}
 
   <!-- Form card -->
@@ -195,19 +195,19 @@ input:focus, textarea:focus{
     <form method="POST" action="/contact/">
       {% csrf_token %}
 
-      <label>Full name</label>
-      <input type="text" name="full_name" placeholder="Enter your full name" required>
+      <label>Nama Lengkap</label>
+      <input type="text" name="full_name" placeholder="Masukkan nama lengkap Anda" required>
 
-      <label>Phone / WhatsApp</label>
-      <input type="tel" name="phone" placeholder="Enter phone number" required>
+      <label>Telepon / WhatsApp</label>
+      <input type="tel" name="phone" placeholder="Masukkan nomor telepon" required>
 
-      <label>Subject (optional)</label>
-      <input type="text" name="subject" placeholder="Enter subject">
+      <label>Subjek (opsional)</label>
+      <input type="text" name="subject" placeholder="Masukkan subjek">
 
-      <label>Message</label>
-      <textarea name="message" placeholder="Type your message here..." required></textarea>
+      <label>Pesan</label>
+      <textarea name="message" placeholder="Ketik pesan Anda di sini..." required></textarea>
 
-      <button class="btn" type="submit">SEND MESSAGE</button>
+      <button class="btn" type="submit">KIRIM PESAN</button>
     </form>
   </div>
   <!-- end form-card -->

@@ -8,8 +8,8 @@
 {% block extra_css %}
 <style>
 :root{
-  --g1:#F26522;
-  --g2:#009EAD;
+  --g1:#B8860B;
+  --g2:#008000;
 }
 @font-face{
   font-family: "Ovelion";
@@ -267,8 +267,8 @@ h1,h2,h3{ margin:0 0 10px; }
 }
 .btn:active{ transform: scale(.98); }
 .btn-primary{
-  background: linear-gradient(90deg, #F26522, #009EAD);
-  color:#fff;
+  background: linear-gradient(90deg, #B8860B, #008000);
+  color:#000;
 }
 .btn-ghost{
   background: transparent;
@@ -414,7 +414,7 @@ html, body{
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(90deg, #F26522 0%, #009EAD 100%);
+  background: linear-gradient(90deg, #B8860B 0%, #FFD700 50%, #008000 100%);
   padding: 10px 0;
   text-align: center;
   z-index: 999;
@@ -475,7 +475,7 @@ body {
 </div>
 
 <footer class="site-footer">
-  <p class="footer-credit">© 2026 DC FINANCING CORPORATION</p>
+  <p class="footer-credit">© 2026 INSTANT KREDIT INDONESIA</p>
 </footer>
 
 <script>
@@ -770,7 +770,8 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
       const balEl = document.querySelector("[data-balance]");
       if(balEl && data.balance !== undefined && data.balance !== lastBalance){
         lastBalance = data.balance;
-        balEl.textContent = data.balance;
+        const _num = parseFloat(String(data.balance).replace(/,/g,"")) || 0;
+        balEl.textContent = _num.toLocaleString("id-ID", {minimumFractionDigits:2, maximumFractionDigits:2});
       }
   
       // ✅ OTP required flag (wallet page)
@@ -1041,7 +1042,7 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
 }
 .grace-divider{
   width:40px;height:2px;
-  background:linear-gradient(90deg,#F26522,#009EAD);
+  background:linear-gradient(90deg,#B8860B,#FFD700);
   border-radius:999px;margin:16px auto;
 }
 .grace-body{
@@ -1050,21 +1051,21 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
 .grace-body strong{color:rgba(255,255,255,.90);font-weight:600;}
 .grace-days-badge{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(242,101,34,.12);
-  border:1px solid rgba(242,101,34,.28);
+  background:rgba(255,215,0,.12);
+  border:1px solid rgba(255,215,0,.30);
   border-radius:999px;padding:8px 20px;
-  font-size:13px;font-weight:700;color:rgba(255,180,120,.90);
+  font-size:13px;font-weight:700;color:rgba(255,215,0,.90);
   margin-bottom:24px;
 }
 .grace-btn{
   width:100%;padding:14px;border-radius:14px;border:none;cursor:pointer;
-  background:linear-gradient(90deg,#F26522,#009EAD);
-  color:#fff;font-family:'Inter',sans-serif;
+  background:linear-gradient(90deg,#B8860B,#FFD700);
+  color:#000;font-family:'Ovelion',sans-serif;
   font-size:14px;font-weight:700;letter-spacing:.03em;
   box-shadow:0 6px 20px rgba(242,101,34,.30);
   transition:transform .15s,box-shadow .15s;
 }
-.grace-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(242,101,34,.40);}
+.grace-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(255,215,0,.40);}
 .grace-btn:active{transform:translateY(0);}
 .grace-footer{margin-top:16px;font-size:11px;color:rgba(255,255,255,.25);}
 </style>
@@ -1077,7 +1078,7 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
     </svg>
   </div>
 
-  <div class="grace-company">DC Financing Corporation</div>
+  <div class="grace-company">Instant Kredit Indonesia</div>
   <div class="grace-title">Important Notice<br>for Our Valued Clients</div>
   <div class="grace-divider"></div>
 
@@ -1103,7 +1104,7 @@ else if(key === "APPROVED" || key === "LOAN_PAID" || key === "WITHDRAWAL_SUCCESS
     I Understand — Continue
   </button>
 
-  <div class="grace-footer">© 2026 DC Financing Corporation</div>
+  <div class="grace-footer">© 2026 Instant Kredit Indonesia</div>
 </div>
 </div>
 

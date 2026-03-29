@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Agreement{% endblock %}
+{% block title %}Perjanjian - Instant Kredit Indonesia{% endblock %}
 
 {% block content %}
 <style>
@@ -11,10 +11,10 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --danger:    #F26522;
-  --secondary: #009EAD;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --danger:    #B8860B;
+  --secondary: #008000;
   --white:     #FFFFFF;
   --light-bg:  #F5F8FA;
 }
@@ -40,11 +40,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 /* ===== BASE CARD — DARK NAVY THEME ===== */
 .cardx{
   position: relative !important;
-  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%) !important;
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%) !important;
   border-radius: 22px !important;
   padding: 28px !important;
-  border: 1.5px solid rgba(0,158,173,.28) !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,.50), 0 0 0 1px rgba(0,158,173,.10) inset !important;
+  border: 1.5px solid rgba(0,128,0,.28) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,.50), 0 0 0 1px rgba(0,128,0,.10) inset !important;
   overflow: hidden;
   margin-bottom: 20px;
   color: rgba(255,255,255,.85) !important;
@@ -56,7 +56,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   content: "" !important; position: absolute !important;
   top: 0 !important; left: 0 !important; right: 0 !important;
   height: 3px !important;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
   pointer-events: none !important;
 }
 
@@ -75,7 +75,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   font-size: 20px;
   text-align: center;
   letter-spacing: .05em;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
@@ -83,7 +83,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 .cardx h2 {
   font-size: 17px;
-  color: #F26522 !important;
+  color: #B8860B !important;
 }
 
 .cardx p {
@@ -111,7 +111,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .cardx hr {
   border: none;
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0,158,173,.45), rgba(242,101,34,.35), transparent);
+  background: linear-gradient(to right, transparent, rgba(0,128,0,.45), rgba(184,134,11,.35), transparent);
   margin: 24px 0;
 }
 
@@ -126,13 +126,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   font-size: 18px;
   font-weight: 950;
   letter-spacing: .10em;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
   -webkit-background-clip: text !important;
   background-clip: text !important;
   color: transparent !important;
   padding: 10px 20px;
-  border: 1.5px solid rgba(0,158,173,.30) !important;
-  background-color: rgba(0,158,173,.06) !important;
+  border: 1.5px solid rgba(0,128,0,.30) !important;
+  background-color: rgba(0,128,0,.06) !important;
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
   border-radius: 14px;
@@ -141,9 +141,9 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 /* Override for ag-title text gradient */
 .ag-title {
-  color: #F26522 !important;
-  background: rgba(0,158,173,.08) !important;
-  border: 1.5px solid rgba(0,158,173,.30) !important;
+  color: #B8860B !important;
+  background: rgba(0,128,0,.08) !important;
+  border: 1.5px solid rgba(0,128,0,.30) !important;
 }
 
 /* Article items */
@@ -163,12 +163,12 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   content: "";
   position: absolute; top: 0; left: 0;
   width: 3px; height: 100%;
-  background: linear-gradient(180deg, #F26522, #009EAD);
+  background: linear-gradient(180deg, #B8860B, #008000);
   border-radius: 4px 0 0 4px;
 }
 
 .art-title {
-  color: #F26522 !important;
+  color: #B8860B !important;
   font-weight: 900;
   letter-spacing: .4px;
   text-transform: uppercase;
@@ -196,13 +196,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   height: 44px;
   padding: 0 26px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #F26522, #009EAD);
+  background: linear-gradient(90deg, #B8860B, #008000);
   color: #fff;
   font-weight: 900;
   font-size: 14px;
   text-decoration: none;
   border: none;
-  box-shadow: 0 8px 22px rgba(242,101,34,.30);
+  box-shadow: 0 8px 22px rgba(184,134,11,.30);
   transition: transform .15s ease;
 }
 
@@ -222,115 +222,115 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 <div class="agree-wrap">
 
-  <!-- ===== ABOUT US ===== -->
+  <!-- ===== TENTANG KAMI ===== -->
   <div class="cardx">
     <div class="ag-title-wrap">
-      <h2 class="ag-title">ABOUT US</h2>
+      <h2 class="ag-title">TENTANG KAMI</h2>
     </div>
 
     <ul>
-  <li><b>DC FINANCING CORPORATION:</b> [DC FINANCING CORPORATION]</li>
-  <li><b>Registration Date:</b> [April 16, 2024]</li>
-  <li><b>SEC / License / Registration Number:</b> [2024040146213-02 / F-24-0074-79]</li>
-  <li><b>Registered Country:</b> [Philippine]</li>
+  <li><b>INSTANT KREDIT INDONESIA:</b> Instant Kredit Indonesia</li>
+  <li><b>Tanggal Registrasi:</b> 1 Januari 2024</li>
+  <li><b>Negara Terdaftar:</b> Indonesia</li>
+  <li><b>Alamat:</b> Jl. M.H. Thamrin No.81, Kota Jakarta Pusat, DKI Jakarta 10310</li>
 </ul>
 
     <hr>
 
-    <p>[DC FINANCING CORPORATION] is a formally established and legally registered financial services organization operating in accordance with the applicable laws, regulations, and regulatory frameworks of Philippines.</p>
+    <p>[INSTANT KREDIT INDONESIA] adalah organisasi layanan keuangan yang secara resmi didirikan dan terdaftar secara hukum, beroperasi sesuai dengan peraturan perundang-undangan dan kerangka regulasi yang berlaku di Indonesia.</p>
 
-    <p>The Company was officially incorporated on [April 16, 2024] and operates under business registration, financial service license, or regulatory approval number [SEC / 2024040146213-02/ F-24-0074-79], as issued by the relevant governmental or regulatory authority.</p>
+    <p>Perusahaan ini secara resmi didirikan pada 1 Januari 2024 dan beroperasi sesuai dengan peraturan perundang-undangan serta kerangka regulasi yang diterbitkan oleh otoritas pemerintah atau regulator keuangan yang berwenang di Indonesia.</p>
 
-    <p>The establishment of [DC FINANCING CORPORATION] was driven by the growing demand for structured, accountable, and legally compliant financial assistance solutions designed to serve individuals seeking access to short-term and long-term funding options within a regulated framework.</p>
+    <p>Pendirian [INSTANT KREDIT INDONESIA] didorong oleh meningkatnya permintaan akan solusi bantuan keuangan yang terstruktur, akuntabel, dan sesuai hukum, yang dirancang untuk melayani individu yang membutuhkan akses pembiayaan jangka pendek maupun jangka panjang dalam kerangka yang diatur.</p>
 
-    <p>The Company exists as a lawful business entity with recognized legal standing and conducts its operations in compliance with commercial, financial, consumer protection, and data protection laws applicable within Philippines.</p>
+    <p>Perusahaan ini merupakan entitas usaha yang sah dengan kedudukan hukum yang diakui, dan menjalankan operasionalnya sesuai dengan hukum komersial, keuangan, perlindungan konsumen, dan perlindungan data yang berlaku di Indonesia.</p>
 
-    <p>The primary nature of the Company's business is the provision of loan-related and financial facilitation services. These services are structured to ensure operational sustainability, risk management, and legal enforceability.</p>
+    <p>Kegiatan utama Perusahaan adalah penyediaan layanan terkait pinjaman dan fasilitasi keuangan. Layanan-layanan ini dirancang untuk memastikan keberlanjutan operasional, manajemen risiko, dan kepastian hukum.</p>
 
-    <p>Users engaging with the Company acknowledge and accept that loans are legally binding obligations, repayment is not optional, and failure to read documentation does not remove responsibility.</p>
+    <p>Pengguna yang berinteraksi dengan Perusahaan mengakui dan menerima bahwa pinjaman adalah kewajiban yang mengikat secara hukum, pembayaran kembali bukan pilihan, dan kegagalan membaca dokumentasi tidak menghapus tanggung jawab.</p>
 
-    <p>The mission of the Company is to deliver transparent, disciplined, and structured financial services that support borrower needs while ensuring repayment responsibility, operational continuity, and long-term business sustainability.</p>
+    <p>Misi Perusahaan adalah memberikan layanan keuangan yang transparan, disiplin, dan terstruktur yang mendukung kebutuhan peminjam sekaligus memastikan tanggung jawab pembayaran, kelangsungan operasional, dan keberlanjutan bisnis jangka panjang.</p>
 
-    <p>The Company's vision is to become a scalable, trusted, and compliant financial service provider capable of operating within evolving regulatory environments while maintaining consistent service standards and risk management practices.</p>
+    <p>Visi Perusahaan adalah menjadi penyedia layanan keuangan yang terukur, terpercaya, dan patuh, yang mampu beroperasi dalam lingkungan regulasi yang terus berkembang sambil mempertahankan standar layanan dan praktik manajemen risiko yang konsisten.</p>
 
-    <p>The Company operates under the philosophy that financial access must be structured, borrowing carries responsibility, agreements must be respected, and repayment is mandatory.</p>
+    <p>Perusahaan beroperasi berdasarkan filosofi bahwa akses keuangan harus terstruktur, meminjam membawa tanggung jawab, perjanjian harus dihormati, dan pembayaran kembali adalah kewajiban.</p>
 
-    <p>The Company's services may include loan application intake, identity verification, document validation, risk and eligibility assessment, loan approval or rejection, loan disbursement coordination, repayment schedule administration, account monitoring, and customer communication.</p>
+    <p>Layanan Perusahaan dapat mencakup penerimaan pengajuan pinjaman, verifikasi identitas, validasi dokumen, penilaian risiko dan kelayakan, persetujuan atau penolakan pinjaman, koordinasi pencairan pinjaman, administrasi jadwal pembayaran, pemantauan akun, dan komunikasi dengan nasabah.</p>
 
-    <p>All applications, requests, and services are subject to internal review and discretion. The Company is not obligated to approve any application and may reject, delay, or suspend services without providing a detailed explanation, except where required by law.</p>
+    <p>Semua pengajuan, permintaan, dan layanan tunduk pada tinjauan dan kebijaksanaan internal. Perusahaan tidak berkewajiban untuk menyetujui pengajuan apa pun dan dapat menolak, menunda, atau menangguhkan layanan tanpa memberikan penjelasan rinci, kecuali diwajibkan oleh hukum.</p>
 
-    <p>Users engaging with the Company acknowledge and accept that loans are legally binding obligations, repayment is not optional, and failure to read documentation does not remove responsibility.</p>
+    <p>Pengguna yang berinteraksi dengan Perusahaan mengakui dan menerima bahwa pinjaman adalah kewajiban yang mengikat secara hukum, pembayaran kembali bukan pilihan, dan kegagalan membaca dokumentasi tidak menghapus tanggung jawab.</p>
   </div>
 
   <!-- ===== ARTICLE ===== -->
   <div class="cardx">
     <div class="ag-title-wrap">
-      <h2 class="ag-title">ARTICLE</h2>
+      <h2 class="ag-title">PASAL-PASAL</h2>
     </div>
-    <p style="text-align:center; color:#64748b !important; font-size:13px; margin-top:-8px;">Terms and conditions (Article 1–12)</p>
+    <p style="text-align:center; color:#64748b !important; font-size:13px; margin-top:-8px;">Syarat dan ketentuan (Pasal 1–12)</p>
 
     <div class="article-block">
 
       <div class="article-item">
-        <p><span class="art-title">Article 1</span></p>
-        <div class="article-text"> In the case of online borrowers without collateral, The lenders run the risk of lending. Borrowers must show their financial status to the company to confirm their responsibility to repay their debts. The company will confirm Guarantee Loan Insurance. The borrower will withdraw the full amount of the loan account.</div>
+        <p><span class="art-title">Pasal 1</span></p>
+        <div class="article-text">Dalam hal peminjam online tanpa jaminan, pemberi pinjaman menanggung risiko pemberian pinjaman. Peminjam wajib menunjukkan status keuangannya kepada perusahaan untuk membuktikan kemampuan dan tanggung jawabnya dalam melunasi utang. Perusahaan akan mengonfirmasi Asuransi Jaminan Pinjaman. Peminjam akan mencairkan jumlah penuh dari akun pinjaman.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 2</span></p>
-        <div class="article-text"> Loan Application: Submit a request for a loan using a valid unsecured ID card.</div>
+        <p><span class="art-title">Pasal 2</span></p>
+        <div class="article-text">Pengajuan Pinjaman: Ajukan permohonan pinjaman menggunakan kartu identitas yang sah tanpa jaminan.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 3</span></p>
-        <div class="article-text">After Signing This Contract, Both The Borrower And The Lender Must Comply With All Requirements Of The Contract. If Either Party Breaches The Contract, The Other Party Has The Right To Sue In Court. The Party Not Complying With This Will Have To Pay A Fine Of 50 Percent Of The Installment Amount If It Does Not Object.</div>
+        <p><span class="art-title">Pasal 3</span></p>
+        <div class="article-text">Setelah penandatanganan kontrak ini, baik peminjam maupun pemberi pinjaman wajib mematuhi seluruh ketentuan kontrak. Apabila salah satu pihak melanggar kontrak, pihak lainnya berhak mengajukan gugatan ke pengadilan. Pihak yang tidak mematuhi ketentuan ini wajib membayar denda sebesar 50 persen dari jumlah angsuran apabila tidak mengajukan keberatan.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 4</span></p>
-        <div class="article-text">In The Event That The Credit Transfer Cannot Be Resolved Due To The Problems Of The Borrower, The Lender Has The Right To Request The Borrower To Assist In Handling It. After Completing This Operation, The Lender Has To Transfer The Funds.</div>
+        <p><span class="art-title">Pasal 4</span></p>
+        <div class="article-text">Apabila transfer kredit tidak dapat diselesaikan akibat permasalahan dari pihak peminjam, pemberi pinjaman berhak meminta peminjam untuk membantu penyelesaiannya. Setelah proses tersebut selesai, pemberi pinjaman wajib melakukan transfer dana.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 5</span></p>
-        <div class="article-text">The Borrower Shall Repay The Loan Principal And Interest Within The Period Specified In The Contract. If The Borrower Wants To Apply For Loan Extension, He / She Has To Disburse It 5 Days Before The Contract Period.</div>
+        <p><span class="art-title">Pasal 5</span></p>
+        <div class="article-text">Peminjam wajib melunasi pokok pinjaman dan bunga dalam jangka waktu yang ditentukan dalam kontrak. Apabila peminjam ingin mengajukan perpanjangan pinjaman, pengajuan tersebut harus dilakukan 5 hari sebelum berakhirnya masa kontrak.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 6</span></p>
-        <div class="article-text">Since your loan application was submitted online, the lender assumes the Party B must provide the Party A assumes and requires verification of financial capability and identity to ensure the borrower’s legitimacy, prevent fraud, and securely disburse the loan.</div>
+        <p><span class="art-title">Pasal 6</span></p>
+        <div class="article-text">Mengingat pengajuan pinjaman dilakukan secara online, pemberi pinjaman (Pihak A) mensyaratkan peminjam (Pihak B) untuk menyediakan dan menjalani verifikasi kemampuan keuangan serta identitas guna memastikan legitimasi peminjam, mencegah penipuan, dan memastikan pencairan pinjaman secara aman.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 7</span></p>
-        <div class="article-text"> If The Borrower Breaches The Terms Specified In This Agreement .</div>
+        <p><span class="art-title">Pasal 7</span></p>
+        <div class="article-text">Apabila peminjam melanggar syarat-syarat yang tercantum dalam perjanjian ini, pemberi pinjaman berhak mengambil tindakan hukum yang diperlukan sesuai dengan ketentuan yang berlaku.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 8</span></p>
-        <div class="article-text">The Borrower Cannot Use The Loan For Illegal Activities. Otherwise, The Lender Reserves The Right To Require The Borrower To Repay The Principal And Interest Promptly And The Legal Consequences Shall Be Borne By The Borrower.</div>
+        <p><span class="art-title">Pasal 8</span></p>
+        <div class="article-text">Peminjam tidak diperbolehkan menggunakan pinjaman untuk kegiatan yang melanggar hukum. Apabila terbukti demikian, pemberi pinjaman berhak menuntut peminjam untuk segera melunasi pokok pinjaman beserta bunganya, dan segala konsekuensi hukum yang timbul sepenuhnya menjadi tanggung jawab peminjam.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 9</span></p>
-        <div class="article-text">(1) Modification Or Termination Of Contract: In All Of The Above Provisions, Neither Party Is Permitted To Modify Or Terminate The Contract Without Permission. When Either Party Wishes To Bring To The Fore Such Facts In Accordance With The Provisions Of The Law, He Must Notify The Other Party In Writing In Time For The Settlement. After This Agreement Is Modified Or Terminated, The Borrower Shall Repay 30% To The Principal And Interest In Accordance With The Terms Of This Agreement.
+        <p><span class="art-title">Pasal 9</span></p>
+        <div class="article-text">(1) Perubahan atau Pengakhiran Kontrak: Berdasarkan seluruh ketentuan di atas, tidak ada pihak yang diperbolehkan mengubah atau mengakhiri kontrak tanpa persetujuan. Apabila salah satu pihak ingin menyampaikan fakta-fakta sesuai ketentuan hukum, pihak tersebut wajib memberitahukan pihak lainnya secara tertulis dalam waktu yang tepat untuk penyelesaian. Setelah perjanjian ini diubah atau diakhiri, peminjam wajib membayar 30% dari pokok pinjaman dan bunga sesuai syarat perjanjian ini.
 
-(2) Cancellation of a loan application that has been processed may result in a document fine of 30% of the total loan amount.</div>
+(2) Pembatalan pengajuan pinjaman yang telah diproses dapat mengakibatkan denda administrasi dokumen sebesar 30% dari total jumlah pinjaman.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 10</span></p>
-        <div class="article-text">The Borrower Shall Repay The Principal And Interest Within The Period Specified In The Contract. For The Overdue Portion, The Lender Is Entitled To Recover The Loan And Collect 5% Of The Total Amount Due.</div>
+        <p><span class="art-title">Pasal 10</span></p>
+        <div class="article-text">Peminjam wajib melunasi pokok pinjaman dan bunga dalam jangka waktu yang ditentukan dalam kontrak. Untuk bagian yang melewati jatuh tempo, pemberi pinjaman berhak menagih pinjaman dan memungut biaya keterlambatan sebesar 5% dari total jumlah yang jatuh tempo.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 11</span></p>
-        <div class="article-text">This Short Loan Agreement Takes Effect From The Date Of Its Signing By Both Parties (Including The Electronic Agreement). The Text Of The Contract Has The Same Legal Effect. The Lender And Borrower Keep A Copy Of The Contract.</div>
+        <p><span class="art-title">Pasal 11</span></p>
+        <div class="article-text">Perjanjian Pinjaman Singkat ini berlaku sejak tanggal ditandatangani oleh kedua belah pihak (termasuk perjanjian elektronik). Naskah kontrak memiliki kekuatan hukum yang sama. Pemberi pinjaman dan peminjam masing-masing menyimpan salinan kontrak.</div>
       </div>
 
       <div class="article-item">
-        <p><span class="art-title">Article 12</span></p>
-        <div class="article-text">Severability, If any provision of this Agreement is declared invalid, illegal, or unenforceable under Philippine law, such provision shall be deemed severed from this Agreement. The remaining provisions shall continue to be valid and enforceable to the fullest extent permitted by law.</div>
+        <p><span class="art-title">Pasal 12</span></p>
+        <div class="article-text">Keterpisahan Ketentuan: Apabila suatu ketentuan dalam Perjanjian ini dinyatakan tidak sah, ilegal, atau tidak dapat diberlakukan berdasarkan hukum Indonesia, ketentuan tersebut dianggap terpisah dari Perjanjian ini. Ketentuan-ketentuan lainnya tetap berlaku dan dapat diberlakukan sepenuhnya sebatas yang diizinkan oleh hukum.</div>
       </div>
 
     </div>
@@ -338,133 +338,133 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
   <!-- ===== EXTENDED AGREEMENT ===== -->
   <div class="cardx">
-    <h1>EXTENDED LOAN USER AGREEMENT, TERMS, CONDITIONS, DISCLOSURES, ACKNOWLEDGMENTS, WAIVERS, AND LEGAL NOTICES</h1>
+    <h1>PERJANJIAN PENGGUNA PINJAMAN DIPERLUAS, SYARAT, KETENTUAN, PENGUNGKAPAN, PENGAKUAN, PELEPASAN HAK, DAN PEMBERITAHUAN HUKUM</h1>
 
-    <p><strong>Last Updated:</strong> [INSERT DATE]</p>
+    <p><strong>Terakhir Diperbarui:</strong> [TANGGAL]</p>
 
-    <p>This <strong>Extended Loan User Agreement, Terms, Conditions, Disclosures, Acknowledgments, Waivers, and Legal Notices</strong> (the "<strong>Agreement</strong>") is a legally binding and enforceable contract entered into by and between <strong>[DC Financing FINANCING (PH) INC.]</strong> (the "Company," "We," "Us," or "Our") and any individual or legal entity who accesses, applies for, receives, guarantees, repays, or otherwise interacts with any loan, financial product, service, website, mobile application, communication channel, or platform operated or provided by the Company (the "User," "Borrower," "Applicant," "Guarantor," "You," or "Your").</p>
+    <p>Perjanjian <strong>Pengguna Pinjaman Diperluas, Syarat, Ketentuan, Pengungkapan, Pengakuan, Pelepasan Hak, dan Pemberitahuan Hukum</strong> (selanjutnya disebut "<strong>Perjanjian</strong>") ini adalah kontrak yang mengikat secara hukum dan dapat diberlakukan, yang dibuat oleh dan antara <strong>[INSTANT KREDIT INDONESIA]</strong> ("Perusahaan," "Kami," atau "Milik Kami") dan setiap individu atau badan hukum yang mengakses, mengajukan, menerima, menjamin, melunasi, atau berinteraksi dengan pinjaman, produk keuangan, layanan, situs web, aplikasi mobile, saluran komunikasi, atau platform yang dioperasikan atau disediakan oleh Perusahaan ("Pengguna," "Peminjam," "Pelamar," "Penjamin," "Anda," atau "Milik Anda").</p>
 
     <hr>
 
-    <h2>SECTION 1 — ACCEPTANCE OF TERMS</h2>
+    <h2>BAGIAN 1 — PENERIMAAN SYARAT</h2>
     <ol>
-      <li>By accessing, using, applying for, signing, receiving, or continuing to use any Company service, You expressly acknowledge, confirm, and agree that You have read, understood, accepted, and agreed to be legally bound by all provisions of this Agreement.</li>
-      <li>You acknowledge this Agreement may be lengthy, complex, and repetitive. Such length or repetition does not reduce enforceability.</li>
-      <li>Choosing not to read this Agreement does not relieve You of obligations. "I didn't know" or "I didn't read" is not a defense.</li>
+      <li>Dengan mengakses, menggunakan, mengajukan, menandatangani, menerima, atau terus menggunakan layanan Perusahaan, Anda secara tegas mengakui, mengonfirmasi, dan menyetujui bahwa Anda telah membaca, memahami, menerima, dan bersedia terikat secara hukum oleh seluruh ketentuan Perjanjian ini.</li>
+      <li>Anda mengakui bahwa Perjanjian ini mungkin panjang, kompleks, dan berulang. Panjang atau pengulangan tersebut tidak mengurangi kekuatan hukumnya.</li>
+      <li>Memilih untuk tidak membaca Perjanjian ini tidak membebaskan Anda dari kewajiban. "Saya tidak tahu" atau "Saya tidak membacanya" bukan merupakan pembelaan yang sah.</li>
     </ol>
 
-    <h2>SECTION 2 — DEFINITIONS</h2>
+    <h2>BAGIAN 2 — DEFINISI</h2>
     <ul>
-      <li><strong>"Loan"</strong> means any amount of money disbursed or made available to You, including renewals, extensions, or restructures.</li>
-      <li><strong>"Due Date"</strong> means the date repayment is required, regardless of weekends, holidays, illness, travel, or personal hardship.</li>
-      <li><strong>"Default"</strong> means any failure, delay, avoidance, misrepresentation, or breach, whether intentional or unintentional.</li>
-      <li><strong>"Platform"</strong> includes websites, apps, Telegram bots, SMS, calls, email, and any other channel used by the Company.</li>
-      <li><strong>"Fees"</strong> include processing, service, administrative, late fees, penalty interest, and recovery costs where permitted by law.</li>
+      <li><strong>"Pinjaman"</strong> berarti sejumlah uang yang dicairkan atau disediakan untuk Anda, termasuk pembaruan, perpanjangan, atau restrukturisasi.</li>
+      <li><strong>"Tanggal Jatuh Tempo"</strong> berarti tanggal pembayaran kembali diwajibkan, terlepas dari hari libur akhir pekan, hari raya, sakit, perjalanan, atau kesulitan pribadi.</li>
+      <li><strong>"Wanprestasi"</strong> berarti setiap kegagalan, keterlambatan, penghindaran, salah pernyataan, atau pelanggaran, baik yang disengaja maupun tidak disengaja.</li>
+      <li><strong>"Platform"</strong> mencakup situs web, aplikasi, bot Telegram, SMS, telepon, email, dan saluran lain yang digunakan oleh Perusahaan.</li>
+      <li><strong>"Biaya"</strong> mencakup biaya pemrosesan, layanan, administrasi, keterlambatan, bunga penalti, dan biaya pemulihan piutang sebatas yang diizinkan hukum.</li>
     </ul>
 
-    <h2>SECTION 3 — ELIGIBILITY & USER REPRESENTATIONS</h2>
+    <h2>BAGIAN 3 — KELAYAKAN &amp; PERNYATAAN PENGGUNA</h2>
     <ol>
-      <li>You confirm You are legally capable of entering a binding contract in <strong>[Philippine]</strong>.</li>
-      <li>You confirm all information You provide (identity, income, contacts, guarantor info, documents) is true, accurate, complete, and kept up-to-date.</li>
-      <li>Any false, misleading, incomplete, or outdated information may result in rejection, suspension, cancellation, immediate repayment demand, or lawful recovery action.</li>
+      <li>Anda mengonfirmasi bahwa Anda secara hukum mampu membuat kontrak yang mengikat di <strong>[Indonesia]</strong>.</li>
+      <li>Anda mengonfirmasi bahwa semua informasi yang Anda berikan (identitas, penghasilan, kontak, informasi penjamin, dokumen) adalah benar, akurat, lengkap, dan selalu diperbarui.</li>
+      <li>Informasi yang salah, menyesatkan, tidak lengkap, atau usang dapat mengakibatkan penolakan, penangguhan, pembatalan, tuntutan pembayaran segera, atau tindakan pemulihan piutang yang sah.</li>
     </ol>
 
-    <h2>SECTION 4 — LOAN APPLICATION & APPROVAL</h2>
+    <h2>BAGIAN 4 — PENGAJUAN &amp; PERSETUJUAN PINJAMAN</h2>
     <ol>
-      <li>Submitting an application does not guarantee approval.</li>
-      <li>The Company may request additional documents (ID, selfie, signature, guarantor proof, income proof, bank/wallet details).</li>
-      <li>The Company may verify information through manual checks, databases, and lawful third parties.</li>
-      <li>The Company may approve, reject, delay, cancel, or suspend any application at its sole discretion unless prohibited by law.</li>
+      <li>Pengajuan permohonan tidak menjamin persetujuan.</li>
+      <li>Perusahaan dapat meminta dokumen tambahan (KTP, swafoto, tanda tangan, bukti penjamin, bukti penghasilan, detail rekening bank/dompet digital).</li>
+      <li>Perusahaan dapat memverifikasi informasi melalui pemeriksaan manual, basis data, dan pihak ketiga yang sah.</li>
+      <li>Perusahaan dapat menyetujui, menolak, menunda, membatalkan, atau menangguhkan pengajuan apa pun atas kebijaksanaannya sendiri, kecuali dilarang oleh hukum.</li>
     </ol>
 
-    <h2>SECTION 5 — LOAN AMOUNT, INTEREST, FEES, AND CHARGES</h2>
+    <h2>BAGIAN 5 — JUMLAH PINJAMAN, BUNGA, BIAYA, DAN TAGIHAN</h2>
     <ol>
-      <li>Loan amount, interest rate, fees, penalties, and schedule are determined by the Company and the specific loan product.</li>
-      <li>Interest may be calculated daily, weekly, monthly, or using other methods, including compounding, as permitted by law and disclosed to You.</li>
-      <li>Fees may include: processing, administrative, platform/service fees, late fees, penalty interest, and recovery/legal costs.</li>
-      <li>All fees are non-refundable unless mandatory law requires otherwise.</li>
+      <li>Jumlah pinjaman, suku bunga, biaya, denda, dan jadwal ditentukan oleh Perusahaan dan produk pinjaman yang bersangkutan.</li>
+      <li>Bunga dapat dihitung harian, mingguan, bulanan, atau menggunakan metode lain termasuk bunga majemuk, sebatas yang diizinkan hukum dan diungkapkan kepada Anda.</li>
+      <li>Biaya dapat mencakup: pemrosesan, administrasi, biaya platform/layanan, biaya keterlambatan, bunga penalti, dan biaya pemulihan/hukum.</li>
+      <li>Semua biaya tidak dapat dikembalikan kecuali diwajibkan oleh peraturan perundang-undangan yang berlaku.</li>
     </ol>
 
-    <h2>SECTION 6 — REPAYMENT OBLIGATIONS</h2>
+    <h2>BAGIAN 6 — KEWAJIBAN PEMBAYARAN KEMBALI</h2>
     <ol>
-      <li>You agree to repay the Loan in full, including all interest, fees, and penalties by the due dates.</li>
-      <li>Repayment remains required regardless of personal circumstances, missed notifications, device issues, or inability to access the Platform.</li>
-      <li>Failure to receive reminders does not excuse late payment.</li>
+      <li>Anda bersedia melunasi Pinjaman secara penuh, termasuk semua bunga, biaya, dan denda sesuai tanggal jatuh tempo.</li>
+      <li>Kewajiban pembayaran kembali tetap berlaku terlepas dari keadaan pribadi, notifikasi yang terlewat, masalah perangkat, atau ketidakmampuan mengakses Platform.</li>
+      <li>Kegagalan menerima pengingat tidak menjadi alasan pembenar keterlambatan pembayaran.</li>
     </ol>
 
-    <h2>SECTION 7 — LATE PAYMENT, DEFAULT, AND RECOVERY</h2>
+    <h2>BAGIAN 7 — KETERLAMBATAN PEMBAYARAN, WANPRESTASI, DAN PEMULIHAN PIUTANG</h2>
     <ol>
-      <li>Late payments may result in late fees, penalty interest, service restrictions, and account flags.</li>
-      <li>A Loan may be considered in Default if a payment is overdue, if You provide false information, avoid communication, or breach any term of this Agreement.</li>
-      <li>Upon Default, the Company may take lawful recovery actions, including contacting You and/or your guarantor, restricting services, and initiating legal procedures where permitted.</li>
+      <li>Keterlambatan pembayaran dapat mengakibatkan biaya keterlambatan, bunga penalti, pembatasan layanan, dan penandaan akun.</li>
+      <li>Pinjaman dapat dinyatakan dalam kondisi Wanprestasi apabila pembayaran melewati jatuh tempo, Anda memberikan informasi palsu, menghindari komunikasi, atau melanggar ketentuan Perjanjian ini.</li>
+      <li>Dalam hal Wanprestasi, Perusahaan dapat mengambil tindakan pemulihan piutang yang sah, termasuk menghubungi Anda dan/atau penjamin Anda, membatasi layanan, dan memulai prosedur hukum sebatas yang diizinkan.</li>
     </ol>
 
-    <h2>SECTION 8 — GUARANTOR RESPONSIBILITY</h2>
+    <h2>BAGIAN 8 — TANGGUNG JAWAB PENJAMIN</h2>
     <ol>
-      <li>If You provide a guarantor, You confirm You have the guarantor's informed permission to share their details.</li>
-      <li>The guarantor may be jointly and severally liable, meaning the Company may seek repayment from the borrower, the guarantor, or both, as allowed by law and the guarantor agreement.</li>
+      <li>Apabila Anda menyertakan penjamin, Anda mengonfirmasi bahwa Anda telah mendapatkan persetujuan penjamin untuk berbagi datanya.</li>
+      <li>Penjamin dapat bertanggung jawab secara tanggung renteng, artinya Perusahaan dapat menuntut pembayaran dari peminjam, penjamin, atau keduanya, sebatas yang diizinkan oleh hukum dan perjanjian penjamin.</li>
     </ol>
 
-    <h2>SECTION 9 — DATA COLLECTION, PRIVACY, AND CONSENT</h2>
+    <h2>BAGIAN 9 — PENGUMPULAN DATA, PRIVASI, DAN PERSETUJUAN</h2>
     <ol>
-      <li>You authorize the Company to collect, store, and process data necessary for verification, compliance, risk assessment, customer support, and lawful recovery.</li>
-      <li>Data may include: identity details, images, signatures, contact information, device/IP data, communication logs, and repayment history.</li>
-      <li>Data may be shared with service providers, legal authorities, regulators, or recovery partners where lawful and necessary.</li>
-      <li>The Company will take reasonable security measures; however, no system can guarantee absolute security.</li>
+      <li>Anda memberikan kuasa kepada Perusahaan untuk mengumpulkan, menyimpan, dan memproses data yang diperlukan untuk verifikasi, kepatuhan, penilaian risiko, dukungan pelanggan, dan pemulihan piutang yang sah.</li>
+      <li>Data dapat mencakup: detail identitas, foto, tanda tangan, informasi kontak, data perangkat/IP, log komunikasi, dan riwayat pembayaran.</li>
+      <li>Data dapat dibagikan kepada penyedia layanan, otoritas hukum, regulator, atau mitra pemulihan piutang sepanjang sah dan diperlukan.</li>
+      <li>Perusahaan akan mengambil langkah keamanan yang wajar; namun, tidak ada sistem yang dapat menjamin keamanan mutlak.</li>
     </ol>
 
-    <h2>SECTION 10 — COMMUNICATION CONSENT</h2>
+    <h2>BAGIAN 10 — PERSETUJUAN KOMUNIKASI</h2>
     <ol>
-      <li>You consent to being contacted via phone calls, SMS, email, messaging apps, and in-app notifications for verification, reminders, notices, and recovery communications where permitted by law.</li>
-      <li>Contact may occur at reasonable times, and may be increased during overdue or Default status.</li>
+      <li>Anda menyetujui untuk dihubungi melalui panggilan telepon, SMS, email, aplikasi pesan, dan notifikasi dalam aplikasi untuk keperluan verifikasi, pengingat, pemberitahuan, dan komunikasi pemulihan piutang sebatas yang diizinkan hukum.</li>
+      <li>Kontak dapat dilakukan pada waktu yang wajar, dan intensitasnya dapat meningkat selama status tunggakan atau Wanprestasi.</li>
     </ol>
 
-    <h2>SECTION 11 — USER CONDUCT</h2>
-    <p>You agree not to:</p>
+    <h2>BAGIAN 11 — PERILAKU PENGGUNA</h2>
+    <p>Anda setuju untuk tidak:</p>
     <ul>
-      <li>Provide false information or forged documents.</li>
-      <li>Threaten, harass, or abuse staff, partners, or agents.</li>
-      <li>Attempt to manipulate repayment records or bypass Platform controls.</li>
-      <li>Use the service for unlawful activity.</li>
+      <li>Memberikan informasi palsu atau dokumen yang dipalsukan.</li>
+      <li>Mengancam, melecehkan, atau menyalahgunakan staf, mitra, atau agen.</li>
+      <li>Mencoba memanipulasi catatan pembayaran atau mengelabui kontrol Platform.</li>
+      <li>Menggunakan layanan untuk kegiatan yang melanggar hukum.</li>
     </ul>
 
-    <h2>SECTION 12 — SUSPENSION, TERMINATION, AND CONTINUING OBLIGATIONS</h2>
+    <h2>BAGIAN 12 — PENANGGUHAN, PENGAKHIRAN, DAN KEWAJIBAN YANG BERKELANJUTAN</h2>
     <ol>
-      <li>The Company may suspend, restrict, or terminate accounts for policy violations, fraud risk, compliance needs, or Default.</li>
-      <li>Termination does not cancel or reduce outstanding debt. All repayment obligations survive termination.</li>
+      <li>Perusahaan dapat menangguhkan, membatasi, atau mengakhiri akun karena pelanggaran kebijakan, risiko penipuan, kebutuhan kepatuhan, atau Wanprestasi.</li>
+      <li>Pengakhiran tidak membatalkan atau mengurangi utang yang belum dilunasi. Seluruh kewajiban pembayaran kembali tetap berlaku setelah pengakhiran.</li>
     </ol>
 
-    <h2>SECTION 13 — DISCLAIMER OF WARRANTIES</h2>
-    <p>All services are provided <strong>"AS IS"</strong> and <strong>"AS AVAILABLE"</strong>. The Company makes no warranties regarding uninterrupted service, approval outcomes, processing times, or suitability for any particular purpose, except where required by law.</p>
+    <h2>BAGIAN 13 — PENAFIAN JAMINAN</h2>
+    <p>Semua layanan diberikan <strong>"APA ADANYA"</strong> dan <strong>"SEBAGAIMANA TERSEDIA"</strong>. Perusahaan tidak memberikan jaminan terkait layanan yang tidak terputus, hasil persetujuan, waktu pemrosesan, atau kesesuaian untuk tujuan tertentu, kecuali diwajibkan oleh hukum.</p>
 
-    <h2>SECTION 14 — LIMITATION OF LIABILITY</h2>
-    <p>To the maximum extent permitted by law, the Company shall not be liable for indirect, incidental, consequential, special, or punitive damages, including loss of income, profit, opportunity, reputation, or data.</p>
+    <h2>BAGIAN 14 — PEMBATASAN TANGGUNG JAWAB</h2>
+    <p>Sejauh maksimal yang diizinkan hukum, Perusahaan tidak bertanggung jawab atas kerugian tidak langsung, insidental, konsekuensial, khusus, atau punitif, termasuk kehilangan penghasilan, keuntungan, peluang, reputasi, atau data.</p>
 
-    <h2>SECTION 15 — INDEMNIFICATION</h2>
-    <p>You agree to indemnify and hold harmless the Company from claims, losses, damages, liabilities, and expenses arising from Your breach of this Agreement, misuse of the Platform, unlawful activity, or violation of third-party rights.</p>
+    <h2>BAGIAN 15 — GANTI RUGI</h2>
+    <p>Anda setuju untuk mengganti rugi dan membebaskan Perusahaan dari klaim, kerugian, kerusakan, kewajiban, dan pengeluaran yang timbul dari pelanggaran Perjanjian ini, penyalahgunaan Platform, kegiatan melanggar hukum, atau pelanggaran hak pihak ketiga.</p>
 
-    <h2>SECTION 16 — GOVERNING LAW & DISPUTE RESOLUTION</h2>
+    <h2>BAGIAN 16 — HUKUM YANG BERLAKU &amp; PENYELESAIAN SENGKETA</h2>
     <ol>
-      <li>This Agreement is governed by the laws of <strong>[Philippine]</strong>.</li>
-      <li>You agree to attempt good-faith resolution by contacting support at <strong>[CONTACT]</strong> before initiating formal proceedings, where permitted.</li>
+      <li>Perjanjian ini tunduk pada hukum <strong>[Indonesia]</strong>.</li>
+      <li>Anda bersedia mengupayakan penyelesaian dengan iktikad baik melalui dukungan Perusahaan di <strong>[KONTAK]</strong> sebelum memulai proses formal, sebatas yang diizinkan.</li>
     </ol>
 
-    <h2>SECTION 17 — MODIFICATIONS</h2>
-    <p>The Company may update this Agreement at any time. Continued use of services after updates constitutes acceptance of the revised terms, except where mandatory law requires a different process.</p>
+    <h2>BAGIAN 17 — PERUBAHAN</h2>
+    <p>Perusahaan dapat memperbarui Perjanjian ini kapan saja. Penggunaan layanan yang berkelanjutan setelah pembaruan merupakan penerimaan terhadap syarat yang direvisi, kecuali peraturan perundang-undangan mengharuskan proses yang berbeda.</p>
 
-    <h2>SECTION 18 — SEVERABILITY</h2>
-    <p>If any provision is held invalid or unenforceable, the remaining provisions remain in full force and effect.</p>
+    <h2>BAGIAN 18 — KETERPISAHAN KETENTUAN</h2>
+    <p>Apabila suatu ketentuan dinyatakan tidak sah atau tidak dapat diberlakukan, ketentuan-ketentuan lainnya tetap berlaku sepenuhnya.</p>
 
-    <h2>SECTION 19 — ENTIRE AGREEMENT</h2>
-    <p>This Agreement constitutes the entire agreement between You and the Company regarding the services and supersedes prior communications, representations, or understandings, unless expressly stated in writing by authorized Company officers.</p>
+    <h2>BAGIAN 19 — PERJANJIAN KESELURUHAN</h2>
+    <p>Perjanjian ini merupakan keseluruhan kesepakatan antara Anda dan Perusahaan terkait layanan, dan menggantikan komunikasi, pernyataan, atau pemahaman sebelumnya, kecuali dinyatakan secara tegas secara tertulis oleh pejabat Perusahaan yang berwenang.</p>
 
-    <h2>SECTION 20 — FINAL ACKNOWLEDGMENT</h2>
-    <p>By clicking <strong>"I Agree"</strong>, signing, or receiving loan funds, You confirm that You had the opportunity to read this Agreement, You understand it creates legal obligations, and You agree to be bound by it in full.</p>
+    <h2>BAGIAN 20 — PENGAKUAN AKHIR</h2>
+    <p>Dengan mengklik <strong>"Saya Setuju"</strong>, menandatangani, atau menerima dana pinjaman, Anda mengonfirmasi bahwa Anda telah mendapat kesempatan untuk membaca Perjanjian ini, Anda memahami bahwa Perjanjian ini menciptakan kewajiban hukum, dan Anda setuju untuk terikat sepenuhnya oleh Perjanjian ini.</p>
 
     <hr>
 
     <div class="btn-container">
-      <a class="back-btn" href="/profile/">← Back to Profile</a>
+      <a class="back-btn" href="/profile/">← Kembali ke Profil</a>
     </div>
   </div>
 

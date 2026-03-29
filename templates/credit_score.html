@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Credit Score{% endblock %}
+{% block title %}Skor Kredit - Instant Kredit Indonesia{% endblock %}
 
 {% block content %}
 <style>
@@ -23,12 +23,12 @@
   width: min(480px, 94vw);
   position: relative;
   overflow: hidden;
-  background: linear-gradient(160deg, #071829 0%, #0A2540 55%, #071829 100%);
-  border: 1.5px solid rgba(242,101,34,.30);
+  background: linear-gradient(160deg, #000022 0%, #00008B 55%, #000022 100%);
+  border: 1.5px solid rgba(184,134,11,.30);
   box-shadow:
     0 28px 70px rgba(0,0,0,.55),
-    0 0 0 1px rgba(0,158,173,.12) inset,
-    0 0 80px rgba(242,101,34,.06);
+    0 0 0 1px rgba(0,128,0,.12) inset,
+    0 0 80px rgba(184,134,11,.06);
   border-radius: 26px;
   padding: 32px 28px;
   text-align: center;
@@ -46,7 +46,7 @@
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, #F26522, #009EAD, #F26522);
+  background: linear-gradient(90deg, #B8860B, #008000, #B8860B);
   background-size: 200% 100%;
   animation: shimmerLine 3s linear infinite;
 }
@@ -62,8 +62,8 @@
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 85% 15%, rgba(242,101,34,.07), transparent 50%),
-    radial-gradient(circle at 15% 85%, rgba(0,158,173,.07), transparent 50%);
+    radial-gradient(circle at 85% 15%, rgba(184,134,11,.07), transparent 50%),
+    radial-gradient(circle at 15% 85%, rgba(0,128,0,.07), transparent 50%);
 }
 
 .cs-card > * { position: relative; z-index: 1; }
@@ -74,7 +74,7 @@
 .cs-title {
   font-size: 22px;
   font-weight: 950;
-  background: linear-gradient(90deg, #F26522, #009EAD);
+  background: linear-gradient(90deg, #B8860B, #008000);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -114,8 +114,8 @@
   transition: stroke-dashoffset 1s ease-out, stroke 0.5s ease;
 }
 
-.cs-gauge-fill.red  { filter: drop-shadow(0 4px 14px rgba(242,101,34,.50)); }
-.cs-gauge-fill.green{ filter: drop-shadow(0 4px 14px rgba(0,158,173,.50));  }
+.cs-gauge-fill.red  { filter: drop-shadow(0 4px 14px rgba(184,134,11,.50)); }
+.cs-gauge-fill.green{ filter: drop-shadow(0 4px 14px rgba(0,128,0,.50));  }
 
 .cs-gauge-tick { stroke: rgba(255,255,255,.10); stroke-width: 2; }
 .cs-gauge-tick.major { stroke: rgba(255,255,255,.22); stroke-width: 3; }
@@ -135,8 +135,8 @@
   transition: color 0.5s ease;
 }
 
-.cs-score-number.red  { color: #F26522; text-shadow: 0 4px 20px rgba(242,101,34,.40); }
-.cs-score-number.green{ color: #009EAD; text-shadow: 0 4px 20px rgba(0,158,173,.40);  }
+.cs-score-number.red  { color: #B8860B; text-shadow: 0 4px 20px rgba(184,134,11,.40); }
+.cs-score-number.green{ color: #008000; text-shadow: 0 4px 20px rgba(0,128,0,.40);  }
 
 .cs-score-max {
   font-size: 18px;
@@ -157,8 +157,8 @@
   transition: all 0.5s ease;
 }
 
-.cs-status.red  { background: rgba(242,101,34,.12); border: 1px solid rgba(242,101,34,.35); color: #F26522; }
-.cs-status.green{ background: rgba(0,158,173,.12);  border: 1px solid rgba(0,158,173,.35);  color: #009EAD; }
+.cs-status.red  { background: rgba(184,134,11,.12); border: 1px solid rgba(184,134,11,.35); color: #B8860B; }
+.cs-status.green{ background: rgba(0,128,0,.12);  border: 1px solid rgba(0,128,0,.35);  color: #008000; }
 
 .cs-status-icon { font-size: 16px; }
 
@@ -172,8 +172,8 @@
 }
 
 .cs-scale-label         { font-size: 11px; font-weight: 700; color: rgba(255,255,255,.30); }
-.cs-scale-label.danger  { color: #F26522; }
-.cs-scale-label.safe    { color: #009EAD; }
+.cs-scale-label.danger  { color: #B8860B; }
+.cs-scale-label.safe    { color: #008000; }
 
 /* Info message */
 .cs-message {
@@ -184,8 +184,8 @@
   transition: all 0.5s ease;
 }
 
-.cs-message.red  { background: rgba(242,101,34,.08); border: 1px solid rgba(242,101,34,.22); }
-.cs-message.green{ background: rgba(0,158,173,.08);  border: 1px solid rgba(0,158,173,.22);  }
+.cs-message.red  { background: rgba(184,134,11,.08); border: 1px solid rgba(184,134,11,.22); }
+.cs-message.green{ background: rgba(0,128,0,.08);  border: 1px solid rgba(0,128,0,.22);  }
 
 .cs-message-title {
   font-size: 14px;
@@ -196,8 +196,8 @@
   gap: 8px;
 }
 
-.cs-message.red  .cs-message-title { color: #F26522; }
-.cs-message.green .cs-message-title{ color: #009EAD; }
+.cs-message.red  .cs-message-title { color: #B8860B; }
+.cs-message.green .cs-message-title{ color: #008000; }
 
 .cs-message-text {
   font-size: 12px;
@@ -252,14 +252,14 @@
 }
 
 .cs-btn-primary {
-  background: linear-gradient(90deg, #F26522, #009EAD);
+  background: linear-gradient(90deg, #B8860B, #008000);
   color: #fff;
-  box-shadow: 0 8px 24px rgba(242,101,34,.30);
+  box-shadow: 0 8px 24px rgba(184,134,11,.30);
 }
 
 .cs-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(242,101,34,.45);
+  box-shadow: 0 12px 32px rgba(184,134,11,.45);
 }
 
 .cs-btn-ghost {
@@ -271,7 +271,7 @@
 .cs-btn-ghost:hover {
   transform: translateY(-2px);
   background: rgba(255,255,255,.09);
-  border-color: rgba(0,158,173,.35) !important;
+  border-color: rgba(0,128,0,.35) !important;
 }
 
 .cs-btn:active { transform: scale(0.98); }
@@ -293,8 +293,8 @@
   
   <!-- Header -->
   <div class="cs-header">
-    <div class="cs-title">Credit Score</div>
-    <div class="cs-subtitle">Your financial health status</div>
+    <div class="cs-title">Skor Kredit</div>
+    <div class="cs-subtitle">Status kesehatan keuangan Anda</div>
   </div>
 
   <!-- Semi-Circular Gauge -->
@@ -335,38 +335,38 @@
   <!-- Status Badge -->
   <div id="statusBadge" class="cs-status">
     <span class="cs-status-icon">●</span>
-    <span id="statusText">Checking...</span>
+    <span id="statusText">Memeriksa...</span>
   </div>
 
   <!-- Info Message -->
   <div id="infoMessage" class="cs-message">
     <div class="cs-message-title">
       <span id="messageIcon">ℹ</span>
-      <span id="messageTitle">Analyzing...</span>
+      <span id="messageTitle">Menganalisis...</span>
     </div>
-    <div id="messageText" class="cs-message-text">Please wait while we calculate your score.</div>
+    <div id="messageText" class="cs-message-text">Harap tunggu sementara kami menghitung skor Anda.</div>
   </div>
 
   <!-- Stats -->
   <div class="cs-stats">
     <div class="cs-stat">
       <div class="cs-stat-value">{{ request.user.loan_set.count|default:0 }}</div>
-      <div class="cs-stat-label">Loans</div>
+      <div class="cs-stat-label">Pinjaman</div>
     </div>
     <div class="cs-stat">
       <div class="cs-stat-value">{{ active_loans|default:0 }}</div>
-      <div class="cs-stat-label">Active</div>
+      <div class="cs-stat-label">Aktif</div>
     </div>
     <div class="cs-stat">
       <div class="cs-stat-value">{{ completed_payments|default:0 }}</div>
-      <div class="cs-stat-label">Paid</div>
+      <div class="cs-stat-label">Lunas</div>
     </div>
   </div>
 
   <!-- Actions -->
   <div class="cs-actions">
-    <a class="cs-btn cs-btn-ghost" href="/profile/">Back</a>
-    <a class="cs-btn cs-btn-primary" href="/dashboard/">Dashboard</a>
+    <a class="cs-btn cs-btn-ghost" href="/profile/">Kembali</a>
+    <a class="cs-btn cs-btn-primary" href="/dashboard/">Beranda</a>
   </div>
 
 </div>
@@ -402,27 +402,27 @@
   if (creditScore <= 50) {
     statusMsg = 'Critical';
     msgIcon = '⚠';
-    msgTitle = 'Critical Score';
+    msgTitle = 'Skor Kritis';
     msgDesc = 'Your credit score is critically low. Immediate action is required to improve your financial standing.';
   } else if (creditScore <= 100) {
     statusMsg = 'Low Score';
     msgIcon = '⚠';
-    msgTitle = 'Needs Improvement';
+    msgTitle = 'Perlu Ditingkatkan';
     msgDesc = 'Your credit score is at the starting point. Make payments on time to increase your score.';
   } else if (creditScore <= 250) {
     statusMsg = 'Building';
     msgIcon = '↑';
-    msgTitle = 'Building Credit';
+    msgTitle = 'Membangun Kredit';
     msgDesc = 'Good progress! Keep making regular payments to continue improving your score.';
   } else if (creditScore <= 400) {
     statusMsg = 'Good';
     msgIcon = '✓';
-    msgTitle = 'Good Standing';
+    msgTitle = 'Status Baik';
     msgDesc = 'Your credit score is in good shape. You qualify for better loan terms.';
   } else {
     statusMsg = 'Excellent';
     msgIcon = '⭐';
-    msgTitle = 'Excellent Credit';
+    msgTitle = 'Kredit Sangat Baik';
     msgDesc = 'Outstanding! Your credit score is excellent. You qualify for the best rates and highest limits.';
   }
   
@@ -433,9 +433,9 @@
   
   // Set gauge color
   if (isRed) {
-    gaugeFill.style.stroke = '#F26522';
+    gaugeFill.style.stroke = '#B8860B';
   } else {
-    gaugeFill.style.stroke = '#009EAD';
+    gaugeFill.style.stroke = '#008000';
   }
   
   // Animate gauge fill

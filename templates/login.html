@@ -1,16 +1,18 @@
 {% extends "base.html" %}
-{% block title %}Login{% endblock %}
+{% block title %}Login - Instant Kredit Indonesia{% endblock %}
 {% load static %}
 {% block nav %}{% endblock %}
 
 {% block content %}
 <style>
   :root{
-    --primary:   #F26522;
-    --secondary: #009EAD;
-    --danger:    #F26522;
-    --accent:    #009EAD;
-    --dark:      #0A2540;
+    --primary:   #B8860B;
+    --gold:      #FFD700;
+    --secondary: #1E90FF;
+    --green:     #008000;
+    --lime:      #32CD32;
+    --blue:      #00008B;
+    --dark:      #000033;
     --white:     #FFFFFF;
   }
 
@@ -23,20 +25,19 @@
     box-sizing: border-box;
   }
 
-  /* Modern Dark Card with Glass Effect */
   .login-card {
     position: relative;
     z-index: 10;
     width: min(420px, 100%);
     margin-top: 10px;
-    background: linear-gradient(145deg, rgba(10,37,64,0.95), rgba(7,24,41,0.98));
-    border: 1px solid rgba(0,158,173,0.3);
+    background: linear-gradient(145deg, rgba(0,0,51,0.96), rgba(0,0,139,0.92));
+    border: 1px solid rgba(255,215,0,0.25);
     border-radius: 20px;
     padding: 40px 32px 32px;
     box-shadow:
-      0 25px 80px rgba(0,0,0,0.5),
-      0 0 0 1px rgba(0,158,173,0.1),
-      inset 0 1px 0 rgba(255,255,255,0.1);
+      0 25px 80px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(255,215,0,0.08),
+      inset 0 1px 0 rgba(255,255,255,0.08);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     animation: slideUp .4s ease-out both;
@@ -47,23 +48,43 @@
     to   { transform: translateY(0); opacity: 1; }
   }
 
-  /* Decorative top accent */
+  /* Gold top accent bar */
   .login-card::before {
     content: "";
     position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
-    width: 60px;
+    width: 70px;
     height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    background: linear-gradient(90deg, var(--primary), var(--gold), var(--lime));
     border-radius: 0 0 6px 6px;
+  }
+
+  /* Logo badge */
+  .login-logo {
+    width: 64px; height: 64px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--primary));
+    display: flex; align-items: center; justify-content: center;
+    box-shadow:
+      0 0 0 4px rgba(255,215,0,.15),
+      0 12px 32px rgba(184,134,11,.45);
+  }
+  .login-logo-inner {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 950; color: var(--lime);
+    border: 1.5px solid rgba(255,215,0,.30);
   }
 
   .title {
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 950;
-    margin: 0 0 8px;
+    margin: 0 0 6px;
     color: var(--white);
     letter-spacing: -0.5px;
   }
@@ -71,7 +92,7 @@
   .subtitle {
     text-align: center;
     font-size: 13px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
     margin: 0 0 28px;
     font-weight: 500;
   }
@@ -81,7 +102,7 @@
   .label {
     font-size: 12px;
     font-weight: 700;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,215,0,0.80);
     margin: 0 0 8px;
     display: block;
     text-transform: uppercase;
@@ -98,8 +119,8 @@
     width: 100%;
     height: 52px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.15);
-    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,215,0,0.18);
+    background: rgba(0,0,0,0.25);
     padding: 0 44px 0 44px;
     font-size: 15px;
     color: var(--white);
@@ -108,12 +129,12 @@
     box-sizing: border-box;
   }
 
-  .input::placeholder { color: rgba(255,255,255,0.35); }
+  .input::placeholder { color: rgba(255,255,255,0.30); }
 
   .input:focus {
-    border-color: var(--secondary);
-    background: rgba(255,255,255,0.08);
-    box-shadow: 0 0 0 3px rgba(0,158,173,0.15);
+    border-color: var(--gold);
+    background: rgba(255,215,0,0.07);
+    box-shadow: 0 0 0 3px rgba(255,215,0,0.15);
   }
 
   .icon {
@@ -121,7 +142,7 @@
     left: 16px;
     width: 20px;
     height: 20px;
-    opacity: 0.8;
+    opacity: 0.75;
     pointer-events: none;
   }
 
@@ -137,7 +158,7 @@
     width: 36px;
     height: 36px;
     border: none;
-    background: rgba(242,101,34,0.15);
+    background: rgba(184,134,11,0.18);
     border-radius: 10px;
     cursor: pointer;
     display: flex;
@@ -147,13 +168,13 @@
   }
 
   .eye-btn:hover {
-    background: rgba(242,101,34,0.25);
+    background: rgba(255,215,0,0.28);
   }
 
   .eye-btn svg {
     width: 18px;
     height: 18px;
-    fill: var(--primary);
+    fill: var(--gold);
   }
 
   .btn {
@@ -162,14 +183,15 @@
     border: none;
     border-radius: 12px;
     margin-top: 20px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-    color: var(--white);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--gold) 50%, var(--primary) 100%);
+    background-size: 200% 100%;
+    color: #000;
     font-weight: 800;
     font-size: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
     cursor: pointer;
-    box-shadow: 0 12px 40px rgba(242,101,34,0.3);
+    box-shadow: 0 12px 40px rgba(184,134,11,0.40);
     transition: all .25s;
     position: relative;
     overflow: hidden;
@@ -181,46 +203,42 @@
     top: 0; left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
     transition: left .5s;
   }
 
   .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 50px rgba(242,101,34,0.4);
+    box-shadow: 0 16px 50px rgba(255,215,0,0.45);
+    background-position: 100% 0;
   }
 
-  .btn:hover::before {
-    left: 100%;
-  }
-
-  .btn:active {
-    transform: translateY(0);
-  }
+  .btn:hover::before { left: 100%; }
+  .btn:active { transform: translateY(0); }
 
   .foot {
     text-align: center;
     margin-top: 20px;
     font-size: 13px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.60);
   }
 
   .foot a {
-    color: var(--secondary);
+    color: var(--lime);
     font-weight: 700;
     text-decoration: none;
     transition: color .2s;
   }
 
   .foot a:hover {
-    color: var(--primary);
+    color: var(--gold);
     text-decoration: underline;
   }
 
   .err {
     margin: 16px 0 0;
     background: rgba(220,38,38,0.15);
-    border: 1px solid rgba(220,38,38,0.3);
+    border: 1px solid rgba(220,38,38,0.30);
     color: #fca5a5;
     padding: 12px 14px;
     border-radius: 10px;
@@ -230,7 +248,7 @@
 
   @media (max-width:480px) {
     .login-card { padding: 32px 24px 28px; border-radius: 16px; }
-    .title { font-size: 24px; }
+    .title { font-size: 22px; }
   }
 
   @font-face {
@@ -243,54 +261,58 @@
 <div class="center">
   <div class="login-card">
 
-    <!-- Hidden SVG gradient definition -->
     <svg style="position:absolute;width:0;height:0;overflow:hidden;">
       <defs>
         <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#F26522;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#009EAD;stop-opacity:1" />
+          <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#32CD32;stop-opacity:1" />
         </linearGradient>
       </defs>
     </svg>
 
-    <div class="title">Welcome Back</div>
-    <div class="subtitle">Sign in to continue</div>
+    <!-- Logo -->
+    <div class="login-logo">
+      <div class="login-logo-inner">Rp</div>
+    </div>
+
+    <div class="title">Selamat Datang</div>
+    <div class="subtitle">Masuk ke akun Anda untuk melanjutkan</div>
 
     {% if messages %}
       {% for message in messages %}
-        <div class="err"><strong>Login failed:</strong> {{ message }}</div>
+        <div class="err"><strong>Login gagal:</strong> {{ message }}</div>
       {% endfor %}
     {% endif %}
 
     {% if form.errors %}
-      <div class="err"><strong>Login failed:</strong> Phone or password incorrect. Please try again.</div>
+      <div class="err"><strong>Login gagal:</strong> Nomor telepon atau kata sandi salah. Silakan coba lagi.</div>
     {% endif %}
 
     <form method="post" autocomplete="off">
       {% csrf_token %}
 
       <div class="field">
-        <div class="label">Phone Number</div>
+        <div class="label">Nomor Telepon</div>
         <div class="input-wrap">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M6.6 10.8c1.8 3.6 3.9 5.7 7.5 7.5l2.5-2.5c.3-.3.7-.4 1.1-.3 1.2.4 2.6.7 4 .7.6 0 1 .4 1 1V21c0 .6-.4 1-1 1C10.6 22 2 13.4 2 2c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.4.2 2.8.7 4 .1.4 0 .8-.3 1.1L6.6 10.8z"/>
             </svg>
           </div>
-          <input class="input" type="text" name="phone" placeholder="Enter phone number" required>
+          <input class="input" type="text" name="phone" placeholder="Masukkan nomor telepon" required>
         </div>
       </div>
 
       <div class="field">
-        <div class="label">Password</div>
+        <div class="label">Kata Sandi</div>
         <div class="input-wrap">
           <div class="icon" aria-hidden="true">
             <svg viewBox="0 0 24 24">
               <path d="M12 1a5 5 0 00-5 5v3H6a2 2 0 00-2 2v9a2 2 0 002 2h12a2 2 0 002-2v-9a2 2 0 00-2-2h-1V6a5 5 0 00-5-5zm-3 8V6a3 3 0 016 0v3H9z"/>
             </svg>
           </div>
-          <input id="pwd" class="input" type="password" name="password" placeholder="Enter password" required>
-          <button type="button" class="eye-btn" id="togglePwd" aria-label="Show password">
+          <input id="pwd" class="input" type="password" name="password" placeholder="Masukkan kata sandi" required>
+          <button type="button" class="eye-btn" id="togglePwd" aria-label="Tampilkan kata sandi">
             <svg viewBox="0 0 24 24">
               <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 12a5 5 0 110-10 5 5 0 010 10z"/>
             </svg>
@@ -298,10 +320,10 @@
         </div>
       </div>
 
-      <button class="btn" type="submit">Sign In</button>
+      <button class="btn" type="submit">Masuk</button>
 
       <div class="foot">
-        Don't have an account? <a href="/register/">Create Account</a>
+        Belum punya akun? <a href="/register/">Daftar Sekarang</a>
       </div>
     </form>
 

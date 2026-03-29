@@ -11,10 +11,10 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --danger:    #F26522;
-  --secondary: #009EAD;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --danger:    #B8860B;
+  --secondary: #008000;
   --white:     #FFFFFF;
   --light-bg:  #F5F8FA;
 }
@@ -30,7 +30,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 /* ===== Kill base dark overrides ===== */
 .cardx, .card, [class*="card"] {
   background: #fff !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -39,7 +39,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .card-profile{
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
   border: 2px solid rgba(245,197,24,.40) !important;
-  box-shadow: 0 18px 48px rgba(242,101,34,.35) !important;
+  box-shadow: 0 18px 48px rgba(184,134,11,.35) !important;
   border-radius: 22px !important;
   padding: 20px !important;
   margin-bottom: 18px;
@@ -60,9 +60,9 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 /* ===== Menu — unified dark list container ===== */
 .menu-list{
-  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%);
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%);
   border-radius: 22px;
-  border: 1.5px solid rgba(0,158,173,.28);
+  border: 1.5px solid rgba(0,128,0,.28);
   box-shadow: 0 20px 55px rgba(0,0,0,.45);
   overflow: hidden;
   margin-bottom: 14px;
@@ -72,7 +72,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .menu-list::before{
   content: "";
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, #F26522, #009EAD);
+  background: linear-gradient(90deg, #B8860B, #008000);
   pointer-events: none;
 }
 
@@ -113,8 +113,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 .ico svg { width: 20px; height: 20px; fill: #fff !important; opacity: .80; }
 .p-btn:hover .ico{
-  background: linear-gradient(135deg, rgba(242,101,34,.40), rgba(0,158,173,.40)) !important;
-  border-color: rgba(242,101,34,.35) !important;
+  background: linear-gradient(135deg, rgba(184,134,11,.40), rgba(0,128,0,.40)) !important;
+  border-color: rgba(184,134,11,.35) !important;
 }
 .p-btn:hover .ico svg{ opacity: 1; }
 
@@ -148,13 +148,14 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .back-btn{
   display: inline-flex; align-items: center; justify-content: center;
   height: 44px; padding: 0 26px; border-radius: 999px;
-  background: rgba(255,255,255,.08) !important;
-  color: #fff !important;
+  background: linear-gradient(90deg, #B8860B, #FFD700) !important;
+  color: #000 !important;
   font-weight: 900; font-size: 14px; text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,.20) !important;
-  transition: transform .15s ease, background .15s ease;
+  border: none !important;
+  box-shadow: 0 6px 18px rgba(184,134,11,.35);
+  transition: transform .15s ease, opacity .15s ease;
 }
-.back-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13) !important; }
+.back-btn:hover{ transform: translateY(-1px); opacity: .90; }
 .back-btn:active{ transform: scale(.98); }
 
 /* ===== Logout Modal ===== */
@@ -189,7 +190,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   font-weight: 900; cursor: pointer;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: #fff !important;
-  box-shadow: 0 8px 20px rgba(242,101,34,.30);
+  box-shadow: 0 8px 20px rgba(184,134,11,.30);
 }
 .btn-confirm:active{ transform: scale(.98); }
 
@@ -210,8 +211,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   <div class="card-profile">
     <div class="head">
       <div>
-        <div class="h-title">Profile</div>
-        <div class="h-sub">Account: {{ request.user.phone }}</div>
+        <div class="h-title">Profil</div>
+        <div class="h-sub">Akun: {{ request.user.phone }}</div>
       </div>
       {% with acct=request.user.account_status|upper %}
         <span class="status-badge mini
@@ -222,7 +223,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
         </span>
       {% endwith %}
     </div>
-    <div class="amount">₱ <span data-balance>{{ request.user.balance|default:"0.00" }}</span></div>
+    <div class="amount">Rp <span data-balance>{{ request.user.balance|default:"0.00" }}</span></div>
   </div>
 
   <!-- ===== Menu ===== -->
@@ -231,7 +232,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="/credit-score/">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-        <div class="txt"><div class="t1">Credit Score</div><div class="t2">View your score &amp; level</div></div>
+        <div class="txt"><div class="t1">Skor Kredit</div><div class="t2">Lihat skor &amp; level</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -239,7 +240,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="/loan-info/">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></div>
-        <div class="txt"><div class="t1">Information</div><div class="t2">Application status &amp; steps</div></div>
+        <div class="txt"><div class="t1">Informasi</div><div class="t2">Status aplikasi &amp; steps</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -247,7 +248,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="/transactions/">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
-        <div class="txt"><div class="t1">Transactions</div><div class="t2">History of deposits &amp; withdrawals</div></div>
+        <div class="txt"><div class="t1">Transaksi</div><div class="t2">Riwayat setoran &amp; withdrawals</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -255,7 +256,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="{% url 'agreement' %}">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div>
-        <div class="txt"><div class="t1">Agreement</div><div class="t2">Terms, conditions &amp; disclosures</div></div>
+        <div class="txt"><div class="t1">Perjanjian</div><div class="t2">Syarat, ketentuan &amp; disclosures</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -263,7 +264,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="/payment-schedule/">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 1.99 2H19c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/></svg></div>
-        <div class="txt"><div class="t1">Payment Schedule</div><div class="t2">Installments &amp; due dates</div></div>
+        <div class="txt"><div class="t1">Jadwal Pembayaran</div><div class="t2">Cicilan &amp; tanggal jatuh tempo</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -271,7 +272,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <a class="p-btn" href="#" id="logoutBtn">
       <div class="left">
         <div class="ico"><svg viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg></div>
-        <div class="txt"><div class="t1">Logout</div><div class="t2">Securely exit your account</div></div>
+        <div class="txt"><div class="t1">Keluar</div><div class="t2">Keluar dari akun dengan aman</div></div>
       </div>
       <div class="chev"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></div>
     </a>
@@ -280,19 +281,19 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
   <!-- Back -->
   <div class="top-actions">
-    <a class="back-btn" href="{% url 'dashboard' %}">← Back</a>
+    <a class="back-btn" href="{% url 'dashboard' %}">← Kembali</a>
   </div>
 
   <!-- Logout Modal -->
   <div id="logoutModal" class="logout-modal" aria-hidden="true">
     <div class="logout-box" role="dialog" aria-modal="true">
-      <div class="logout-title">Confirm Logout</div>
-      <div class="logout-text">Are you sure you want to logout?</div>
+      <div class="logout-title">Konfirmasi Keluar</div>
+      <div class="logout-text">Apakah Anda yakin ingin keluar?</div>
       <div class="logout-actions">
-        <button type="button" class="btn-cancel" id="logoutCancel">Cancel</button>
+        <button type="button" class="btn-cancel" id="logoutCancel">Batal</button>
         <form method="post" action="/logout/" style="margin:0;">
           {% csrf_token %}
-          <button type="submit" class="btn-confirm">Logout</button>
+          <button type="submit" class="btn-confirm">Keluar</button>
         </form>
       </div>
     </div>

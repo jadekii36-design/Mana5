@@ -11,19 +11,19 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --danger:    #F26522;
-  --secondary: #009EAD;
-  --dark:      #071829;
-  --dark2:     #0A2540;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --danger:    #B8860B;
+  --secondary: #008000;
+  --dark:      #000022;
+  --dark2:     #00008B;
 }
 
 /* ✅ Dark navy theme: override all cards to dark */
 .cardx,
 .card,
 [class*="card"]:not(.wallet-card) {
-  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%) !important;
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%) !important;
   color: #fff !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
@@ -40,11 +40,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 /* ===== BASE CARD — Dark navy ===== */
 .cardx{
   position: relative !important;
-  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%) !important;
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%) !important;
   border-radius: 22px !important;
   padding: 18px !important;
-  border: 1.5px solid rgba(0,158,173,.28) !important;
-  box-shadow: 0 20px 55px rgba(0,0,0,.50), 0 0 0 1px rgba(0,158,173,.10) inset !important;
+  border: 1.5px solid rgba(0,128,0,.28) !important;
+  box-shadow: 0 20px 55px rgba(0,0,0,.50), 0 0 0 1px rgba(0,128,0,.10) inset !important;
   overflow: hidden;
   margin-bottom: 14px;
   color: #fff !important;
@@ -57,12 +57,12 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   content: "" !important;
   position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important;
   height: 3px !important;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
   pointer-events: none !important;
 }
 
 /* ✅ Text colors on dark cards */
-.cardx .title  { color: #F26522 !important; }
+.cardx .title  { color: #B8860B !important; }
 .cardx .sub    { color: rgba(255,255,255,.55) !important; }
 .cardx .hint   { color: rgba(255,255,255,.55) !important; }
 .cardx .muted  { color: rgba(255,255,255,.50) !important; }
@@ -75,7 +75,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .cardx.wallet-card{
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%) !important;
   border: 2px solid rgba(245,197,24,.40) !important;
-  box-shadow: 0 18px 48px rgba(242,101,34,.35) !important;
+  box-shadow: 0 18px 48px rgba(184,134,11,.35) !important;
   color: #fff !important;
 }
 .cardx.wallet-card::before { display: none !important; }
@@ -94,14 +94,14 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 
 /* ===== Text ===== */
-.title{ font-weight:950; font-size:18px; color: #F26522; }
+.title{ font-weight:950; font-size:18px; color: #B8860B; }
 .sub{ font-size:12px; color: rgba(255,255,255,.55); margin-top:2px; }
 
 /* ===== Pill badge ===== */
 .pill{
   padding:6px 12px; border-radius:999px;
-  border: 1.5px solid rgba(0,158,173,.35) !important;
-  background: rgba(0,158,173,.12) !important;
+  border: 1.5px solid rgba(0,128,0,.35) !important;
+  background: rgba(0,128,0,.12) !important;
   color: #fff !important;
   font-weight:900; font-size:12px;
   white-space:nowrap;
@@ -111,7 +111,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .num-input{
   width: 100%; margin-top: 10px;
   padding: 12px 14px; border-radius: 14px;
-  border: 1.5px solid rgba(0,158,173,.28) !important;
+  border: 1.5px solid rgba(0,128,0,.28) !important;
   background: rgba(255,255,255,.06) !important;
   color: #fff !important;
   outline: none; font-size: 14px; font-weight: 700;
@@ -119,8 +119,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 .num-input::placeholder{ color: rgba(255,255,255,.35) !important; }
 .num-input:focus{
-  border-color: rgba(242,101,34,.55) !important;
-  box-shadow: 0 0 0 3px rgba(242,101,34,.12) !important;
+  border-color: rgba(184,134,11,.55) !important;
+  box-shadow: 0 0 0 3px rgba(184,134,11,.12) !important;
   background: rgba(255,255,255,.09) !important;
 }
 
@@ -130,14 +130,14 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   color: rgba(255,255,255,.55) !important; font-weight: 600;
 }
 
-/* ===== WITHDRAW NOW button ===== */
+/* ===== TARIK SEKARANG button ===== */
 .big-btn{
   display:flex; align-items:center; justify-content:center; gap:10px;
   height:52px; border-radius:999px; text-decoration:none;
   font-weight:950; letter-spacing:.10em; text-transform:uppercase;
   font-size: 14px; color:#fff;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  box-shadow: 0 10px 30px rgba(242,101,34,.30);
+  box-shadow: 0 10px 30px rgba(184,134,11,.30);
   border: none !important;
   width:100%; cursor:pointer;
   transition: opacity .2s ease, transform .08s ease;
@@ -161,8 +161,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 #formAlert{
   display:none; margin: 10px 0 4px;
   padding: 10px 14px; border-radius: 12px;
-  border: 1.5px solid rgba(242,101,34,.40);
-  background: rgba(242,101,34,.12);
+  border: 1.5px solid rgba(184,134,11,.40);
+  background: rgba(184,134,11,.12);
   color: #fb923c;
   font-weight:900; font-size:12px; text-align: center;
 }
@@ -180,13 +180,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .tl-item:last-child{ border-bottom: none; }
 .tl-bullet{
   width:36px; height:36px; border-radius:999px;
-  background: rgba(0,158,173,.12);
-  border: 2px solid rgba(0,158,173,.25);
+  background: rgba(0,128,0,.12);
+  border: 2px solid rgba(0,128,0,.25);
   display:flex; align-items:center; justify-content:center; flex:0 0 auto;
 }
 .tl-bullet.on{
   background: var(--primary);
-  border-color: rgba(242,101,34,.40);
+  border-color: rgba(184,134,11,.40);
 }
 .tl-bullet.rejected,
 .tl-bullet.on.rejected{
@@ -216,15 +216,16 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .back-btn{
   display: inline-flex; align-items: center; justify-content: center;
   height: 44px; padding: 0 26px; border-radius: 999px;
-  background: rgba(255,255,255,.08);
-  color: #fff;
+  background: linear-gradient(90deg, #B8860B, #FFD700);
+  color: #000;
   font-weight: 900; font-size: 14px;
   text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,.18) !important;
-  transition: transform .15s ease, background .15s ease;
+  border: none !important;
+  box-shadow: 0 6px 18px rgba(184,134,11,.35);
+  transition: transform .15s ease, opacity .15s ease;
 }
-.back-btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.13); }
-.back-btn:active{ transform: scale(.98); opacity:.92; }
+.back-btn:hover{ transform: translateY(-1px); opacity: .90; }
+.back-btn:active{ transform: scale(.98); }
 
 @media (max-width:520px){
   .w-wrap{ padding: 16px 12px 40px; }
@@ -242,12 +243,12 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     <div class="row">
       <div>
         <div class="title">Wallet</div>
-        <div class="sub">Balance (PHP)</div>
+        <div class="sub">Saldo (IDR)</div>
       </div>
       <div class="pill">Last transaction – Today</div>
     </div>
     <div style="margin-top:14px; font-size:30px; font-weight:950; color:#fff; letter-spacing:.02em;">
-      PHP <span data-balance>{{ request.user.balance|default:"0.00" }}</span>
+      Rp <span data-balance>{{ request.user.balance|default:"0.00" }}</span>
     </div>
   </div>
 
@@ -255,34 +256,34 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   <div class="cardx">
     <div class="row">
       <div>
-        <div class="title" style="font-size:15px;">Withdrawal amount</div>
-        <div class="sub">Enter amount you want to withdraw</div>
+        <div class="title" style="font-size:15px;">Jumlah Penarikan</div>
+        <div class="sub">Masukkan jumlah yang ingin ditarik</div>
       </div>
-      <div class="pill">PHP</div>
+      <div class="pill">IDR</div>
     </div>
     <input
       id="amountInput" class="num-input"
       type="number" inputmode="decimal"
       min="0" step="0.01" placeholder="0.00" autocomplete="off"
     />
-    <div class="hint" id="amountHint">Max: PHP 0.00</div>
+    <div class="hint" id="amountHint">Maks: Rp 0.00</div>
   </div>
 
-  <!-- ===== Card 3: Withdrawal Code ===== -->
+  <!-- ===== Card 3: Kode Penarikan ===== -->
   <div class="cardx">
     <div class="row">
       <div>
-        <div class="title" style="font-size:15px;">Withdrawal Code</div>
-        <div class="sub">Withdrawal code send to your email</div>
+        <div class="title" style="font-size:15px;">Kode Penarikan</div>
+        <div class="sub">Kode penarikan dikirim ke email Anda</div>
       </div>
-      <div class="pill">Code</div>
+      <div class="pill">Kode</div>
     </div>
     <input
       id="otpInput" class="num-input"
       type="number" inputmode="numeric"
-      min="0" step="1" placeholder="Enter The Withdrawal Code" autocomplete="one-time-code"
+      min="0" step="1" placeholder="Enter The Kode Penarikan" autocomplete="one-time-code"
     />
-    <div class="hint">Withdrawal code is required to confirm withdrawal</div>
+    <div class="hint">Kode penarikan diperlukan untuk konfirmasi</div>
   </div>
 
   <!-- ===== Card 4: Withdraw button + timeline ===== -->
@@ -295,9 +296,9 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
       <div id="formAlert"></div>
 
       <button class="big-btn" type="button" id="withdrawBtn" disabled>
-        WITHDRAW NOW
+        TARIK SEKARANG
       </button>
-      <div class="hint" id="btnHint" style="text-align:center;">Enter a valid amount to enable withdraw.</div>
+      <div class="hint" id="btnHint" style="text-align:center;">Masukkan jumlah yang valid untuk mengaktifkan penarikan.</div>
     </form>
 
     <!-- Timeline -->
@@ -307,8 +308,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
           <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
         </div>
         <div>
-          <div class="tl-text">Reviewed</div>
-          <div class="muted">Your request is being reviewed</div>
+          <div class="tl-text">Sedang Ditinjau</div>
+          <div class="muted">Permintaan Anda sedang ditinjau</div>
         </div>
       </div>
       <div class="tl-item">
@@ -316,8 +317,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
           <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
         </div>
         <div>
-          <div class="tl-text">Processing</div>
-          <div class="muted">We are processing your withdrawal</div>
+          <div class="tl-text">Sedang Diproses</div>
+          <div class="muted">Kami sedang memproses penarikan Anda</div>
         </div>
       </div>
       <div class="tl-item">
@@ -326,22 +327,22 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
             <path id="b3Path" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path>
           </svg>
         </div>
-        <div class="tl-text" id="t3">Withdrawal Successfully</div>
+        <div class="tl-text" id="t3">Penarikan Berhasil</div>
       </div>
     </div>
   </div>
 
-  <!-- ===== Card 5: Last withdrawals ===== -->
+  <!-- ===== Card 5: Riwayat Penarikan ===== -->
   <div class="cardx">
     <div class="row" style="margin-bottom:12px;">
-      <div class="title" style="font-size:15px;">Last withdrawals</div>
+      <div class="title" style="font-size:15px;">Riwayat Penarikan</div>
       <div class="pill">{{ withdrawals|length }}</div>
     </div>
 
     {% for w in withdrawals %}
       <div class="list-row">
         <div>
-          <div class="fw">PHP {{ w.amount }} {{ w.currency }}</div>
+          <div class="fw">Rp {{ w.amount }} {{ w.currency }}</div>
           <div class="muted">{{ w.created_at }}</div>
         </div>
         {% if forloop.first %}
@@ -351,13 +352,13 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
         {% endif %}
       </div>
     {% empty %}
-      <div class="muted" style="padding: 8px 0;">No withdrawals yet.</div>
+      <div class="muted" style="padding: 8px 0;">Belum ada penarikan.</div>
     {% endfor %}
   </div>
 
   <!-- Back -->
   <div class="top-actions">
-    <a class="back-btn" href="{% url 'dashboard' %}">← Back</a>
+    <a class="back-btn" href="{% url 'dashboard' %}">← Kembali</a>
   </div>
 
 </div>
@@ -402,7 +403,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
       el.style.background = ""; el.style.borderColor = "";
     });
     setIconOK();
-    if(t3){ t3.classList.remove("success","rejected"); t3.textContent = "Withdrawal Successfully"; }
+    if(t3){ t3.classList.remove("success","rejected"); t3.textContent = "Penarikan Berhasil"; }
     _uiStage = 0;
   }
 
@@ -411,7 +412,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     show();
     [b1,b2,b3].forEach(el=>{ if(!el) return; el.classList.remove("on","success","rejected"); el.style.background=""; el.style.borderColor=""; });
     setIconOK();
-    if(t3){ t3.classList.remove("success","rejected"); t3.textContent = "Withdrawal Successfully"; }
+    if(t3){ t3.classList.remove("success","rejected"); t3.textContent = "Penarikan Berhasil"; }
     if(stage >= 1 && b1) b1.classList.add("on");
     if(stage >= 2 && b2) b2.classList.add("on");
     _uiStage = stage;
@@ -421,7 +422,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     show();
     if(b1) b1.classList.add("on"); if(b2) b2.classList.add("on");
     if(b3){ b3.classList.remove("on","success"); b3.classList.add("rejected"); b3.style.setProperty("background","#dc2626","important"); b3.style.setProperty("border-color","rgba(255,255,255,.18)","important"); setIconX(); void b3.offsetHeight; setIconX(); }
-    if(t3){ t3.classList.add("rejected"); t3.textContent = "Rejected"; }
+    if(t3){ t3.classList.add("rejected"); t3.textContent = "Ditolak"; }
     _uiStage = 3;
   }
 
@@ -429,7 +430,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
     show();
     if(b1) b1.classList.add("on"); if(b2) b2.classList.add("on");
     if(b3){ b3.classList.remove("rejected"); b3.classList.add("success"); b3.style.setProperty("background","#16a34a","important"); b3.style.setProperty("border-color","rgba(255,255,255,.18)","important"); setIconOK(); void b3.offsetHeight; setIconOK(); }
-    if(t3){ t3.classList.remove("rejected"); t3.classList.add("success"); t3.textContent = "Withdrawal Successfully"; }
+    if(t3){ t3.classList.remove("rejected"); t3.classList.add("success"); t3.textContent = "Penarikan Berhasil"; }
     _uiStage = 3;
   }
 
@@ -486,16 +487,16 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   btn && btn.addEventListener("click", async ()=>{
     if(locked) return; clearAlert();
     const bal=getBalance(), amountRaw=(amountInput?.value||"").trim(), otpRaw=(otpInput?.value||"").trim(), amount=parseFloat(amountRaw)||0;
-    if(!amountRaw||amount<=0){ showAlert("Please enter withdrawal amount."); return; }
-    if(amount>bal){ showAlert("Amount exceeds your balance."); return; }
-    if(!otpRaw){ showAlert("Please enter Withdrawal Code."); return; }
+    if(!amountRaw||amount<=0){ showAlert("Masukkan jumlah penarikan."); return; }
+    if(amount>bal){ showAlert("Jumlah melebihi saldo Anda."); return; }
+    if(!otpRaw){ showAlert("Please enter Kode Penarikan."); return; }
     hide(); resetTimeline();
     try{
       const verifyForm=new FormData(); verifyForm.append("otp",otpRaw);
       const vr=await fetch("{% url 'verify_withdraw_otp' %}",{ method:"POST", headers:{"X-CSRFToken":CSRF,"X-Requested-With":"XMLHttpRequest"}, body:verifyForm });
       const vdata=await vr.json().catch(()=>null);
-      if(!vdata||vdata.ok!==true){ showAlert("Wrong Withdrawal Code."); return; }
-    }catch(e){ showAlert("Network error. Try again."); return; }
+      if(!vdata||vdata.ok!==true){ showAlert("Wrong Kode Penarikan."); return; }
+    }catch(e){ showAlert("Kesalahan jaringan. Coba lagi."); return; }
     syncHidden(); locked=true; btn.disabled=true; btn.style.opacity="0.6";
     try{
       const res=await fetch("{% url 'withdraw_create' %}",{ method:"POST", headers:{"X-Requested-With":"XMLHttpRequest","X-CSRFToken":CSRF}, body:new FormData(form) });
@@ -503,19 +504,19 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
       if(!data||data.ok!==true){
         locked=false; updateBtn(); hide(); resetTimeline();
         const err=data&&data.error;
-        if(err==="amount_required") showAlert("Please enter withdrawal amount.");
-        else if(err==="exceed") showAlert("Amount exceeds your balance.");
-        else if(err==="insufficient") showAlert("No balance available.");
-        else if(err==="otp_wrong") showAlert("Wrong Withdrawal Code.");
+        if(err==="amount_required") showAlert("Masukkan jumlah penarikan.");
+        else if(err==="exceed") showAlert("Jumlah melebihi saldo Anda.");
+        else if(err==="insufficient") showAlert("Saldo tidak tersedia.");
+        else if(err==="otp_wrong") showAlert("Wrong Kode Penarikan.");
         else if(err==="account_not_active") showAlert("Your account is not ACTIVE. Please contact company department.");
-        else showAlert("Request failed. Try again.");
+        else showAlert("Permintaan gagal. Coba lagi.");
         return;
       }
       _submittedAt=Date.now(); lockUI(8000); playSubmitAnimation();
       const latest=document.querySelector(".pill[data-wstatus]");
       if(latest){ latest.dataset.wstatus="processing"; latest.textContent="Processing"; }
       _uiStage=2;
-    }catch(e){ locked=false; updateBtn(); hide(); resetTimeline(); showAlert("Network error. Try again."); }
+    }catch(e){ locked=false; updateBtn(); hide(); resetTimeline(); showAlert("Kesalahan jaringan. Coba lagi."); }
   });
 })();
 </script>

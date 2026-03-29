@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Notifications{% endblock %}
+{% block title %}Notifikasi - Instant Kredit Indonesia{% endblock %}
 
 {% block content %}
 <style>
@@ -13,22 +13,22 @@
   align-items: center;
   justify-content: center;
 
-  height: 42px;
-  padding: 0 22px 0 28px;
-  border-radius: 12px;
+  height: 44px;
+  padding: 0 26px;
+  border-radius: 999px;
 
-  background: #13111185;
-  color: #ffffffc9;
-  font-weight: 800;
+  background: linear-gradient(90deg, #B8860B, #FFD700);
+  color: #000;
+  font-weight: 900;
+  font-size: 14px;
   text-decoration: none;
 
-  border: 1px solid rgba(189, 189, 189, 0.164);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,.18),
-    inset 0 1px 0 rgba(255,255,255,.65);
+  border: none;
+  box-shadow: 0 6px 18px rgba(184,134,11,.35);
+  transition: transform .15s ease, opacity .15s ease;
 }
-.back-btn:hover{ transform: translateY(-1px); }
-.back-btn:active{ transform: translateY(0px); opacity: .92; }
+.back-btn:hover{ transform: translateY(-1px); opacity: .90; }
+.back-btn:active{ transform: scale(.98); }
 
 @media (max-width:520px){
   .top-actions{ padding: 10px 12px 0; }
@@ -51,13 +51,18 @@
 
 .cardx{
   position: relative;
-  background: rgba(0, 0, 0, 0.58);
-  border-radius: 18px;
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%);
+  border-radius: 22px;
   padding: 18px;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 2px 2px rgba(245,245,245,.55), inset 0 1px 0 rgba(255,255,255,.10);
+  border: 1.5px solid rgba(0,128,0,.28);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(0,128,0,.10) inset;
   overflow: hidden;
+}
+.cardx::before{
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #B8860B, #008000);
+  pointer-events: none;
 }
 
 .muted{
@@ -192,15 +197,15 @@
       {% endfor %}
     {% else %}
       <div class="empty-note">
-        <div class="muted" style="font-weight:900; color:#fff;">No notifications</div>
-        <div class="muted" style="margin-top:4px;">You don’t have any new messages right now.</div>
+        <div class="muted" style="font-weight:900; color:#fff;">Tidak ada notifikasi</div>
+        <div class="muted" style="margin-top:4px;">Anda tidak memiliki pesan baru saat ini.</div>
       </div>
     {% endif %}
 
   </div>
 
   <div class="top-actions">
-    <a class="back-btn" href="{% url 'dashboard' %}">Back</a>
+    <a class="back-btn" href="{% url 'dashboard' %}">Kembali</a>
   </div>
   <div class="top-actions-line"></div>
 </div>

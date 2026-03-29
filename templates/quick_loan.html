@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Quick Loan{% endblock %}
+{% block title %}Ajukan Pinjaman - Instant Kredit Indonesia{% endblock %}
 
 {% block content %}
 <style>
@@ -11,10 +11,10 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --danger:    #F26522;
-  --secondary: #009EAD;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --danger:    #B8860B;
+  --secondary: #008000;
   --white:     #FFFFFF;
   --light-bg:  #F5F8FA;
 }
@@ -24,7 +24,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .card,
 [class*="card"] {
   background: #FFFFFF !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -37,14 +37,14 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   box-sizing: border-box;
 }
 
-/* ===== WHITE CARD — same as Wallet ===== */
+/* ===== WHITE CARD ===== */
 .cardx{
   position: relative !important;
   background: #FFFFFF !important;
   border-radius: 22px !important;
   padding: 20px !important;
-  border: 2px solid rgba(242,101,34,.28) !important;
-  box-shadow: 0 16px 48px rgba(242,101,34,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
+  border: 2px solid rgba(184,134,11,.28) !important;
+  box-shadow: 0 16px 48px rgba(184,134,11,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
   overflow: hidden;
   margin-bottom: 14px;
   color: var(--primary) !important;
@@ -56,11 +56,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .cardx label,
 .cardx .k,
 .cardx .field {
-  color: #0A2540 !important;
+  color: #00008B !important;
 }
 
 .cardx .v {
-  color: #0A2540 !important;
+  color: #00008B !important;
   font-weight: 900;
 }
 
@@ -81,18 +81,19 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   height: 44px;
   padding: 0 26px;
   border-radius: 999px;
-  background: #FFFFFF;
-  color: var(--primary);
+  background: linear-gradient(90deg, #B8860B, #FFD700);
+  color: #000;
   font-weight: 900;
   font-size: 14px;
   text-decoration: none;
-  border: 2px solid rgba(242,101,34,.30);
-  box-shadow: 0 4px 14px rgba(242,101,34,.12);
-  transition: transform .15s ease;
+  border: none;
+  box-shadow: 0 6px 18px rgba(184,134,11,.35);
+  transition: transform .15s ease, opacity .15s ease;
 }
 
 .back-btn:hover{
   transform: translateY(-1px);
+  opacity: .90;
 }
 
 .back-btn:active{
@@ -117,9 +118,9 @@ input[type="number"]{
   height: 44px;
   padding: 0 14px;
   border-radius: 14px;
-  border: 1.5px solid rgba(242,101,34,.15) !important;
+  border: 1.5px solid rgba(184,134,11,.15) !important;
   background: #F4F6FB !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   font-weight: 700;
   box-sizing: border-box;
   transition: all .2s ease;
@@ -131,10 +132,28 @@ input[type="number"]::placeholder {
 
 input[type="number"]:focus {
   outline: none;
-  border-color: rgba(242,101,34,.40) !important;
-  box-shadow: 0 0 0 3px rgba(242,101,34,.08) !important;
+  border-color: rgba(184,134,11,.40) !important;
+  box-shadow: 0 0 0 3px rgba(184,134,11,.08) !important;
   background: #fff !important;
 }
+input[type="number"].input-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220,38,38,.10) !important;
+  background: #fff8f8 !important;
+}
+.amount-error-msg {
+  display: none;
+  margin-top: 6px;
+  padding: 9px 14px;
+  border-radius: 12px;
+  background: rgba(220,38,38,.07);
+  border: 1.5px solid rgba(220,38,38,.28);
+  color: #b91c1c !important;
+  font-size: 12px;
+  font-weight: 900;
+  line-height: 1.4;
+}
+.amount-error-msg.show { display: block; }
 
 input[readonly] {
   opacity: .85;
@@ -150,8 +169,8 @@ input[readonly] {
 }
 
 @media(max-width: 520px){
-  .term-grid { 
-    grid-template-columns: repeat(2, 1fr); 
+  .term-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
   .page {
     padding: 16px 12px 40px;
@@ -166,7 +185,7 @@ input[readonly] {
 .term-btn{
   padding: 12px 0;
   border-radius: 999px;
-  border: 1.5px solid rgba(242,101,34,.18);
+  border: 1.5px solid rgba(184,134,11,.18);
   background: #F4F6FB;
   color: var(--primary);
   font-weight: 900;
@@ -175,7 +194,7 @@ input[readonly] {
 }
 
 .term-btn:hover {
-  border-color: rgba(242,101,34,.30);
+  border-color: rgba(184,134,11,.30);
   background: #e8ecf4;
 }
 
@@ -187,7 +206,7 @@ input[readonly] {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: #fff;
   border-color: var(--primary);
-  box-shadow: 0 6px 18px rgba(242,101,34,.25);
+  box-shadow: 0 6px 18px rgba(184,134,11,.25);
 }
 
 .term-btn:disabled{
@@ -238,7 +257,7 @@ input[readonly] {
   border-radius: 999px;
   border: 0 !important;
   background: linear-gradient(90deg, var(--primary), var(--secondary)) !important;
-  box-shadow: 0 10px 30px rgba(242,101,34,.30) !important;
+  box-shadow: 0 10px 30px rgba(184,134,11,.30) !important;
   color: #fff !important;
   font-size: 15px !important;
   font-weight: 900 !important;
@@ -248,7 +267,7 @@ input[readonly] {
 
 .cta:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 36px rgba(242,101,34,.35) !important;
+  box-shadow: 0 12px 36px rgba(184,134,11,.35) !important;
 }
 
 .cta:active {
@@ -271,8 +290,8 @@ input[readonly] {
 /* ===== Application Status Card ===== */
 #statusCard {
   background: #FFFFFF !important;
-  border: 2px solid rgba(242,101,34,.28) !important;
-  box-shadow: 0 16px 48px rgba(242,101,34,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
+  border: 2px solid rgba(184,134,11,.28) !important;
+  box-shadow: 0 16px 48px rgba(184,134,11,.10), 0 0 0 1px rgba(245,197,24,.08) !important;
 }
 
 .status-head{
@@ -306,15 +325,15 @@ input[readonly] {
   border-radius: 999px;
   font-weight: 900;
   font-size: 12px;
-  border: 1.5px solid rgba(242,101,34,.20);
+  border: 1.5px solid rgba(184,134,11,.20);
   background: #F4F6FB;
   color: var(--primary);
   white-space: nowrap;
 }
 
 .mini-pill.is-rejected{
-  background: rgba(242,101,34,.12) !important;
-  border-color: rgba(242,101,34,.45) !important;
+  background: rgba(184,134,11,.12) !important;
+  border-color: rgba(184,134,11,.45) !important;
   color: #dc2626 !important;
 }
 
@@ -323,8 +342,8 @@ input[readonly] {
   margin-top: 12px;
   border-radius: 14px;
   padding: 14px;
-  border: 1.5px solid rgba(242,101,34,.40);
-  background: rgba(242,101,34,.08);
+  border: 1.5px solid rgba(184,134,11,.40);
+  background: rgba(184,134,11,.08);
 }
 
 .reject-alert .ra-title {
@@ -413,7 +432,7 @@ input[readonly] {
   flex: 1;
   height: 3px;
   border-radius: 999px;
-  background: rgba(242,101,34,.12);
+  background: rgba(184,134,11,.12);
   transition: background .3s ease;
 }
 
@@ -459,7 +478,7 @@ input[readonly] {
   gap: 10px;
   padding: 10px 16px;
   border-radius: 14px;
-  border: 1.5px solid rgba(242,101,34,.20);
+  border: 1.5px solid rgba(184,134,11,.20);
   background: #F4F6FB;
   color: var(--primary);
   font-weight: 900;
@@ -470,7 +489,7 @@ input[readonly] {
 
 .status-btn:hover {
   background: #e8ecf4;
-  border-color: rgba(242,101,34,.30);
+  border-color: rgba(184,134,11,.30);
   transform: translateY(-1px);
 }
 
@@ -484,23 +503,24 @@ input[readonly] {
   <!-- ===== Card 1: Amount/Term ===== -->
   <div class="cardx">
     <div class="top-actions">
-      <a class="back-btn" href="{% url 'dashboard' %}">← Back</a>
+      <a class="back-btn" href="{% url 'dashboard' %}">← Kembali</a>
     </div>
 
     <div class="field">
-      <label>Loan amount (Min ₱100,000 · Max ₱10,000,000)</label>
+      <label>Jumlah pinjaman (Min Rp30.000.000 · Maks Rp100.000.000)</label>
       <input
         type="number"
         id="qAmount"
-        min="100000"
-        max="10000000"
-        placeholder="Enter amount (Min ₱100,000 - Max ₱10,000,000)"
+        min="30000000"
+        max="100000000"
+        placeholder="Masukkan jumlah (Min Rp30.000.000 - Maks Rp100.000.000)"
         {% if loan %}readonly{% endif %}
       >
+      <div class="amount-error-msg" id="amountError"></div>
     </div>
 
     <div class="field">
-      <label>Loan terms</label>
+      <label>Tenor pinjaman</label>
       <input type="hidden" id="qTerm">
 
       <div class="term-grid">
@@ -512,28 +532,28 @@ input[readonly] {
         <button type="button" class="term-btn" data-term="60" {% if loan %}disabled{% endif %}>60</button>
       </div>
 
-      <div class="hint" id="qHint">Choose months</div>
+      <div class="hint" id="qHint">Pilih bulan</div>
     </div>
 
     <div class="summary" aria-live="polite">
-      <div class="row"><div class="k">Amount of loan</div><div class="v" id="qSumAmount">—</div></div>
-      <div class="row"><div class="k">Interest rate</div><div class="v">0.35% per month</div></div>
-      <div class="row"><div class="k">Loan period</div><div class="v" id="qSumTerm">—</div></div>
-      <div class="row"><div class="k">Monthly repayment</div><div class="v" id="qSumMonthly">—</div></div>
-      <div class="row"><div class="k">Total payment</div><div class="v" id="qSumTotal">—</div></div>
+      <div class="row"><div class="k">Jumlah pinjaman</div><div class="v" id="qSumAmount">—</div></div>
+      <div class="row"><div class="k">Suku bunga</div><div class="v">0,40% per bulan</div></div>
+      <div class="row"><div class="k">Tenor</div><div class="v" id="qSumTerm">—</div></div>
+      <div class="row"><div class="k">Cicilan per bulan</div><div class="v" id="qSumMonthly">—</div></div>
+      <div class="row"><div class="k">Total pembayaran</div><div class="v" id="qSumTotal">—</div></div>
       {% if loan %}
-      <div class="row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(242,101,34,.12);">
+      <div class="row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(184,134,11,.12);">
         <div class="k">Status</div>
         <span style="padding:5px 14px;border-radius:999px;font-size:12px;font-weight:900;
-                     background:rgba(242,101,34,.12);border:1.5px solid rgba(242,101,34,.25);color:#0A2540;">
-          SUBMITTED
+                     background:rgba(184,134,11,.12);border:1.5px solid rgba(184,134,11,.25);color:#00008B;">
+          DIAJUKAN
         </span>
       </div>
       {% endif %}
     </div>
 
     <button class="btn btn-primary cta" type="button" id="goApply" disabled>
-      Continue to Application
+      Lanjutkan Pengajuan
     </button>
   </div>
 
@@ -541,17 +561,17 @@ input[readonly] {
   <div class="cardx" id="statusCard" style="display:none;">
     <div class="status-head">
       <div>
-        <h2 class="status-title">Application Status</h2>
+        <h2 class="status-title">Status Pengajuan</h2>
         <div class="status-sub" id="statusText">
-          Our team is reviewing your documents. Please wait.
+          Tim kami sedang meninjau dokumen Anda. Mohon tunggu.
         </div>
       </div>
-      <span class="mini-pill" id="statusPill">PENDING</span>
+      <span class="mini-pill" id="statusPill">MENUNGGU</span>
     </div>
 
     <div class="reject-alert" id="rejectAlert" style="display:none;">
-      <div class="ra-title">Application Rejected</div>
-      <div class="ra-text">Your application was rejected. You can submit again.</div>
+      <div class="ra-title">Pengajuan Ditolak</div>
+      <div class="ra-text">Pengajuan Anda ditolak. Anda dapat mengajukan kembali.</div>
     </div>
 
     <div class="step-row">
@@ -563,12 +583,12 @@ input[readonly] {
     </div>
 
     <div class="step-labels three">
-      <div>Under review</div>
-      <div>Checking</div>
-      <div>Approved</div>
+      <div>Ditinjau</div>
+      <div>Memeriksa</div>
+      <div>Disetujui</div>
     </div>
 
-    <a class="status-btn" href="{% url 'contract' %}">View contract →</a>
+    <a class="status-btn" href="{% url 'contract' %}">Lihat kontrak →</a>
   </div>
 
 </div>
@@ -587,22 +607,49 @@ input[readonly] {
   const goBtn = document.getElementById("goApply");
 
   function fmt(n){
-    try { return Number(n).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2}); } catch (e) { return String(n); }
+    try { return Number(n).toLocaleString("id-ID", {minimumFractionDigits:2, maximumFractionDigits:2}); } catch (e) { return String(n); }
+  }
+
+  const MIN_AMOUNT = 30000000;
+  const MAX_AMOUNT = 100000000;
+  const errorEl = document.getElementById("amountError");
+
+  function setAmountError(msg){
+    if(!errorEl) return;
+    if(msg){
+      errorEl.textContent = msg;
+      errorEl.classList.add("show");
+      if(amountEl) amountEl.classList.add("input-error");
+    } else {
+      errorEl.classList.remove("show");
+      if(amountEl) amountEl.classList.remove("input-error");
+    }
   }
 
   function update(){
     const amount = Number(amountEl?.value || 0);
     const term = Number(termEl?.value || 0);
 
-    if (outAmount) outAmount.textContent = amount > 0 ? ("₱" + fmt(amount)) : "—";
-    if (outTerm) outTerm.textContent = term > 0 ? (term + " months") : "—";
+    // ── Validate amount ──
+    let amountErr = "";
+    if(amount > 0 && amount < MIN_AMOUNT){
+      amountErr = "⚠ Jumlah pinjaman minimum adalah Rp30.000.000. Silakan masukkan jumlah yang sesuai.";
+    } else if(amount > MAX_AMOUNT){
+      amountErr = "⚠ Jumlah pinjaman maksimum adalah Rp100.000.000. Silakan masukkan jumlah yang sesuai.";
+    }
+    setAmountError(amountErr);
 
-    const rate = 0.0035; // 0.35% per month
-    if(amount > 0 && term > 0){
+    const amountValid = amount >= MIN_AMOUNT && amount <= MAX_AMOUNT;
+
+    if (outAmount) outAmount.textContent = amount > 0 ? ("Rp" + fmt(amount)) : "—";
+    if (outTerm) outTerm.textContent = term > 0 ? (term + " bulan") : "—";
+
+    const rate = 0.004; // 0.40% per bulan
+    if(amountValid && term > 0){
       const monthly = amount * rate * Math.pow(1 + rate, term) / (Math.pow(1 + rate, term) - 1);
       const total = monthly * term;
-      if (outMonthly) outMonthly.textContent = "₱" + fmt(monthly);
-      if (outTotal) outTotal.textContent = "₱" + fmt(total);
+      if (outMonthly) outMonthly.textContent = "Rp" + fmt(monthly);
+      if (outTotal) outTotal.textContent = "Rp" + fmt(total);
 
       {% if not loan %}
         goBtn.disabled = false;
@@ -624,7 +671,7 @@ input[readonly] {
       btns.forEach((x)=>x.classList.remove("active"));
       b.classList.add("active");
       if (termEl) termEl.value = b.dataset.term || "";
-      if (hint) hint.textContent = (b.dataset.term || "") + " months";
+      if (hint) hint.textContent = (b.dataset.term || "") + " bulan";
       update();
     });
   });
@@ -644,13 +691,13 @@ input[readonly] {
     btns.forEach((b)=>{
       if ((b.dataset.term || "") === "{{ loan.term_months }}"){
         b.classList.add("active");
-        if (hint) hint.textContent = "{{ loan.term_months }} months";
+        if (hint) hint.textContent = "{{ loan.term_months }} bulan";
       } else {
         b.classList.remove("active");
       }
     });
 
-    goBtn.textContent = "Submitted";
+    goBtn.textContent = "Sudah Diajukan";
     goBtn.disabled = true;
     goBtn.style.opacity = ".55";
   {% else %}
@@ -708,7 +755,7 @@ input[readonly] {
     if(labels3){
       const divs = labels3.querySelectorAll("div");
       if(divs[2]){
-        divs[2].textContent = isRejected ? "Rejected" : "Approved";
+        divs[2].textContent = isRejected ? "Ditolak" : "Disetujui";
         divs[2].style.color = isRejected ? "#ef4444" : "";
       }
     }
@@ -717,16 +764,16 @@ input[readonly] {
     if(rejectAlert) rejectAlert.style.display = isRejected ? "block" : "none";
 
     const pill = document.getElementById("statusPill");
-    if(pill) pill.textContent = String(label || "PENDING").toUpperCase();
+    if(pill) pill.textContent = String(label || "MENUNGGU").toUpperCase();
 
     const text = document.getElementById("statusText");
     const s = String(label || "").toUpperCase().trim();
     if(text){
-      if(s === "REJECTED") text.textContent = "Rejected. Please contact company department.";
-      else if(s === "REVIEW") text.textContent = "Initial approval in progress. Please wait.";
-      else if(s === "APPROVED") text.textContent = "Final approval. Almost done.";
-      else if(s === "PAID") text.textContent = "Success Paid. Your loan has been completed.";
-      else text.textContent = "Our team is reviewing your documents. Please wait.";
+      if(s === "REJECTED") text.textContent = "Ditolak. Silakan hubungi departemen perusahaan.";
+      else if(s === "REVIEW") text.textContent = "Persetujuan awal sedang diproses. Mohon tunggu.";
+      else if(s === "APPROVED") text.textContent = "Persetujuan akhir. Hampir selesai.";
+      else if(s === "PAID") text.textContent = "Berhasil dibayarkan. Pinjaman Anda telah selesai.";
+      else text.textContent = "Tim kami sedang meninjau dokumen Anda. Mohon tunggu.";
     }
   }
 

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Transactions{% endblock %}
+{% block title %}Transaksi - Instant Kredit Indonesia{% endblock %}
 
 {% block content %}
 <style>
@@ -11,10 +11,10 @@
 body, body * { font-family: 'Ovelion', sans-serif !important; }
 
 :root{
-  --primary:   #F26522;
-  --accent:    #009EAD;
-  --danger:    #F26522;
-  --secondary: #009EAD;
+  --primary:   #B8860B;
+  --accent:    #008000;
+  --danger:    #B8860B;
+  --secondary: #008000;
   --white:     #FFFFFF;
   --light-bg:  #F5F8FA;
 }
@@ -24,7 +24,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 .card,
 [class*="card"]:not(.wallet-card) {
   background: #FFFFFF !important;
-  color: #0A2540 !important;
+  color: #00008B !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
@@ -40,11 +40,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 /* ===== BASE CARD — DARK NAVY THEME ===== */
 .cardx{
   position: relative !important;
-  background: linear-gradient(160deg, #071829 0%, #0A2540 60%, #071829 100%) !important;
+  background: linear-gradient(160deg, #000022 0%, #00008B 60%, #000022 100%) !important;
   border-radius: 22px !important;
   padding: 18px !important;
-  border: 1.5px solid rgba(0,158,173,.30) !important;
-  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(0,158,173,.12) inset !important;
+  border: 1.5px solid rgba(0,128,0,.30) !important;
+  box-shadow: 0 24px 60px rgba(0,0,0,.45), 0 0 0 1px rgba(0,128,0,.12) inset !important;
   overflow: hidden;
   margin-bottom: 14px;
   color: #fff !important;
@@ -57,16 +57,16 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   content: "" !important;
   position: absolute !important; top: 0 !important; left: 0 !important; right: 0 !important;
   height: 3px !important;
-  background: linear-gradient(90deg, #F26522, #009EAD) !important;
+  background: linear-gradient(90deg, #B8860B, #008000) !important;
   pointer-events: none !important;
 }
 
-.cardx .title  { color: #F26522 !important; }
+.cardx .title  { color: #B8860B !important; }
 .cardx .sub    { color: #64748b !important; }
 .cardx .hint   { color: #64748b !important; }
 .cardx .muted  { color: #64748b !important; }
-.cardx .fw     { color: #0A2540 !important; }
-.cardx label   { color: #0A2540 !important; }
+.cardx .fw     { color: #00008B !important; }
+.cardx label   { color: #00008B !important; }
 .cardx p       { color: #475569 !important; }
 
 /* ===== Row layout ===== */
@@ -76,15 +76,15 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 
 /* ===== Text ===== */
-.title{ font-weight:950; font-size:18px; color: #F26522; }
+.title{ font-weight:950; font-size:18px; color: #B8860B; }
 .sub{ font-size:12px; color: #64748b; margin-top:2px; }
 
 /* ===== Pill badge ===== */
 .pill{
   padding:6px 12px; border-radius:999px;
-  border: 1.5px solid rgba(0,158,173,.30) !important;
-  background: rgba(0,158,173,.10) !important;
-  color: #0A2540 !important;
+  border: 1.5px solid rgba(0,128,0,.30) !important;
+  background: rgba(0,128,0,.10) !important;
+  color: #00008B !important;
   font-weight:900; font-size:12px;
   white-space:nowrap;
 }
@@ -97,8 +97,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 }
 
 .pill-danger{
-  background: rgba(242,101,34,.10) !important;
-  border: 1.5px solid rgba(242,101,34,.40) !important;
+  background: rgba(184,134,11,.10) !important;
+  border: 1.5px solid rgba(184,134,11,.40) !important;
   color: #c2410c !important;
 }
 
@@ -108,11 +108,11 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   padding:11px 10px; margin-bottom:4px;
   border-radius: 12px;
   background: #F4F8FB;
-  border: 1px solid rgba(0,158,173,.12);
+  border: 1px solid rgba(0,128,0,.12);
   font-size:13px;
 }
 .list-row:last-child{ margin-bottom: 0; }
-.list-row .fw{ font-weight:900; color: #0A2540 !important; }
+.list-row .fw{ font-weight:900; color: #00008B !important; }
 .muted{ font-size:12px; color: #64748b !important; margin-top:2px; }
 
 /* ===== Buttons ===== */
@@ -131,23 +131,23 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   height: 44px;
   padding: 0 26px;
   border-radius: 999px;
-  background: rgba(255,255,255,.07);
-  color: rgba(255,255,255,.85);
+  background: linear-gradient(90deg, #B8860B, #FFD700);
+  color: #000;
   font-weight: 900;
   font-size: 14px;
   text-decoration: none;
-  border: 1.5px solid rgba(255,255,255,.16);
-  transition: transform .15s ease, background .15s ease;
+  border: none;
+  box-shadow: 0 6px 18px rgba(184,134,11,.35);
+  transition: transform .15s ease, opacity .15s ease;
 }
 
 .back-btn:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,.12);
+  opacity: .90;
 }
 
 .back-btn:active{
   transform: scale(.98);
-  opacity:.92;
 }
 
 .dashboard-btn{
@@ -158,8 +158,8 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   padding: 0 26px;
   border-radius: 999px;
   color: #fff;
-  background: linear-gradient(90deg, #F26522, #009EAD);
-  box-shadow: 0 8px 22px rgba(242,101,34,.30);
+  background: linear-gradient(90deg, #B8860B, #008000);
+  box-shadow: 0 8px 22px rgba(184,134,11,.30);
   border: none;
   font-weight: 900;
   font-size: 14px;
@@ -185,32 +185,32 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   <div class="cardx">
     <div class="row" style="margin-bottom:12px;">
       <div>
-        <div class="title">Transactions</div>
-        <div class="sub">Only Payment sent / Rejected (Latest 20)</div>
+        <div class="title">Transaksi</div>
+        <div class="sub">Hanya Pembayaran terkirim / Ditolak (20 terakhir)</div>
       </div>
-      <div class="pill">Balance: PHP {{ request.user.balance|default:"0" }}</div>
+      <div class="pill">Saldo: Rp {{ request.user.balance|default:"0" }}</div>
     </div>
 
     {% for w in withdrawals %}
       <div class="list-row">
         <div>
-          <div class="fw">PHP {{ w.amount }} {{ w.currency }}</div>
+          <div class="fw">Rp {{ w.amount }} {{ w.currency }}</div>
           <div class="muted">{{ w.created_at|date:"M d, Y, P" }}</div>
         </div>
 
         {% if w.status == "paid" %}
-          <div class="pill pill-success">Payment sent</div>
+          <div class="pill pill-success">Pembayaran terkirim</div>
         {% else %}
-          <div class="pill pill-danger">Rejected</div>
+          <div class="pill pill-danger">Ditolak</div>
         {% endif %}
       </div>
     {% empty %}
-      <div class="muted" style="padding:10px 0;">No transactions yet.</div>
+      <div class="muted" style="padding:10px 0;">Belum ada transaksi.</div>
     {% endfor %}
 
     <div class="btn-container">
-      <a class="back-btn" href="/profile/">← Back</a>
-      <a class="dashboard-btn" href="/dashboard/">Dashboard</a>
+      <a class="back-btn" href="/profile/">← Kembali</a>
+      <a class="dashboard-btn" href="/dashboard/">Beranda</a>
     </div>
   </div>
 </div>
