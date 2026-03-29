@@ -193,7 +193,7 @@ from django.views.decorators.http import require_GET
 @require_GET
 def fx_rates_api(request):
     url = "https://open.er-api.com/v6/latest/USD"
-    wanted = ["PHP","SAR","MYR","INR","PKR","IDR","VND","OMR","KES","AFN"]
+    wanted = ["HKD","SAR","MYR","IDR","INR","AFN","KES","OMR","PKR","VND"]
     try:
         with urllib.request.urlopen(url, timeout=10) as r:
             data = json.loads(r.read().decode("utf-8"))

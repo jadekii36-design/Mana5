@@ -151,6 +151,15 @@ button, .btn, .modal-btn, .cta-confirm, .back-btn{
 }
 .cta-confirm:hover{ box-shadow: 0 14px 32px rgba(184,134,11,.45); }
 .cta-confirm:active{ transform:scale(.99); }
+.btn-back{
+  display:block; width:100%; padding:14px; border-radius:999px; border:1.5px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.05); color:rgba(255,255,255,.80);
+  font-weight:800; font-size:15px; letter-spacing:.03em;
+  cursor:pointer; text-align:center; text-decoration:none;
+  transition:all .15s ease; margin-top:12px;
+}
+.btn-back:hover{ background:rgba(255,255,255,.09); border-color:rgba(0,128,0,.35); transform:translateY(-2px); }
+.btn-back:active{ transform:scale(.99); }
 
 /* ===== MODAL OVERLAY ===== */
 .modal-overlay{
@@ -602,6 +611,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   <div style="text-align:center; color:#64748b; font-size:13px; margin-top:16px;">
     ✅ Pengajuan sudah dikirim
   </div>
+  <a class="btn-back" href="/dashboard/">← Kembali ke Beranda</a>
   {% endif %}
 </div>
 

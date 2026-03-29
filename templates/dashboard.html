@@ -956,6 +956,56 @@ body { padding-bottom: 68px !important; }
   color: rgba(255,255,255,.30); text-transform: uppercase;
 }
 
+/* ===== LAYANAN TRANSAKSI KAMI ===== */
+.lt-scroll {
+  display: flex; gap: 12px;
+  overflow-x: auto; overflow-y: hidden;
+  padding: 14px 14px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.lt-scroll::-webkit-scrollbar { height: 3px; }
+.lt-scroll::-webkit-scrollbar-thumb { background: rgba(184,134,11,.30); border-radius: 99px; }
+.lt-card {
+  flex: 0 0 160px;
+  scroll-snap-align: start;
+  background: linear-gradient(150deg, rgba(255,255,255,.07) 0%, rgba(255,255,255,.03) 100%);
+  border: 1.5px solid rgba(184,134,11,.28);
+  border-radius: 16px; padding: 14px 12px;
+  display: flex; flex-direction: column;
+  min-height: 180px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.lt-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(184,134,11,.22); border-color: rgba(184,134,11,.50); }
+.lt-cat-header {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px; padding-bottom: 10px;
+  border-bottom: 1px solid rgba(184,134,11,.20);
+}
+.lt-cat-icon {
+  width: 34px; height: 34px; border-radius: 10px;
+  background: linear-gradient(135deg, #00008B, #0000CD);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; box-shadow: 0 4px 12px rgba(0,0,139,.40);
+}
+.lt-cat-icon svg { width: 16px; height: 16px; fill: #FFD700; }
+.lt-cat-name { font-size: 10px; font-weight: 950; color: #fff; letter-spacing: .05em; line-height: 1.3; }
+.lt-brands { display: flex; flex-direction: column; gap: 7px; }
+.lt-brand {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 8px; border-radius: 9px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.lt-logo {
+  width: 30px; height: 30px; border-radius: 7px;
+  flex-shrink: 0; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,.35);
+}
+.lt-logo svg { width: 30px; height: 30px; display: block; }
+.lt-brand-name { font-size: 11px; font-weight: 900; letter-spacing: .03em; }
+
 /* ===== REPAYMENT GUIDE CARD ===== */
 .repay-card {
   background: linear-gradient(150deg, #00008B 0%, #000066 100%) !important;
@@ -1201,97 +1251,195 @@ body { padding-bottom: 68px !important; }
     </div>
   </div>
 
-  <!-- LOAN PRODUCTS -->
+  <!-- LAYANAN TRANSAKSI KAMI -->
   <div class="loan-prod-card reveal from-right">
     <div class="lp-header">
       <div class="lp-header-icon">
-        <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
       </div>
       <div>
-        <div class="lp-title">Produk Pinjaman</div>
-        <div class="lp-sub">Geser untuk lihat semua produk →</div>
+        <div class="lp-title">Layanan Transaksi Kami</div>
+        <div class="lp-sub">Geser untuk lihat semua layanan →</div>
       </div>
     </div>
-    <div class="lp-scroll">
+    <div class="lt-scroll">
 
-      <!-- Pinjaman Personal -->
-      <div class="lp-item">
-        <div class="lp-item-icon">
-          <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-        </div>
-        <div class="lp-item-name">Pinjaman Personal</div>
-        <div class="lp-item-amount">Rp 30jt – 100jt</div>
-        <div class="lp-item-rates">
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Bunga</span>
-            <span class="lp-item-rate-val">0.4%/bln</span>
+      <!-- Bank Transfer -->
+      <div class="lt-card">
+        <div class="lt-cat-header">
+          <div class="lt-cat-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 10v3h1v7h3v-7h2v7h3v-7h2v7h3v-7h1v-3L12 3 2 10zm9 8H9v-7h2v7zm4 0h-2v-7h2v7z"/></svg>
           </div>
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Tenor</span>
-            <span class="lp-item-rate-val">6–60 bln</span>
+          <div class="lt-cat-name">Bank Transfer</div>
+        </div>
+        <div class="lt-brands">
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#003D82"/>
+                <!-- BCA lotus flower simplified -->
+                <circle cx="15" cy="9" r="3" fill="#7EC8E3"/>
+                <circle cx="10" cy="13" r="2.5" fill="#5BB5E5"/>
+                <circle cx="20" cy="13" r="2.5" fill="#5BB5E5"/>
+                <circle cx="12" cy="18" r="2.5" fill="#5BB5E5"/>
+                <circle cx="18" cy="18" r="2.5" fill="#5BB5E5"/>
+                <circle cx="15" cy="13" r="3" fill="#A8D8EA"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#5B9BD5;">BCA</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#fff"/>
+                <!-- Mandiri yellow wave -->
+                <path d="M4 17 Q8 11, 15 15 Q22 19, 26 13" stroke="#F5A623" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+                <path d="M4 20 Q8 14, 15 18 Q22 22, 26 16" stroke="#F5A623" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#F5A623;">mandiri</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#E8651A"/>
+                <!-- BNI squares cross pattern -->
+                <rect x="5" y="5" width="8" height="8" rx="2" fill="white" opacity=".9"/>
+                <rect x="17" y="5" width="8" height="8" rx="2" fill="white" opacity=".5"/>
+                <rect x="5" y="17" width="8" height="8" rx="2" fill="white" opacity=".5"/>
+                <rect x="17" y="17" width="8" height="8" rx="2" fill="white" opacity=".9"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#E8651A;">BNI</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#1B4F8A"/>
+                <!-- BRI overlapping B shapes -->
+                <path d="M8 7 h7 a5 5 0 0 1 0 8 h-7 z" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/>
+                <path d="M8 15 h7 a5 5 0 0 1 0 8 h-7 z" fill="none" stroke="white" stroke-width="2.2" stroke-linejoin="round"/>
+                <rect x="8" y="7" width="2" height="16" fill="white"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#6EB3E5;">BRI</span>
           </div>
         </div>
-        <div class="lp-item-tags"><span class="lp-tag">Tanpa Agunan</span><span class="lp-tag">Cepat Cair</span></div>
       </div>
 
-      <!-- Pinjaman Gaji -->
-      <div class="lp-item">
-        <div class="lp-item-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
-        </div>
-        <div class="lp-item-name">Pinjaman Gaji</div>
-        <div class="lp-item-amount">Rp 30jt – 80jt</div>
-        <div class="lp-item-rates">
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Bunga</span>
-            <span class="lp-item-rate-val">0.4%/bln</span>
+      <!-- E-Wallet -->
+      <div class="lt-card">
+        <div class="lt-cat-header">
+          <div class="lt-cat-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
           </div>
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Tenor</span>
-            <span class="lp-item-rate-val">6–36 bln</span>
+          <div class="lt-cat-name">E-Wallet Transfer</div>
+        </div>
+        <div class="lt-brands">
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#00AED6"/>
+                <!-- GoPay G shape -->
+                <path d="M21 13 H15 v3 h3.5 a4.5 4.5 0 1 1 0-2" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <circle cx="15" cy="15" r="6" stroke="white" stroke-width="2" fill="none"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#00AED6;">GoPay</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#118EEA"/>
+                <!-- DANA wallet icon -->
+                <rect x="5" y="9" width="20" height="14" rx="3" fill="none" stroke="white" stroke-width="2"/>
+                <rect x="16" y="13" width="5" height="5" rx="2" fill="white"/>
+                <line x1="5" y1="13" x2="25" y2="13" stroke="white" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#118EEA;">DANA</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#EE4D2D"/>
+                <!-- ShopeePay S shape -->
+                <path d="M20 10 a5 5 0 0 0 -10 0 c0 3 2 4 5 5 3 1 5 2 5 5 a5 5 0 0 1 -10 0" stroke="white" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#EE4D2D;">ShopeePay</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#4C3494"/>
+                <!-- OVO oval with text -->
+                <ellipse cx="15" cy="15" rx="11" ry="7" fill="none" stroke="white" stroke-width="2"/>
+                <text x="15" y="19" font-size="8" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,sans-serif">OVO</text>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#9B7FE8;">OVO</span>
           </div>
         </div>
-        <div class="lp-item-tags"><span class="lp-tag">Bunga Rendah</span><span class="lp-tag">Karyawan</span></div>
       </div>
 
-      <!-- Pinjaman TKI -->
-      <div class="lp-item">
-        <div class="lp-item-icon">
-          <svg viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
-        </div>
-        <div class="lp-item-name">Pinjaman TKI</div>
-        <div class="lp-item-amount">Rp 30jt – 100jt</div>
-        <div class="lp-item-rates">
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Bunga</span>
-            <span class="lp-item-rate-val">0.4%/bln</span>
+      <!-- Penukaran Uang -->
+      <div class="lt-card">
+        <div class="lt-cat-header">
+          <div class="lt-cat-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.99 11L3 15l3.99 4v-3H14v-2H6.99v-3zM21 9l-3.99-4v3H10v2h7.01v3L21 9z"/></svg>
           </div>
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Tenor</span>
-            <span class="lp-item-rate-val">12–60 bln</span>
+          <div class="lt-cat-name">Penukaran Uang</div>
+        </div>
+        <div class="lt-brands">
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#00B894"/>
+                <!-- Money changer arrows -->
+                <circle cx="15" cy="15" r="8" fill="none" stroke="white" stroke-width="1.5"/>
+                <text x="15" y="19" font-size="11" font-weight="900" fill="white" text-anchor="middle" font-family="Arial,sans-serif">$</text>
+                <path d="M10 8 L7 11 L13 11 Z" fill="white"/>
+                <path d="M20 22 L23 19 L17 19 Z" fill="white"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#00B894;">moneyChanger</span>
+          </div>
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#26A17B"/>
+                <!-- Tether T logo -->
+                <rect x="7" y="8" width="16" height="3" rx="1.5" fill="white"/>
+                <rect x="13" y="11" width="4" height="11" rx="1.5" fill="white"/>
+                <ellipse cx="15" cy="21" rx="6" ry="2" fill="none" stroke="white" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#26A17B;">USDT (Tether)</span>
           </div>
         </div>
-        <div class="lp-item-tags"><span class="lp-tag">Syarat Mudah</span><span class="lp-tag">TKI/PMI</span></div>
       </div>
 
-      <!-- Pinjaman Usaha -->
-      <div class="lp-item">
-        <div class="lp-item-icon">
-          <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.33C18 2.54 15.64.5 12.83.5c-1.67 0-3.12.82-4.05 2.07L12 6.9l3.22-4.33C15.85 2.12 16.79 1.5 17.83 1.5 19.57 1.5 21 2.93 21 4.67c0 .45-.11.89-.18 1.33H20zM4 6H2L.84 15.6 0 22h24l-.84-6.4L22 6H4zm5.83 12l-1-4H9l-1-4h8l-1 4h-.83l-1 4H9.83z"/></svg>
-        </div>
-        <div class="lp-item-name">Pinjaman Usaha</div>
-        <div class="lp-item-amount">Rp 50jt – 100jt</div>
-        <div class="lp-item-rates">
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Bunga</span>
-            <span class="lp-item-rate-val">0.4%/bln</span>
+      <!-- Pengiriman Uang -->
+      <div class="lt-card">
+        <div class="lt-cat-header">
+          <div class="lt-cat-icon">
+            <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
           </div>
-          <div class="lp-item-rate-row">
-            <span class="lp-item-rate-label">Tenor</span>
-            <span class="lp-item-rate-val">12–60 bln</span>
+          <div class="lt-cat-name">Pengiriman Uang</div>
+        </div>
+        <div class="lt-brands">
+          <div class="lt-brand">
+            <div class="lt-logo">
+              <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                <rect width="30" height="30" rx="7" fill="#FFCC00"/>
+                <!-- Western Union WU -->
+                <text x="15" y="20" font-size="11" font-weight="900" fill="#1a1a1a" text-anchor="middle" font-family="Arial,sans-serif">WU</text>
+              </svg>
+            </div>
+            <span class="lt-brand-name" style="color:#FFCC00;">Western Union</span>
           </div>
         </div>
-        <div class="lp-item-tags"><span class="lp-tag">Modal Kerja</span><span class="lp-tag">UMKM</span></div>
       </div>
 
     </div>
@@ -1376,7 +1524,7 @@ body { padding-bottom: 68px !important; }
   const updatedEl = document.getElementById("fxUpdated");
   if (!rowsEl || !updatedEl) return;
   const currencies = [
-    { code:"IDR", country:"Indonesia", flag:"{% static 'img/flags/philippines.png' %}" },
+    { code:"HKD", country:"Hong Kong",  flag:"{% static 'img/flags/hongkong.png' %}" },
     { code:"SAR", country:"Saudi",       flag:"{% static 'img/flags/saudi arabian.png' %}" },
     { code:"MYR", country:"Malaysia",    flag:"{% static 'img/flags/malaysia.png' %}" },
     { code:"IDR", country:"Indonesia",   flag:"{% static 'img/flags/indonesia.png' %}" },
