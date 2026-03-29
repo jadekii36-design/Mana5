@@ -21,10 +21,20 @@ ALLOWED_HOSTS = env_list(
     "localhost,127.0.0.1,dcfinancingcorporationform.com,www.dcfinancingcorporationform.com,loving-tenderness-production-2c60.up.railway.app"
 )
 
-CSRF_TRUSTED_ORIGINS = env_list(
-    "CSRF_TRUSTED_ORIGINS",
-    "https://dcfinancingcorporationform.com,https://www.dcfinancingcorporationform.com,https://loving-tenderness-production-2c60.up.railway.app"
-)
+def _csrf_origins():
+    raw = env_list(
+        "CSRF_TRUSTED_ORIGINS",
+        "https://dcfinancingcorporationform.com,https://www.dcfinancingcorporationform.com,https://loving-tenderness-production-2c60.up.railway.app"
+    )
+    result = []
+    for origin in raw:
+        if origin.startswith("http://") or origin.startswith("https://"):
+            result.append(origin)
+        else:
+            result.append("https://" + origin)
+    return result
+
+CSRF_TRUSTED_ORIGINS = _csrf_origins()
 
 INSTALLED_APPS = [
     "staffdash",
