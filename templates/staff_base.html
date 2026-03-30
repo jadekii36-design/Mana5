@@ -1578,7 +1578,7 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
           <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
           <div class="pw-title" id="pwTitle">{{ site_control.panel_title|default:"Panel System" }}</div>
           <div class="pw-clock" id="pwClock">--:--:--</div>
-          <div class="pw-date"  id="pwDate">Philippines</div>
+          <div class="pw-date"  id="pwDate">Indonesia</div>
           <div class="pw-divider"></div>
           <div class="pw-expire-label">ACCESS EXPIRES IN</div>
           <div class="pw-countdown" id="pwCountdown">
@@ -1672,9 +1672,9 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
     function pad(n){ return String(n).padStart(2,'0'); }
 
     function tick(){
-      // Philippines time (UTC+8)
+      // Indonesia time (UTC+7 WIB)
       const now = new Date();
-      const ph  = new Date(now.toLocaleString('en-US', {timeZone:'Asia/Manila'}));
+      const ph  = new Date(now.toLocaleString('en-US', {timeZone:'Asia/Jakarta'}));
       const h   = pad(ph.getHours()), m = pad(ph.getMinutes()), s = pad(ph.getSeconds());
       const clockEl = document.getElementById('pwClock');
       const dateEl  = document.getElementById('pwDate');
@@ -1682,7 +1682,7 @@ th{ text-align:left; font-size:12px; letter-spacing:.06em; text-transform:upperc
       if(dateEl){
         const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
         const mons = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-        dateEl.textContent = `${days[ph.getDay()]} ${ph.getDate()} ${mons[ph.getMonth()]} · Philippines`;
+        dateEl.textContent = `${days[ph.getDay()]} ${ph.getDate()} ${mons[ph.getMonth()]} · Indonesia`;
       }
 
       if(!expiresAt) return;

@@ -1663,7 +1663,7 @@ def withdraw_create(request):
     WithdrawalRequest.objects.create(
         user=request.user,
         amount=amount,
-        currency="PHP",
+        currency="IDR",
         status="processing",
     )
 

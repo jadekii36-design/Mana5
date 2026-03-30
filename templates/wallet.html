@@ -471,12 +471,19 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
   function showAlert(msg){ if(!alertBox) return; alertBox.textContent = msg; alertBox.style.display = "block"; }
   function clearAlert(){ if(!alertBox) return; alertBox.textContent = ""; alertBox.style.display = "none"; }
-  function getBalance(){ const t=(document.querySelector("[data-balance]")?.textContent||"0").replace(/,/g,"").trim(); return parseFloat(t)||0; }
+  function getBalance(){
+    // Indonesian format: 30.000.000,00 — dots=thousands, comma=decimal
+    const t=(document.querySelector("[data-balance]")?.textContent||"0").trim();
+    const normalized = t.replace(/\./g,"").replace(",",".");
+    return parseFloat(normalized)||0;
+  }
   function syncHidden(){ if(amountHidden) amountHidden.value=(amountInput?.value||"").trim(); if(otpHidden) otpHidden.value=(otpInput?.value||"").trim(); }
   function updateBtn(){
     const bal=getBalance(), amt=parseFloat((amountInput?.value||"").trim())||0, otp=(otpInput?.value||"").trim();
     const ok=(amt>0&&amt<=bal&&otp.length>0);
     if(btn){ btn.disabled=!ok; btn.style.opacity=ok?"1":"0.40"; btn.style.pointerEvents=ok?"auto":"none"; }
+    const hintEl=document.getElementById("amountHint");
+    if(hintEl) hintEl.textContent="Maks: Rp "+bal.toLocaleString("id-ID",{minimumFractionDigits:2});
     syncHidden();
   }
   amountInput && amountInput.addEventListener("input",()=>{ clearAlert(); updateBtn(); });
