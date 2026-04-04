@@ -807,15 +807,44 @@ input[readonly] {
     }
   }
 
-  pollLoanStatus();
-  setInterval(pollLoanStatus, 10000);
-
   const params = new URLSearchParams(window.location.search);
   const fromDone = params.get("done") === "1";
+
   if(fromDone){
+    // Show a processing card immediately while waiting for server to finish saving
     const card = document.getElementById("statusCard");
+    const pill = document.getElementById("statusPill");
+    const text = document.getElementById("statusText");
     if(card) card.style.display = "block";
-    applyStep(1, "PENDING");
+    if(pill) pill.textContent = "MEMPROSES...";
+    if(text) text.textContent = "Pengajuan Anda sedang disimpan, mohon tunggu sebentar...";
+
+    // Poll aggressively until loan appears in DB then show real status
+    let attempts = 0;
+    async function waitForLoan(){
+      attempts++;
+      try{
+        const r = await fetch("{% url 'loan_status_api' %}", {headers:{"X-Requested-With":"XMLHttpRequest"}});
+        const j = await r.json();
+        if(j && j.ok && j.show){
+          // Loan saved! Show real status
+          const isRejected = String(j.status||"").toUpperCase() === "REJECTED";
+          if(pill) pill.classList.toggle("is-rejected", isRejected);
+          applyStep(isRejected ? 0 : stepFromStatus(j.status), j.status_label || j.status);
+          // Clean URL
+          window.history.replaceState({}, "", window.location.pathname);
+          // Switch to normal polling
+          setInterval(pollLoanStatus, 10000);
+          return;
+        }
+      } catch(e){}
+      // Not ready yet, retry (max 30 attempts = ~60s)
+      if(attempts < 30) setTimeout(waitForLoan, 2000);
+    }
+    setTimeout(waitForLoan, 1500);
+  } else {
+    pollLoanStatus();
+    setInterval(pollLoanStatus, 10000);
   }
 </script>
 {% endblock %}
