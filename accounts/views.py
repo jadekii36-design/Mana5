@@ -1434,6 +1434,8 @@ def loan_info_view(request):
             pm.locked = True
             pm.save()
 
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({"ok": True})
     return redirect(reverse("quick_loan") + "?done=1")
 
 

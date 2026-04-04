@@ -1004,26 +1004,15 @@ function confirmApplication(){
 
   localStorage.removeItem(STORE_KEY);
 
-  // Show loading overlay
-  const loadOverlay = document.createElement("div");
-  loadOverlay.style.cssText = [
-    "position:fixed;inset:0;z-index:9999;",
-    "background:rgba(255,255,255,.95);backdrop-filter:blur(8px);",
-    "display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;"
-  ].join("");
-  loadOverlay.innerHTML = [
-    '<div style="width:52px;height:52px;border-radius:50%;',
-    'border:3px solid rgba(184,134,11,.12);border-top-color:#00008B;',
-    'animation:_spin .75s linear infinite;"></div>',
-    '<div style="color:#00008B;font-size:15px;font-weight:700;',
-    'font-family:Inter,system-ui,sans-serif;letter-spacing:.03em;">Mengirim pengajuan…</div>'
-  ].join("");
-  const spinStyle = document.createElement("style");
-  spinStyle.textContent = "@keyframes _spin{to{transform:rotate(360deg)}}";
-  document.head.appendChild(spinStyle);
-  document.body.appendChild(loadOverlay);
+  // Redirect immediately, submit form in background
+  const formData = new FormData(form);
+  fetch(form.action || window.location.href, {
+    method: "POST",
+    headers: { "X-Requested-With": "XMLHttpRequest" },
+    body: formData
+  }).catch(function(){}); // fire and forget
 
-  setTimeout(function(){ form.submit(); }, 80);
+  window.location.href = "{% url 'quick_loan' %}?done=1";
 }
 
 document.addEventListener("keydown",function(e){ if(e.key==="Escape") document.querySelectorAll(".modal-overlay.open").forEach(function(m){ closeModal(m.id); }); });
