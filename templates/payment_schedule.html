@@ -228,12 +228,12 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
 
           <div class="row">
             <div class="kv"><span>Jumlah Pinjaman:</span> <b>Rp {{ s.loan_amount }}</b></div>
-            <div class="kv"><span>Jangka Waktu:</span> <b>{{ s.term_bulan }} bulan</b></div>
+            <div class="kv"><span>Jangka Waktu:</span> <b>{{ s.term_bulan }} Bulan</b></div>
           </div>
 
           <div class="row">
             <div class="kv"><span>Jumlah Angsuran:</span> <b class="repay">Rp {{ s.repayment }}</b></div>
-            <div class="kv"><span>Suku Bunga:</span> <b>{{ s.interest_rate }}</b></div>
+            <div class="kv"><span>Suku Bunga:</span> <b>{{ s.interest_rate }} / bulan</b></div>
           </div>
         </div>
       {% endfor %}

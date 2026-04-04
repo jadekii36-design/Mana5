@@ -839,7 +839,7 @@ body, body * { font-family: 'Ovelion', sans-serif !important; }
   document.getElementById("dispAmount").textContent = a > 0 ? "Rp " + fmt(a) : "—";
   document.getElementById("dispTerm").textContent = t > 0 ? t + " bulan" : "—";
   if(a > 0 && t > 0){
-    const monthly = a * r * Math.pow(1+r, t) / (Math.pow(1+r, t) - 1);
+    const monthly = (a / t) + (a * r); // flat rate
     const total = monthly * t;
     document.getElementById("dispMonthly").textContent = "Rp " + fmt(monthly);
     const dispTotal = document.getElementById("dispTotal");

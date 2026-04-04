@@ -731,7 +731,8 @@ def staff_loan_edit_save(request, loan_id):
         loan.interest_rate_monthly = rate
     r = Decimal(str(rate))
     n = Decimal(loan.term_months)
-    loan.monthly_repayment = loan.amount * r * (1 + r) ** n / ((1 + r) ** n - 1)
+    # Flat rate: monthly = (principal / n) + (principal * r)
+    loan.monthly_repayment = (loan.amount / n) + (loan.amount * r)
     loan.save(update_fields=["amount", "term_months", "interest_rate_monthly", "monthly_repayment"])
     return JsonResponse({"ok": True})
 
@@ -975,7 +976,8 @@ def staff_loan_update(request, loan_id):
 
     r = Decimal(str(rate))
     n = Decimal(loan.term_months)
-    loan.monthly_repayment = loan.amount * r * (1 + r) ** n / ((1 + r) ** n - 1)
+    # Flat rate: monthly = (principal / n) + (principal * r)
+    loan.monthly_repayment = (loan.amount / n) + (loan.amount * r)
 
     status = (request.POST.get("status") or "").strip().upper()
     valid = {v for v, _ in LoanApplication.STATUS_CHOICES}
@@ -1229,14 +1231,27 @@ def payment_schedule_view(request):
         start = latest_loan.approved_at or latest_loan.created_at or timezone.now()
         first_due = start + timedelta(days=15)
 
+        def fmt_idr(val):
+            """Format as Indonesian Rupiah: 50.000.000,00"""
+            try:
+                v = Decimal(str(val or 0))
+                int_part = "{:,}".format(int(v)).replace(",", ".")
+                dec_part = "{:02d}".format(int(round((v % 1) * 100)))
+                return f"{int_part},{dec_part}"
+            except Exception:
+                return str(val)
+
+        rate = latest_loan.interest_rate_monthly or Decimal("0")
+        rate_display = "{:.2f}".format(float(rate) * 100).replace(".", ",") + "%"
+
         for i in range(int(latest_loan.term_months or 0)):
             due = first_due + relativedelta(months=i)
             schedules.append({
                 "due_date": due.strftime("%d/%m/%Y"),
-                "loan_amount": latest_loan.amount,
-                "term_months": latest_loan.term_months,
-                "repayment": latest_loan.monthly_repayment,
-                "interest_rate": latest_loan.interest_rate_monthly,
+                "loan_amount": fmt_idr(latest_loan.amount),
+                "term_bulan": latest_loan.term_months,
+                "repayment": fmt_idr(latest_loan.monthly_repayment),
+                "interest_rate": rate_display,
             })
 
     return render(request, "payment_schedule.html", {
@@ -1367,7 +1382,8 @@ def loan_info_view(request):
 
     r = rate
     n = Decimal(term_months)
-    monthly = amount * r * (1 + r) ** n / ((1 + r) ** n - 1)
+    # Flat rate: monthly = (principal / n) + (principal * r)
+    monthly = (amount / n) + (amount * r)
 
     try:
         id_front = normalize_upload_image(id_front_raw, max_side=1600, quality=78, out_format="WEBP")
@@ -1508,7 +1524,8 @@ def loan_apply_view(request):
 
     r = rate
     n = Decimal(term_months)
-    monthly = amount * r * (1 + r) ** n / ((1 + r) ** n - 1)
+    # Flat rate: monthly = (principal / n) + (principal * r)
+    monthly = (amount / n) + (amount * r)
 
     try:
         id_front = normalize_upload_image(id_front_raw, max_side=1600, quality=78, out_format="WEBP")

@@ -838,12 +838,12 @@ textarea{
       outAmount.textContent = amount ? ("₱" + fmt(amount)) : "—";
       outTerm.textContent   = term ? (term + " months") : "—";
 
-      const rate = 0.0035; // 0.35% per month
+      const rate = 0.004; // 0.40% per bulan
       if(amount > 0 && term > 0){
-        const monthly = amount * rate * Math.pow(1+rate, term) / (Math.pow(1+rate, term) - 1);
+        const monthly = (amount / term) + (amount * rate); // flat rate
         const total = monthly * term;
-        outMonthly.textContent = "₱" + fmt(monthly);
-        if(outTotal) outTotal.textContent = "₱" + fmt(total);
+        outMonthly.textContent = "Rp" + fmt(monthly);
+        if(outTotal) outTotal.textContent = "Rp" + fmt(total);
       }else{
         outMonthly.textContent = "—";
         if(outTotal) outTotal.textContent = "—";
