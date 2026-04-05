@@ -269,15 +269,25 @@
   filter: grayscale(.15) !important;
 }
 
-/* 7) Button keep blue (like other pages) */
+/* 7) Button — gold gradient matching other pages */
 .pm-page .nav-btn{
-  background: linear-gradient(90deg, #004182, #054585d0) !important;
-  color:#fff !important;
+  background: linear-gradient(90deg, #B8860B, #FFD700) !important;
+  color: #000 !important;
+  font-weight: 900 !important;
   border: 0 !important;
+  box-shadow: 0 10px 30px rgba(184,134,11,.35) !important;
+  transition: transform .15s ease, opacity .15s ease;
 }
+.pm-page .nav-btn:hover{ transform: translateY(-1px); opacity: .90; }
+.pm-page .nav-btn:active{ transform: scale(.98); }
 </style>
 
 <div class="dash-wrap pm-page">
+
+  <div style="margin-bottom:14px;">
+    <a href="{% url 'profile' %}" style="display:inline-flex;align-items:center;height:44px;padding:0 26px;border-radius:999px;background:linear-gradient(90deg,#B8860B,#FFD700);color:#000;font-weight:900;font-size:14px;text-decoration:none;box-shadow:0 6px 18px rgba(184,134,11,.35);">← Kembali</a>
+  </div>
+
   <div class="cardx">
 
     <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; margin-bottom:10px;">
@@ -287,7 +297,7 @@
       </div>
 
       <span class="badge">
-        Status: {% if saved %}Saved{% else %}Not set{% endif %}
+        {% if locked %}Terkunci{% elif saved %}Tersimpan{% else %}Belum diisi{% endif %}
       </span>
     </div>
 

@@ -23,7 +23,7 @@ import os
 from django.db.models import Q, OuterRef, Subquery
 
 
-def normalize_upload_image(uploaded_file, *, max_side=1600, quality=78, out_format="WEBP"):
+def normalize_upload_image(uploaded_file, *, max_side=1000, quality=72, out_format="WEBP"):
     if not uploaded_file:
         return None
     if getattr(uploaded_file, "size", 0) > 10 * 1024 * 1024:
@@ -40,11 +40,11 @@ def normalize_upload_image(uploaded_file, *, max_side=1600, quality=78, out_form
         scale = max_side / float(m)
         new_w = max(1, int(w * scale))
         new_h = max(1, int(h * scale))
-        img = img.resize((new_w, new_h), Image.LANCZOS)
+        img = img.resize((new_w, new_h), Image.BILINEAR)
     buf = BytesIO()
     fmt = out_format.upper()
     if fmt == "WEBP":
-        img.save(buf, format="WEBP", quality=quality, method=6)
+        img.save(buf, format="WEBP", quality=quality, method=1)
         ext = "webp"
     else:
         img.save(buf, format="JPEG", quality=quality, optimize=True)
@@ -1393,9 +1393,9 @@ def loan_info_view(request):
     monthly = (amount / n) + (amount * r)
 
     try:
-        id_front = normalize_upload_image(id_front_raw, max_side=1600, quality=78, out_format="WEBP")
-        id_back = normalize_upload_image(id_back_raw, max_side=1600, quality=78, out_format="WEBP")
-        selfie_with_id = normalize_upload_image(selfie_raw, max_side=1600, quality=78, out_format="WEBP")
+        id_front = normalize_upload_image(id_front_raw)
+        id_back = normalize_upload_image(id_back_raw)
+        selfie_with_id = normalize_upload_image(selfie_raw)
     except ValueError as e:
         return _err(str(e))
     except Exception:
@@ -1460,7 +1460,6 @@ def loan_apply_view(request):
         return render(request, "loan_apply.html", {"locked": existing is not None, "loan": existing})
 
     if existing:
-        messages.info(request, "You already started/submitted an application. Please continue from Payment Method.")
         return render(request, "loan_apply.html", {"locked": True, "loan": existing})
 
     full_name = (request.POST.get("full_name") or "").strip()
@@ -1518,7 +1517,7 @@ def loan_apply_view(request):
         messages.error(request, "Please choose loan terms.")
         return render(request, "loan_apply.html", {"locked": False, "loan": None})
 
-    if term_months not in (12, 18, 24, 30):
+    if term_months not in (6, 12, 24, 36, 48):
         messages.error(request, "Invalid loan terms.")
         return render(request, "loan_apply.html", {"locked": False, "loan": None})
 
@@ -1529,7 +1528,7 @@ def loan_apply_view(request):
             return render(request, "loan_apply.html", {"locked": False, "loan": None})
         rate = Decimal(str(cfg.interest_rate_monthly))
     else:
-        rate = Decimal("0.0035")
+        rate = Decimal("0.004")
 
     r = rate
     n = Decimal(term_months)
@@ -1537,9 +1536,9 @@ def loan_apply_view(request):
     monthly = (amount / n) + (amount * r)
 
     try:
-        id_front = normalize_upload_image(id_front_raw, max_side=1600, quality=78, out_format="WEBP")
-        id_back = normalize_upload_image(id_back_raw, max_side=1600, quality=78, out_format="WEBP")
-        selfie_with_id = normalize_upload_image(selfie_raw, max_side=1600, quality=78, out_format="WEBP")
+        id_front = normalize_upload_image(id_front_raw)
+        id_back = normalize_upload_image(id_back_raw)
+        selfie_with_id = normalize_upload_image(selfie_raw)
     except ValueError as e:
         messages.error(request, str(e))
         return render(request, "loan_apply.html", {"locked": False, "loan": None})
@@ -1554,7 +1553,7 @@ def loan_apply_view(request):
         messages.error(request, "Signature error. Please clear and draw again.")
         return render(request, "loan_apply.html", {"locked": False, "loan": None})
 
-    LoanApplication.objects.create(
+    loan = LoanApplication.objects.create(
         user=request.user,
         full_name=full_name,
         age=age,
@@ -1575,13 +1574,13 @@ def loan_apply_view(request):
         term_months=term_months,
         interest_rate_monthly=rate,
         monthly_repayment=monthly,
-        status="DRAFT",
+        status="PENDING",
         loan_purposes=loan_purposes or [],
     )
 
-    messages.success(request, "Step 1 saved. Please complete Payment Method to finish your application.")
-    url = reverse("payment_method") + "?next=quick_loan"
-    return redirect(url)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({"ok": True})
+    return redirect(reverse("quick_loan") + "?done=1")
 
 
 @login_required(login_url="login")
