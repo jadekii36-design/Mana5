@@ -1457,6 +1457,9 @@ def loan_apply_view(request):
     )
 
     if request.method != "POST":
+        # If user has a DRAFT, redirect them to complete payment method
+        if existing and existing.status == "DRAFT":
+            return redirect(reverse("payment_method"))
         return render(request, "loan_apply.html", {"locked": existing is not None, "loan": existing})
 
     if existing:
@@ -1574,13 +1577,12 @@ def loan_apply_view(request):
         term_months=term_months,
         interest_rate_monthly=rate,
         monthly_repayment=monthly,
-        status="PENDING",
+        status="DRAFT",
         loan_purposes=loan_purposes or [],
     )
 
-    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return JsonResponse({"ok": True})
-    return redirect(reverse("quick_loan") + "?done=1")
+    # Redirect to payment method — Simpan there will promote DRAFT → PENDING
+    return redirect(reverse("payment_method"))
 
 
 @login_required(login_url="login")
