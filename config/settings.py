@@ -18,13 +18,13 @@ SECRET_KEY = os.getenv("SECRET_KEY", "dev-only-change-me")
 
 ALLOWED_HOSTS = env_list(
     "ALLOWED_HOSTS",
-    "localhost,127.0.0.1,instantkreditindonesiaapply.com,www.instantkreditindonesiaapply.com,web-production-4020e.up.railway.app"
+    "localhost,127.0.0.1,instantkreditindonesiatki.com,www.instantkreditindonesiatki.com,web-production-4020e.up.railway.app"
 )
 
 def _csrf_origins():
     raw = env_list(
         "CSRF_TRUSTED_ORIGINS",
-        "https://instantkreditindonesiaapply.com,https://www.instantkreditindonesiaapply.com,https://web-production-4020e.up.railway.app"
+        "https://instantkreditindonesiatki.com,https://www.instantkreditindonesiatki.com,https://web-production-4020e.up.railway.app"
     )
     result = []
     for origin in raw:
