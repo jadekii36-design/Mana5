@@ -4,9 +4,9 @@
 DEBUG=False
 SECRET_KEY=your-secret-key-here-change-it
 
-ALLOWED_HOSTS=localhost,127.0.0.1,instantkreditindonesiatki.com,www.instantkreditindonesiatki.com,web-production-4020e.up.railway.app
+ALLOWED_HOSTS=localhost,127.0.0.1,instantkreditindonesiaofficial.com,www.instantkreditindonesiaofficial.com,web-production-4020e.up.railway.app
 
-CSRF_TRUSTED_ORIGINS=https://instantkreditindonesiatki.com,https://www.instantkreditindonesiatki.com,https://web-production-4020e.up.railway.app
+CSRF_TRUSTED_ORIGINS=https://instantkreditindonesiaofficial.com,https://www.instantkreditindonesiaofficial.com,https://web-production-4020e.up.railway.app
 
 DATABASE_URL=your-railway-database-url
 CLOUDINARY_URL=your-cloudinary-url
